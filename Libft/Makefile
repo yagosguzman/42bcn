@@ -13,7 +13,7 @@
 NAME = libft.a
 
 SRC = ft_lib.c ft_lib2.c ft_strncmp.c ft_toupper.c ft_tolower.c ft_memset.c \
-ft_memcpy.c ft_memmove.c
+ft_memcpy.c ft_memmove.c ft_memchr.c
 
 OBJ = $(SRC:.c=.o)
 
