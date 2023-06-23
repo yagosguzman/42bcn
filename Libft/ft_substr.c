@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:18:56 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/13 20:27:24 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/06/05 16:13:07 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/06/06 17:11:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	char	*substr;
 
 	i = 0;
-	if (!s && !c && !n)
+	if (start >= (unsigned int)ft_strlen(s))
+		len = 0;
+	else if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	substr = malloc((len + 1) * sizeof(char));
+	if (!substr)
 		return (NULL);
-	while (i < n)
+	while (start < (unsigned int)ft_strlen(s) && s[start + i] && len > i)
 	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+		substr[i] = ((char *)s)[start + i];
 		i++;
 	}
-	return (NULL);
+	substr[i] = '\0';
+	return (substr);
 }
+/*
+int	main (void)
+{
+	ft_substr("Hola que tal", 6, 4);
+	return (0);
+}*/

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:33:42 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/05/15 19:56:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/05/25 20:09:42 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 	}
 	return (b);
 }*/
-
 void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t	i;

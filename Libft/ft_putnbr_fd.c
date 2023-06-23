@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:38:45 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/16 13:31:21 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/06/07 20:17:22 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/06/08 17:11:11 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
+	int		i;
+	char	strnum[12];
 
-	i = 0;
 	if (n == 0)
-		return (0);
-	while (i < n && ((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
+		write(fd, "0", 1);
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	if (n < 0 && n > -2147483648)
 	{
-		if (i == n - 1)
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
-		i++;
+		n = -n;
+		write (fd, "-", 1);
 	}
-	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	i = 0;
+	while (n > 0 && n <= 2147483647)
+	{
+		strnum[i] = ((n % 10) + 48);
+		i++;
+		n = n / 10;
+	}
+	strnum[i--] = '\0';
+	while (i >= 0)
+	{
+		write (fd, &strnum[i], 1);
+		i--;
+	}
 }
+/* 
+int	main(void)
+{
+	ft_putnbr_fd(150, 1);
+	return (0);
+} */

@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 19:38:45 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/16 13:31:21 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/06/05 17:22:10 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/06/06 15:47:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	int		i;
+	int		j;
+	char	*newstr;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n && ((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
+	j = 0;
+	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!newstr)
+		return (NULL);
+	while (s1[i])
 	{
-		if (i == n - 1)
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		newstr[i] = s1[i];
 		i++;
 	}
-	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	while (s2[j])
+	{
+		newstr[i] = s2[j];
+		i++;
+		j++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
 }
+/*int	main (void)
+{
+	ft_strjoin("hola", " que tal");
+	return (0);
+}*/
