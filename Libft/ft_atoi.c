@@ -6,13 +6,13 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:56:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/01 16:43:57 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:39:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(const char *str)
+static int	ft_isspace(const char *str)
 {
 	int	i;
 

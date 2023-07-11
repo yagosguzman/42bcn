@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/05 18:50:20 by ysanchez          #+#    #+#              #
-#    Updated: 2023/06/23 16:37:43 by ysanchez         ###   ########.fr        #
+#    Created: 2023/07/05 17:32:25 by ysanchez          #+#    #+#              #
+#    Updated: 2023/07/05 17:46:26 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ft_strjoin.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_strnstr.c \
 ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strtrim.c ft_split.c \
 
 BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
-ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \ 
+ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
 
 OBJ = $(SRC:.c=.o)
@@ -49,6 +49,6 @@ re: fclean all
 
 bonus: .bonus
 
-.bonus: $(OBJ) $(OBJ_BONUS)
+.bonus: $(OBJ) $(OBJ_BONUS) $(HEADER)
 		ar rc $(NAME) $(OBJ) $(OBJ_BONUS)
 		touch .bonus

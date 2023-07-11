@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 21:09:25 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/05/25 20:09:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:56:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		return (j);
 	while (src[i] != 0 && i < (dstsize -1))
 	{
-		dst[i] = src [i];
+		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = 0;
+	dst[i] = '\0';
 	return (j);
 }
 /*

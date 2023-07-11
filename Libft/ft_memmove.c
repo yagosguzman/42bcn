@@ -6,26 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:30:11 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/06 15:48:23 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:46:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	size_t	i;
-	char *aux;
-
-	i = len - 1;
-	while (i < len)
-	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i--;
-	}
-	return (dst);
-}
-*/
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:38:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/20 14:48:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:48:17 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	**aux_lenword(char const *s, char c, char **listword, int i)
 	j = 0;
 	x = 0;
 	while ((size_t)i < ft_strlen(s))
-	{	
+	{
 		if (s[i] != c && (s[i + 1] == c || (size_t)(i + 1) == ft_strlen(s)))
 		{
 			listword[x] = ft_substr(s, (i - j), j + 1);
