@@ -6,14 +6,46 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:12:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/11 20:58:10 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:52:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-int ft_putnumberbase()
+int	ft_strlen(char *str)
 {
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_dupchar(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = i + 1;
+	while (str[i] && j <= ft_strlen(str))
+	{
+		while (*str)
+		{
+			if (str[i] == str[j])
+				return (1)
+			else
+				j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int ft_putnumberbase(int number, char *base)
+{
+	if (!base || ft_strlen(base) < 2)
+		return (-1);
 
 }
 
