@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_dupchar(char *str)
+static int	ft_basecheck(char *str)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ int	ft_dupchar(char *str)
 		while (*str)
 		{
 			if (str[i] == str[j])
-				return (1)
+				return (-1)
 			else
 				j++;
 		}
@@ -42,11 +42,35 @@ int	ft_dupchar(char *str)
 	return (0);
 }
 
-int ft_putnumberbase(int number, char *base)
+unsigned long long ft_putnumberbase(int number, char *base)
 {
-	if (!base || ft_strlen(base) < 2)
+	if (!base || ft_strlen(base) < 2 || ft_basecheck(base) != 0)
 		return (-1);
+	int					n;
+	int 				base_size;
+	unsigned long long	result[20];
+	int					i;
 
+	i = 0;
+	n = number;
+	base_size = ft_strlen(base);
+	if (n < 0)
+	{
+		n = -n;
+		ft_putchar('-');
+	}
+	while (n)
+	{
+		result[i] = base[n % base_size];
+		n = n / base_size;
+		i++;
+	}
+	while (--i >= 0)
+		ft_putchar(result[i]);
+if (number < 0)
+	return (ft_strlen(result+1)); 
+else
+	return (ft_strlen(result));
 }
 
 /*Deberia poner la funcion numbertype como static?*/
