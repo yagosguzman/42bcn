@@ -22,5 +22,6 @@ int		ft_putchar(char x);
 int		ft_putstr(char *x);
 int		ft_argselection (va_list arg, char const *format, int i);
 int		ft_putformat(va_list args, char const *format);
+int 	ft_putnumberbase(unsigned long long number, char *base);
 
 #endif

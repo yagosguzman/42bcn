@@ -42,11 +42,11 @@ static int	ft_basecheck(char *str)
 	return (0);
 }
 
-unsigned long long ft_putnumberbase(int number, char *base)
+int ft_putnumberbase(unsigned long long number, char *base)
 {
 	if (!base || ft_strlen(base) < 2 || ft_basecheck(base) != 0)
 		return (-1);
-	int					n;
+	unsigned long long	n;
 	int 				base_size;
 	unsigned long long	result[20];
 	int					i;
@@ -70,10 +70,9 @@ unsigned long long ft_putnumberbase(int number, char *base)
 if (number < 0)
 	return (ft_strlen(result+1)); 
 else
-	return (ft_strlen(result));
+	return ((int)ft_strlen(result));
 }
 
-/*Deberia poner la funcion numbertype como static?*/
 int	numbertype (char const format, va_arg args)
 {
 	int	n;
@@ -101,19 +100,4 @@ int	numbertype (char const format, va_arg args)
 		n = va_arg(args, unsigned long long);
 		return (ft_putnumberbase(n, "0123456789ABCDEF");
 	}
-}
-
-
-int	main()
-{
-	char	*str;
-	int		l;
-
-	str = "Hello, World!";
-	l = 234567;
-	printf("---%i\n", printf("---%s\n", str));
-	printf("+++%Q", ft_printf("+++%s\n", str));
-	printf("---%i\n", printf("---%s---%d\n", str, l));
-	printf("+++%i\n", ft_printf("+++%s+++%d\n", str, l));
-	return (0);
 }

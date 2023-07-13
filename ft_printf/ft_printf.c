@@ -42,4 +42,18 @@ X = numero hexadecimal (base 16) en mayusculas
 
 Returns the count of printed characters when the function is successful and -1 when the function fails.
 
+int	main()
+{
+	char	*str;
+	int		l;
+
+	str = "Hello, World!";
+	l = 234567;
+	printf("---%i\n", printf("---%s\n", str));
+	printf("+++%i\n", ft_printf("+++%s\n", str));
+	printf("---%i\n", printf("---%s---%d\n", str, l));
+	printf("+++%i\n", ft_printf("+++%s+++%d\n", str, l));
+	return (0);
+}
+
 */
