@@ -6,11 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:12:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/12 20:52:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:15:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
+
 static int	ft_strlen(char *str)
 {
 	int	i;
@@ -33,7 +34,7 @@ static int	ft_basecheck(char *str)
 		while (*str)
 		{
 			if (str[i] == str[j])
-				return (-1)
+				return (-1);
 			else
 				j++;
 		}
@@ -42,15 +43,15 @@ static int	ft_basecheck(char *str)
 	return (0);
 }
 
-int ft_putnumberbase(unsigned long long number, char *base)
+int	ft_putnumberbase(unsigned long long number, char *base)
 {
-	if (!base || ft_strlen(base) < 2 || ft_basecheck(base) != 0)
-		return (-1);
 	unsigned long long	n;
-	int 				base_size;
+	int					base_size;
 	unsigned long long	result[20];
 	int					i;
 
+	if (!base || ft_strlen(base) < 2 || ft_basecheck(base) != 0)
+		return (-1);
 	i = 0;
 	n = number;
 	base_size = ft_strlen(base);
@@ -67,19 +68,19 @@ int ft_putnumberbase(unsigned long long number, char *base)
 	}
 	while (--i >= 0)
 		ft_putchar(result[i]);
-if (number < 0)
-	return (ft_strlen(result+1)); 
-else
-	return ((int)ft_strlen(result));
+	if (number < 0)
+		return (ft_strlen((char *)result + 1)); 
+	else
+		return ((int)ft_strlen((char *)result));
 }
 
-int	numbertype (char const format, va_arg args)
+int	numbertype(char const format, va_list args)
 {
 	int	n;
 	int	c;
 
 	c = 0;
-	if (format == 'i' || format == 'd' || format == 'u')
+	if (format == 'i' || format == 'd')
 	{
 		n = va_arg(args, int);
 		if (n < 0)
@@ -88,16 +89,35 @@ int	numbertype (char const format, va_arg args)
 				c = ft_putchar('-');
 			n = -1 * n;
 		}
-		return (c + ft_putnumberbase((unsigned long long) n, "0123456789");
+		return (c + ft_putnumberbase((n, "0123456789")));
 	}
+	else if (format == 'u')
+		return (c + ft_putnumberunsigned(va_arg(args, unsigned int)));
 	else if (format == 'x')
 	{
 		n = va_arg(args, unsigned long long);
-		return (ft_putnumberbase(n, "0123456789abcdef");
+		return (c + ft_putnumberbase(n, "0123456789abcdef"));
 	}
 	else if (format == 'X')
 	{
 		n = va_arg(args, unsigned long long);
-		return (ft_putnumberbase(n, "0123456789ABCDEF");
+		return (c + ft_putnumberbase(n, "0123456789ABCDEF"));
 	}
+	else
+		return (-1);
 }
+
+/*
+int	main()
+{
+	char	*str;
+	int		l;
+
+	str = "Hello, World!";
+	l = 234567;
+	printf("---%i\n", printf("---%s\n", str));
+	printf("+++%Q", ft_printf("+++%s\n", str));
+	printf("---%i\n", printf("---%s---%d\n", str, l));
+	printf("+++%i\n", ft_printf("+++%s+++%d\n", str, l));
+	return (0);
+}*/

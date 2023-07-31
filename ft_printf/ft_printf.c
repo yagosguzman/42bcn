@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:35:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/11 18:44:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:15:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(char const *format, ...)
 {
@@ -20,40 +20,21 @@ int	ft_printf(char const *format, ...)
 	va_start (args, format);
 	i = ft_putformat(args, format);
 	va_end(args);
-	return(i);
+	return (i);
 }
 
 int	main (void)
 {
-	ft_printf("Imprime este carácter: %c", 'X');
-	printf("Imprime este carácter: %c", 'X');
+	int	ejemplo;
+	int	*ptr;
+	int res1;
+	int res2;
+
+	ejemplo = 10;
+	ptr = &ejemplo;
+	res1 = ft_printf("Str %s\n", NULL);
+	res2 = printf("Str %s\n", NULL);
+	printf("\nRes %d\nRes %d\n", res1, res2);
+
 	return (0);
 }
-/*
-c = 1 solo caracter
-s = string
-p = puntero void * en formato hexadecimal
-d = numero decimal base 10
-i = numero entero base 10
-u = numero decimal base 10 sin signo
-x = numero hexadecimal (base 16) en minusculas
-X = numero hexadecimal (base 16) en mayusculas
-% = imprime el "%"
-
-Returns the count of printed characters when the function is successful and -1 when the function fails.
-
-int	main()
-{
-	char	*str;
-	int		l;
-
-	str = "Hello, World!";
-	l = 234567;
-	printf("---%i\n", printf("---%s\n", str));
-	printf("+++%i\n", ft_printf("+++%s\n", str));
-	printf("---%i\n", printf("---%s---%d\n", str, l));
-	printf("+++%i\n", ft_printf("+++%s+++%d\n", str, l));
-	return (0);
-}
-
-*/
