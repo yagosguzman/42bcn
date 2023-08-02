@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 18:04:06 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/31 20:15:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:11:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int		ft_putchar(char x);
 int		ft_putstr(char *x);
 int		ft_argselection(va_list arg, char const *format, int i);
 int		ft_putformat(va_list args, char const *format);
-int		ft_putnumberbase(unsigned long long number, char *base);
+int		ft_putnumber(int number);
+int		ft_putnumberhexa(unsigned long long number);
+int		ft_putnumberunsigned(unsigned long number);
+int		ft_printptr(void *);
+
 int		numbertype(char const format, va_list args);
 
 #endif

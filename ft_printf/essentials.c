@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:30:36 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/31 20:15:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:11:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ int	ft_argselection(va_list args, char const *format, int i)
 	else if (format[i] == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (format[i] == 'p')
-		return (ft_printptr(unsigned long long ptr));
-	else if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u' 
-		|| format[i] == 'x' || format[i] == 'X')
-		return (numbertype(format[i], args));
+		return (ft_printptr(va_arg(args, void *)));
+	else if (format[i] == 'd' || format[i] == 'i')
+		return (ft_putnumber(va_arg(args, int)));
+	else if (format[i] == 'u')
+		return (ft_putnumberunsigned(va_arg(args,unsigned int)));
+	else if (format[i] == 'x' || format[i] == 'X')
+		return (ft_putnumberhexa(va_arg(args, unsigned int)));
 	else if (format[i] == '%')
 		return (ft_putchar('%'));
 	else
