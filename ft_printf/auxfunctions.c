@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:12:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/02 20:39:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:33:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ int	ft_putnumber(int number)
 	int	c;
 
 	c = 0;
-	if (number < 0)
+	if (number == -2147483648)
+		{
+			c += ft_putstr("-2147483648");
+			return (c);
+		}
+	if (number < 0 && number > -2147483648)
 	{
 		c += ft_putchar('-');
 		number = -number;
 	}
 	if (number >= 10)
 	{
-		ft_putnumber(number / 10);
+		c += ft_putnumber(number / 10);
 		c += ft_putchar(number % 10 + '0');
 	}
 	else

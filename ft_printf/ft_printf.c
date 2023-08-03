@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:35:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/02 20:11:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:37:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	main(void)
 
 	ejemplo = 10;
 	ptr = &ejemplo;
-	res1 = ft_printf("Str %i\n", 250);
-	res2 = printf("Str %i\n", 250);
+	res1 = ft_printf("Str %i\n", 0);
+	res2 = printf("Str %i\n", 0);
 	printf("\nRes %d\nRes %d\n", res1, res2);
 	return (0);
 }
