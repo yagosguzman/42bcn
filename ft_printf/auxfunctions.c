@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:12:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/03 17:34:56 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:54:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,8 @@ int	ft_putnumber(int number)
 		number = -number;
 	}
 	if (number >= 10)
-	{
 		c += ft_putnumber(number / 10);
-		c += ft_putchar(number % 10 + '0');
-	}
-	else
-		c += ft_putchar(number + '0');
+	c += ft_putchar(number % 10 + '0');
 	return (c);
 }
 
@@ -87,33 +83,6 @@ int	ft_printptr(void *ptr)
 	}
 	c += ft_putnumberhexalower((unsigned long long)ptr);
 	return (c);
-}
-
-int	numbertype(char const format, va_list args)
-{
-	int	n;
-	int	c;
-
-	c = 0;
-	if (format == 'i' || format == 'd')
-	{
-		n = va_arg(args, int);
-		return (c + ft_putnumber(n));
-	}
-	else if (format == 'u')
-		return (c + ft_putnumberunsigned(va_arg(args, unsigned int)));
-	else if (format == 'x')
-	{
-		n = va_arg(args, unsigned long long);
-		return (c + ft_putnumberhexalower(n));
-	}
-	else if (format == 'X')
-	{
-		n = va_arg(args, unsigned long long);
-		return (c + ft_putnumberhexaupper(n));
-	}
-	else
-		return (-1);
 }
 
 /*
