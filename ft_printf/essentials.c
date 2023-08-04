@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   essentials.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:30:36 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/03 17:54:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:50:55 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_putchar(char x)
 {
-	return (write (1, &x, 1));
+	if (write (1, &x, 1) != 1)
+		return (-1);
+	return (1);
 }
 
 int	ft_putstr(char *x)
@@ -48,9 +50,13 @@ int	ft_putformat(va_list args, char const *format)
 		{
 			i++;
 			c += ft_argselection(args, format, i);
+			if (c == -1)
+				return (-1);
 		}
 		else 
 			c += ft_putchar(format[i]);
+		if (c == -1)
+			return (-1);
 		i++;
 	}
 	return (c);
