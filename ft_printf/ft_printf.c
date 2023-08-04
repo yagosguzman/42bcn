@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:35:32 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/03 21:52:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:15:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	ft_printf(char const *format, ...)
 	return (c);
 }
 
-int	main(void)
-{
-	int	ejemplo;
-	int	*ptr;
-	int	res1;
-	int	res2;
+// int	main(void)
+// {
+// 	int	ejemplo;
+// 	int	*ptr;
+// 	int	res1;
+// 	int	res2;
 
-	ejemplo = 10;
-	ptr = &ejemplo;
-	res1 = ft_printf("Str %u\n", -22420);
-	res2 = printf("Str %u\n", -22420);
-	printf("\nRes %d\nRes %d\n", res1, res2);
-	return (0);
-}
+// 	ejemplo = 10;
+// 	ptr = &ejemplo;
+// 	res1 = ft_printf("String %s\n", (char *)NULL);
+// 	res2 = printf("String %s\n", (char *)NULL);
+// 	printf("\nRes %d\nRes %d\n", res1, res2);
+// 	return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   essentials.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:30:36 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/03 21:50:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:16:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ int	ft_putstr(char *x)
 
 	i = 0;
 	if (x == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		x = "(null)";
 	while (x[i] != '\0')
 	{
-		write(1, &x[i], 1);
+		if (write(1, &x[i], 1) == -1)
+			return (-1);
 		i++;
 	}
 	return (i);
