@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 18:04:06 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/03 21:49:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:39:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 int		ft_printf(char const *format, ...);
 int		ft_putchar(char x);

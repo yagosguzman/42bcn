@@ -1,30 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variadicfunctions.c                                :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 17:30:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/28 17:30:33 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/08/04 20:50:01 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
+#include "get_next_line.h"
 
-ft_sum(int argnum, ...)
-{
-	va_list	args;
-	va_start(args, argnum);
-	int	total;
-	int	i;
-	total = 0;
-	while (i < argnum)
-	{
-		total += va_arg(args, int);
-		i++; 
-	}
-	va_end(args);
-	return (total);
-}
