@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/15 20:11:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/15 21:39:11 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	int	fd;
+// int	main(void)
+// {
+// 	int	fd;
 
-	fd = open("sample3.txt", O_RDONLY);
-	get_next_line(fd);
-	return (0);
-}
+// 	fd = open("sample3.txt", O_RDONLY);
+// 	get_next_line(fd);
+// 	return (0);
+// }
