@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/15 14:14:10 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:50:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ char	*read_line(int fd, char *buffer, char *stash)
 			free (buffer);
 			return (NULL);
 		}
-		buffer[BUFFER_SIZE + 1] = '\0';
+		buffer[i] = '\0';
+		if (!stash)
+			stash = NULL;
 		i = 0;
-		while (buffer[i] != '\0')
+		while (buffer[i])
 		{
 			stash[i] = buffer[i];
 			i++;
 		}
-		stash[++i] = '\0';
+		stash[i] = '\0';
 	}
 	return (stash);
 }
@@ -65,8 +67,11 @@ char	*find_line(char *line, char *stash)
 		i++;
 	}
 	if (stash[i] == '\n')
-		line[++i] = '\n';
-	line[++i] = '\0';
+	{
+		line[i] = '\n';
+		i++;
+	}
+	line[i] = '\0';
 	return (line);
 }
 
@@ -91,6 +96,6 @@ char	*clean_stash(char *line, char *stash)
 		i++;
 		j++;
 	}
-	new_stash[++i] = '\0';
+	new_stash[i] = '\0';
 	return (new_stash);
 }
