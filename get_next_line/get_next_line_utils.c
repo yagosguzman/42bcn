@@ -6,21 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/15 21:36:25 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:49:56 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*merge_strings(char *s1, char *s2)
 {
@@ -30,7 +20,7 @@ char	*merge_strings(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	newstr = malloc ((length_line(s1) + length_line(s2) + 1) * sizeof(char));
 	if (!newstr)
 		return (NULL);
 	while (s1[i])
@@ -71,30 +61,29 @@ char	*read_line(int fd, char *buffer, char *stash)
 	return (stash);
 }
 
-int	length_line(char *stash)
+int	length_line(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (stash)
-	{
-		if (stash[i] == '\n')
-		{
-			i++;
-			return (i);
-		}
-		else
-			i++;
-	}
+	while (str[i] != '\0')
+		i++;
 	return (i);
 }
 
-char	*find_line(char *line, char *stash)
+char	*find_line(char *stash)
 {
-	int	i;
+	int		i;
+	char	*line;
 
 	i = 0;
-	while (stash[i] != '\0' || stash[i] != '\n')
+	while (stash[i] != '\0' && stash[i] != '\n')
+		i++;
+	line = malloc((i + 2) * sizeof(char));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (stash[i] != '\0' && stash[i] != '\n')
 	{
 		line[i] = stash[i];
 		i++;
@@ -112,23 +101,23 @@ char	*clean_stash(char *line, char *stash)
 {
 	int		i;
 	int		j;
-	char	*new_stash;
+	char	*temp_stash;
 
 	i = 0;
 	j = 0;
-	new_stash = malloc(BUFFER_SIZE + 1 * sizeof(char));
-	while (line[i] == stash[j])
-	{
-		i++;
-		j++;
-	}
+	temp_stash = stash;
+	stash = malloc((length_line(temp_stash) - length_line(line) + 1)
+			* sizeof(char));
+	if (!stash)
+		return (NULL);
 	i = 0;
-	while (stash[j] != '\0')
+	while (temp_stash[j] != '\0')
 	{
-		new_stash[i] = stash[j];
+		stash[i] = temp_stash[j];
 		i++;
 		j++;
 	}
-	new_stash[i] = '\0';
-	return (new_stash);
+	stash[i] = '\0';
+	free (temp_stash);
+	return (stash);
 }

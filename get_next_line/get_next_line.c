@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/15 21:39:11 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:49:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	static char		*stash;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || !fd)
 		return (NULL);
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -27,19 +27,16 @@ char	*get_next_line(int fd)
 	free(buffer);
 	if (!stash)
 		return (NULL);
-	line = malloc((length_line(stash) + 1) * sizeof(char));
-	if (!line)
-		return (NULL);
-	find_line(line, stash);
-	clean_stash(line, stash);
+	line = find_line(stash);
+	stash = clean_stash(line, stash);
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int	fd;
+int	main(void)
+{
+	int	fd;
 
-// 	fd = open("sample3.txt", O_RDONLY);
-// 	get_next_line(fd);
-// 	return (0);
-// }
+	fd = open("sample3.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	return (0);
+}
