@@ -6,12 +6,39 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/21 16:42:37 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:08:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	if (c == '\0')
+		return (&str[i]);
+	return (0);
+}
+
+// Problema si no existe buffer.
 char	*merge_strings(char *s1, char *s2)
 {
 	int		i;
@@ -20,9 +47,13 @@ char	*merge_strings(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	newstr = malloc ((length_line(s1) + length_line(s2) + 1) * sizeof(char));
+	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!newstr)
+	{
+		free(s1);
+		s1 = NULL;
 		return (NULL);
+	}
 	while (s1[i])
 	{
 		newstr[i] = s1[i];
@@ -35,89 +66,24 @@ char	*merge_strings(char *s1, char *s2)
 		j++;
 	}
 	newstr[i] = '\0';
+	free(s1);
 	return (newstr);
 }
 
-char	*read_line(int fd, char *buffer, char *stash)
-{
-	int		i;
-	char	*temp;
-
-	i = 1;
-	while (i != '\0')
-	{
-		i = read (fd, buffer, BUFFER_SIZE);
-		if (read <= 0)
-		{
-			free (buffer);
-			return (NULL);
-		}
-		buffer[i] = '\0';
-		if (!stash)
-			stash = malloc(1 * sizeof(char));
-		temp = stash;
-		stash = merge_strings(temp, buffer);
-	}
-	return (stash);
-}
-
-int	length_line(char *str)
+int	length_line(char *stash)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
+	while (stash[i] != '\0')
+	{
+		if (stash[i] == '\n')
+		{
+			i++;
+			return (i);
+		}
+		else
+			i++;
+	}
 	return (i);
-}
-
-char	*find_line(char *stash)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (stash[i] != '\0' && stash[i] != '\n')
-		i++;
-	line = malloc((i + 2) * sizeof(char));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (stash[i] != '\0' && stash[i] != '\n')
-	{
-		line[i] = stash[i];
-		i++;
-	}
-	if (stash[i] == '\n')
-	{
-		line[i] = '\n';
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*clean_stash(char *line, char *stash)
-{
-	int		i;
-	int		j;
-	char	*temp_stash;
-
-	i = 0;
-	j = 0;
-	temp_stash = stash;
-	stash = malloc((length_line(temp_stash) - length_line(line) + 1)
-			* sizeof(char));
-	if (!stash)
-		return (NULL);
-	i = 0;
-	while (temp_stash[j] != '\0')
-	{
-		stash[i] = temp_stash[j];
-		i++;
-		j++;
-	}
-	stash[i] = '\0';
-	free (temp_stash);
-	return (stash);
 }
