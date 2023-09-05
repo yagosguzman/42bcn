@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/05 18:31:34 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/09/05 19:59:20 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct t_node
+void	push_b(t_node **first_a, t_node **first_b)
 {
-	int				content;
-	struct t_node	*next;
-}	t_node;
+	ft_putstr("pb\n");
+}
 
-char	**ft_split(char const *str, char separator);
-int		ft_atoi(const char *str);
-void	insert_front(t_node **root, int value);
-void	free_listnode(t_node **root);
-void	insert_back(t_node **root, int value);
+void	push_a(t_node **first_b, t_node **first_a)
+{
+	ft_putstr("pa\n");
+}
 
-#endif
+void	swap_a(t_node **first_a)
+{
+
+	ft_putstr("sa\n");
+}
+
+void	swap_b(t_node **first_b)
+{
+	ft_putstr("sb\n");
+}
+
+void	swap_s (t_node **first_a, t_node **first_b)
+{
+		ft_putstr("ss\n");
+}

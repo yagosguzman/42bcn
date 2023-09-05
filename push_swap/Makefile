@@ -6,13 +6,13 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 14:55:58 by ysanchez          #+#    #+#              #
-#    Updated: 2023/09/04 14:45:31 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/09/05 18:15:36 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libpushswap.a
 
-SRC = push_swap.c
+SRC = push_swap.c, lists_tools.c
 
 OBJ = $(SRC:.c=.o)
 
