@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/04 14:45:27 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:50:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,3 +126,30 @@ if (num == 0 && strcmp(str, "0") != 0)
 // 	printf("%i", ft_atoi(str));
 // 	return (0);
 // }
+typedef struct Node{
+	int content;
+	struct Node* next;
+} Node;
+
+int main(int argc. char *argv[])
+{
+	Node list_a;
+	list_a.content = ft_atoi(number);
+	list_a.next = malloc(sizeof(Node));
+	list_a.next->content = ft_atoi(number++);
+	list_a.next->next = NULL;
+
+	free(list_a.next);
+	return (0);
+}
+
+// tenemos que liberar la memoria desde atras hacia delante.
+
+void listadd_end(Node **list, int content)
+{
+	Node *new_node = malloc(sizeof(Node));
+	if (!new_node)
+		exit(1);
+	new_node->next = NULL;
+	new_node->content = value;
+}
