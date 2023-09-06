@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/05 19:59:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:05:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,8 @@ int	ft_atoi(const char *str)
 	return (result);
 }
 // Revision de errores post atoi para ver si es un resultado valido o no.
+
+
+
 if (num == 0 && ft_strcmp(str, "0") != 0)
-	return ("Error");
+	return (free_listnode);
