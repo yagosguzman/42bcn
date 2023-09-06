@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/05 19:59:25 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:31:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,29 @@ void	free_listnode(t_node **root)
 		free(aux_node);
 	}
 	*root = NULL;
+}
+
+void	insert_after(t_node *node, int value)
+{
+	t_node *new_node;
+	
+	new_node = malloc(sizeof(t_node));
+	new_node->content = value;
+	new_node->next = node->next;
+	node->next = new_node;
+}
+
+int		node_count(t_node *root)
+{
+	int		i;
+	t_node	*current_node;
+
+	i = 0;
+	current_node = root;
+	while (current_node != NULL)
+	{
+		current_node = current_node->next;
+		i++;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/05 18:31:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:32:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ typedef struct t_node
 char	**ft_split(char const *str, char separator);
 int		ft_atoi(const char *str);
 void	insert_front(t_node **root, int value);
-void	free_listnode(t_node **root);
 void	insert_back(t_node **root, int value);
+void	insert_after(t_node *node, int value);
+void	free_listnode(t_node **root);
+int		node_count(t_node *root);
+
 
 #endif
