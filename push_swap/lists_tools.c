@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/06 17:31:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:49:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	insert_front(t_node **root, int value)
 	*root = first_node;
 }
 
-void	insert_back(t_node **root, int value)
+void	insert_end(t_node **root, int value)
 {
 	t_node	*current;
 	t_node	*last_node;

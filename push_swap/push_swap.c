@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/06 19:00:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:10:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,92 +20,15 @@
 
 //Reverse rotate
 
-// int main (void)
-// {
-// 	char *str = "999a9";
-
-// 	printf("%i", ft_atoi(str));
-// 	return (0);
-// }
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int		i;
-
-	i = 0;
-	while (s1[i] != '\0' || s2[i] != '\0')
-	{
-		if (s1[i] == s2[i])
-			i++;
-		if (s1[i] != s2[i])
-			return (1);
-	}
-	return (0);
-}
-
-int	ft_isdigit(char *str)
-{
-	while (*str)
-	{
-		if (*str < '0' || *str > '9')
-			return (1);
-		else
-			*str++;
-	}
-	return (0);
-}
-
-int main(int argc. char *argv[])
-{
-	Node* list_a = malloc(sizeof(Node));
-	if (!list_a)
-		return(NULL);
-	list_a->content = ft_atoi(number);
-	list_a.next = malloc(sizeof(Node));
-	list_a.next->content = ft_atoi(number++);
-	list_a.next->next = NULL;
-
-	free(list_a.next);
-	return (0);
-}
-
-int	check_valid(char **list)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i <= ft_strlen(list))
-	{
-		if (ft_isdigit(list[i]) == 1)
-			return (1);
-		else
-			i++;
-	}
-	i = 0;
-	while (j <= ft_strlen(list)) // < o <=??
-	{
-		while (i <= ft_strlen(list))
-		{
-			if (ft_strcmp(list[i], list[i + j]) == 1)
-				i++;
-			else
-				return (1);
-	}
-	i = 0;
-	j++;
-	}
-	return (0);
-}
-
 t_node	*extract_argv(char *argv[])
 {
 	char	**list;
 	int		i;
 	int		*int_list;
+	t_node	*list_a;
 
 	i = 0;
+	list_a = NULL;
 	list = ft_split(argv[1], " ");
 	if (ft_checkvalid(list) == 1) // comprobamos que ningun num se repita y comprobemos que todos son nums
 		return (ft_free(list));
@@ -114,21 +37,49 @@ t_node	*extract_argv(char *argv[])
 		return(ft_free(list));
 	while (*list[i])
 	{
-		int_list[i] = int_ft_atoiextra(*list[i]);
+		int_list[i] = int_ft_atoiextra(*list[i], int_list);
+		if (!int_list)
+			return (NULL);
 		i++;
 	}
 	ft_free(list);
-	if ()
-	//acordarse de liberar split una vez tenemos todo en listas
+	while (int_list[i])
+	{
+		insert_end(list_a, int_list[i]);
+		i++;
+	}
+	ft_free(int_list);
+	return (list_a);
 }
 
-// tenemos que liberar la memoria desde atras hacia delante.
+int	order_a(t_node **root)
+{
+	t_node *current_node;
+
+	current_node = *root;
+	while (current_node->next != NULL)
+	{
+		if (current_node->content < current_node->next->content)
+			current_node = current_node->next;
+		else
+			return (1);
+	}
+	return (0);
+}
+
 int	push_swap(int argc, char **argv)
 {
-	char **list_a;
+	char	**list_a;
+	char	**list_b;
+	int		node_length;
 	if (!argc || argc == 1)
 		return (NULL);
 	if (argc == 2)
 		*list_a = extract_argv(argv[1]);
-
+	list_b = NULL;
+	node_length = node_count(list_a);
+	while (order_a(list_a) == 1 && node_count(list_a) != node_length)
+	{
+		
+	}
 }
