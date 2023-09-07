@@ -6,19 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/07 13:33:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:46:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*FUNCIONES DEL PUSH SWAP*/
-//Swap
-
-//Push
-
-//Rotate
-
-//Reverse rotate
 
 void	print_list(t_node *list_a)
 {
