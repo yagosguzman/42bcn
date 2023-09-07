@@ -6,13 +6,80 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/06 20:11:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:26:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	aux_words(char const *s, char c)
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*substr;
+
+	i = 0;
+	if (start >= (unsigned int)ft_strlen(s))
+		len = 0;
+	else if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	substr = malloc((len + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
+	while (start < (unsigned int)ft_strlen(s) && s[start + i] && len > i)
+	{
+		substr[i] = ((char *)s)[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+int	int_free(int **str)
+{
+	if (*str)
+	{
+		free(*str);
+		*str = NULL;
+		str = NULL;
+		return (NULL);
+	}
+	return (NULL);
+}
+
+int	ft_free(int **str)
+{
+	int	i;
+
+	i = 0;
+	while (*str[i])
+		free(str[i++]);
+	free(**str);
+	return (0);
+}
+
+int	ft_isdigit(char *str)
+{
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (1);
+		else
+			str++;
+	}
+	return (0);
+}
+
+static int	aux_words(char *s, char c)
 {
 	int				words;
 	unsigned long	i;
@@ -37,7 +104,7 @@ static void	aux_free(char **listword, int x)
 	free(listword);
 }
 
-static char	**aux_lenword(char const *s, char c, char **listword, int i)
+static char	**aux_lenword(char *s, char c, char **listword, int i)
 {
 	int		j;
 	int		x;
@@ -65,7 +132,7 @@ static char	**aux_lenword(char const *s, char c, char **listword, int i)
 	return (listword);
 }
 
-char	**ft_split(char const *str, char separator)
+char	**ft_split(char *str, char separator)
 {
 	int		i;
 	char	**listword;
@@ -107,48 +174,42 @@ int	ft_atoiextra(char *str, int *int_list)
 	if (result < -2147483648 || result > 2147483647)
 		result_check = 1;
 	if (result_check == 1)
-		return (ft_free(int_list));
+		return (int_free(&int_list));
 	return (result);
 }
 
-int	check_valid(char **list)
+int	ft_checkvalid(char **list)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i <= ft_strlen(list))
+	while (i <= ft_strlen(*list))
 	{
 		if (ft_isdigit(list[i]) == 1)
+		{
+			printf("ERROR NOT DIGIT\n");
 			return (1);
+		}
 		else
 			i++;
 	}
 	i = 0;
-	while (j <= ft_strlen(list)) // < o <=??
+	while (j < ft_strlen(*list))
 	{
-		while (i <= ft_strlen(list))
+		while (i < ft_strlen(*list))
 		{
 			if (ft_strcmp(list[i], list[i + j]) == 1)
 				i++;
 			else
+			{
+				printf("ERROR REPEAT\n");
 				return (1);
+			}
 	}
 	i = 0;
 	j++;
-	}
-	return (0);
-}
-
-int	ft_isdigit(char *str)
-{
-	while (*str)
-	{
-		if (*str < '0' || *str > '9')
-			return (1);
-		else
-			*str++;
 	}
 	return (0);
 }
