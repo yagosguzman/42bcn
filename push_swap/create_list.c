@@ -6,11 +6,23 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/07 15:46:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:32:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+}
 
 int	ft_strlen(char *str)
 {
@@ -56,7 +68,7 @@ int	int_free(int **str)
 	return (NULL);
 }
 
-int	ft_free(int **str)
+int	ft_free(char **str)
 {
 	int	i;
 
@@ -67,14 +79,32 @@ int	ft_free(int **str)
 	return (0);
 }
 
+// int	ft_isdigit(char *str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (*str)
+// 	{
+// 		if ((*str < '0' || *str > '9') && *str != '-')
+// 			return (1);
+// 		else
+// 			str++;
+// 	}
+// 	return (0);
+// }
+
 int	ft_isdigit(char *str)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (*str < '0' || *str > '9')
-			return (1);
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+			i++;
 		else
-			str++;
+			return (1);
 	}
 	return (0);
 }
@@ -180,37 +210,31 @@ int	ft_atoiextra(char *str, int *int_list)
 
 int	ft_checkvalid(char **list)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i <= ft_strlen(*list))
+	while (*list)
 	{
-		if (ft_isdigit(list[i]) == 1)
+		if (ft_isdigit(*list) == 1)
 		{
-			printf("ERROR NOT DIGIT\n");
+			printf("ERROR NOT DIGIT\n"); // borrar
 			return (1);
 		}
 		else
-			i++;
+			list++;
 	}
-	i = 0;
-	while (j < ft_strlen(*list))
-	{
-		while (i < ft_strlen(*list))
-		{
-			if (ft_strcmp(list[i], list[i + j]) == 1)
-				i++;
-			else
-			{
-				printf("ERROR REPEAT\n");
-				return (1);
-			}
-	}
-	i = 0;
-	j++;
-	}
+	// while (*aux2)
+	// {
+	// 	while (i < ft_strlen(*list))
+	// 	{
+	// 		if (ft_strcmp(list[i], list[i + j]) == 1)
+	// 			i++;
+	// 		else
+	// 		{
+	// 			printf("ERROR REPEAT\n");
+	// 			return (1);
+	// 		}
+	// }
+	// i = 0;
+	// j++;
+	// }
 	return (0);
 }
 
