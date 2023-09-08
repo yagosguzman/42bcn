@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/07 17:33:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/08 20:24:13 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,21 @@ int	order_b(t_node **root)
 	return (0);
 }
 
-
 int	push_swap(int argc, char **argv)
 {
 	t_node	*list_a;
 	t_node	*list_b;
 	int		node_length;
-	
-	if (!argc || argc == 1)
-		exit;
-	if (argc == 2)
+
+	if (!argc || argc < 2)
+		exit(1);
+	if (argc >= 2)
 		list_a = extract_argv(argv[1], list_a);
 	if (!list_a)
-		return (ft_putstr_fd("Error\n", 2));
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
 	list_b = NULL;
 	node_length = node_count(list_a);
 	printf("Num de nodos %i\n", node_length);
@@ -120,6 +122,7 @@ int	push_swap(int argc, char **argv)
 	// 	}
 	// }
 }
+
 int	main(int argc, char **argv)
 {
 	push_swap(argc, argv);
