@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/08 20:24:48 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:04:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct t_node
 }	t_node;
 
 int		push_swap(int argc, char **argv);
-t_node	*extract_argv(char *argv, t_node *list_a);
+t_node	*extract_argv(char *argv);
 int		ft_checkvalid(char **list);
 char	**ft_split(char *str, char separator);
 int		ft_atoiextra(char *str, int *int_list);
 t_node	*ft_lstnew(int value);
-void	insert_front(t_node **root, int value);
-void	insert_end(t_node **root, int value);
+void	insert_front(t_node *root, int value);
+t_node	*insert_end(t_node *root, int value);
 void	insert_after(t_node *node, int value);
 void	free_listnode(t_node **root);
 int		node_count(t_node *root);

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:09:10 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/08 20:27:57 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:14:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,22 @@ int	ft_atoi(char *str)
 		result = -result;
 	if (result < -2147483648 || result > 2147483647)
 		return (0);
-	return (result);
+	return ((int)result);
 }
 
-t_node	*testextract_argv(int argc, char **argv, t_node *list_a)
+t_node	*testextract_argv(int argc, char **argv)
 {
-	int	i;
+	t_node	*list_a;
+	int		i;
 
+	list_a = NULL;
 	i = 1;
-	list_a = ft_lstnew(ft_atoi(argv[i]));
-	i++;
-	argc--;
+	// list_a = ft_lstnew(ft_atoi(argv[i]));
+	// i++;
+	// argc--;
 	while (argc > 1)
 	{
-		insert_end(list_a, ft_atoi(argv[i]));
+		list_a = insert_end(list_a, ft_atoi(argv[i]));
 		argc--;
 		i++;
 	}
@@ -83,10 +85,17 @@ t_node	*testextract_argv(int argc, char **argv, t_node *list_a)
 
 void	print_list(t_node *list_a)
 {
-	while (list_a != NULL)
+	if (list_a == NULL) 
 	{
-		printf("%i\n", list_a->content);
-		list_a = list_a->next;
+		printf("La lista está vacía.\n");
+	}
+	else 
+	{
+		while (list_a != NULL)
+		{
+			printf("%i\n", list_a->content);
+			list_a = list_a->next;
+		}
 	}
 }
 
@@ -94,8 +103,7 @@ int	main(int argc, char **argv)
 {
 	t_node	*list_a;
 
-	list_a = NULL;
-	testextract_argv(argc, argv, list_a);
+	list_a = testextract_argv(argc, argv);
 	print_list(list_a);
 	return (0);
 }

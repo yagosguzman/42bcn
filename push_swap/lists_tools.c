@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/08 20:24:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:12:16 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,27 @@ t_node	*ft_lstnew(int value)
 	return (newnode);
 }
 
-void	insert_end(t_node **root, int value)
+t_node	*insert_end(t_node *root, int value)
 {
 	t_node	*current;
 	t_node	*last_node;
 
-	current = *root;
+	current = root;
 	last_node = malloc(sizeof(t_node));
 	if (!last_node)
-		exit(NULL);
-	while (current->next != NULL)
-		current = current->next;
-	current->next = last_node;
+		exit(1);
+	last_node->content = value;
 	last_node->next = NULL;
+
+	if (root == NULL)
+		root = last_node;
+	else
+	{
+		while (current->next != NULL)
+			current = current->next;
+		current->next = last_node;
+	}
+	return (root);
 }
 
 void	free_listnode(t_node **root)
@@ -68,8 +76,8 @@ void	free_listnode(t_node **root)
 
 void	insert_after(t_node *node, int value)
 {
-	t_node *new_node;
-	
+	t_node	*new_node;
+
 	new_node = malloc(sizeof(t_node));
 	new_node->content = value;
 	new_node->next = node->next;
