@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/08 20:24:13 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:25:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_list(t_node *list_a)
 	}
 }
 
-t_node	*extract_argv(char *argv, t_node *list_a)
+t_node	*MALextract_argv(char *argv, t_node *list_a)
 {
 	char	**list;
 	int		i;
@@ -100,14 +100,22 @@ int	push_swap(int argc, char **argv)
 	t_node	*list_b;
 	int		node_length;
 
+	if (ft_checkvalid(argv) == 1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
 	if (!argc || argc < 2)
-		exit(1);
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
 	if (argc >= 2)
-		list_a = extract_argv(argv[1], list_a);
+		list_a = extract_argv(argc, argv);
 	if (!list_a)
 	{
 		ft_putstr_fd("Error\n", 2);
-		exit(1);
+		return(1);
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);
@@ -126,5 +134,15 @@ int	push_swap(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	push_swap(argc, argv);
+	return (0);
+}
+int	main(int argc, char **argv)
+{
+	t_node	*list_a;
+
+	ft_checkvalid(list_a);
+	list_a = extract_argv(argc, argv);
+	print_list(list_a);
+	ft_checkrepeat(list_a);
 	return (0);
 }
