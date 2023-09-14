@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/13 16:29:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:05:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	insert_front(t_node *root, int value)
 
 	first_node = malloc(sizeof(t_node));
 	if (!first_node)
-		exit (NULL);
+		exit (1);
 	first_node->content = value;
 	first_node->next = root;
 	root = first_node;
@@ -59,7 +59,7 @@ t_node	*insert_end(t_node *root, int value)
 	return (root);
 }
 
-void	free_listnode(t_node *root)
+t_node	*free_listnode(t_node *root)
 {
 	t_node	*current_node;
 	t_node	*aux_node;
@@ -72,6 +72,7 @@ void	free_listnode(t_node *root)
 		free(aux_node);
 	}
 	root = NULL;
+	return (root);
 }
 
 void	insert_after(t_node *node, int value)

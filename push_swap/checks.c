@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:20:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/13 18:23:23 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:07:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isdigit(char *c)
 	{
 		if (c[i] < '0' || c[i] > '9')
 			return (1);
-	i++;
+		i++;
 	}
 	return (0);
 }
@@ -31,10 +31,11 @@ int	ft_isdigitplus(char *str)
 	int	i;
 
 	i = 0;
+	if (str[0] == '+' || str[0] == '-')
+		i++;
 	while (str[i])
 	{
-		if ((str[i] < '0' && str[i] != ' ' && str[i] != '-' && str[i] != '+')
-			|| str[i] > '9')
+		if ((str[i] < '0' && str[i] != ' ') || str[i] > '9')
 			return (1);
 		i++;
 	}
@@ -55,14 +56,15 @@ int	ft_checkvalid(char **argv)
 	}
 	return (0);
 }
-int ft_checkrepeat(t_node *list)
+
+int	ft_checkrepeat(t_node *list)
 {
-	t_node *check;
+	t_node	*check;
 
 	check = list;
 	while (list != NULL)
 	{
-		while (check != NULL)
+		while (check->next != NULL)
 		{
 			if (check->content == check->next->content)
 				return (1);
