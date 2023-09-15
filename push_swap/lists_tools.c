@@ -6,23 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/14 18:05:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:55:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insert_front(t_node *root, int value)
-{
-	t_node	*first_node;
-
-	first_node = malloc(sizeof(t_node));
-	if (!first_node)
-		exit (1);
-	first_node->content = value;
-	first_node->next = root;
-	root = first_node;
-}
  
 t_node	*ft_lstnew(int value)
 {
@@ -34,6 +23,30 @@ t_node	*ft_lstnew(int value)
 	newnode->content = value;
 	newnode->next = NULL;
 	return (newnode);
+}
+
+t_node	*insert_front(t_node *root, int value)
+{
+	t_node	*first_node;
+
+	first_node = (t_node *)malloc(sizeof(t_node));
+	if (!first_node)
+		exit (1);
+	first_node->content = value;
+	first_node->next = root;
+	root = first_node;
+	return (root);
+}
+
+t_node	*clone_node(t_node *origin, t_node *destiny)
+{
+	t_node	*clone;
+
+	if (origin == NULL)
+		return (NULL);
+	clone = ft_lstnew(origin->content);
+	clone->next = destiny;
+	return (clone);
 }
 
 t_node	*insert_end(t_node *root, int value)
@@ -59,6 +72,15 @@ t_node	*insert_end(t_node *root, int value)
 	return (root);
 }
 
+void	free_node(t_node *node)
+{
+	t_node	*aux_node;
+
+	aux_node = node;
+	node = node->next;
+	free(aux_node);
+}
+
 t_node	*free_listnode(t_node *root)
 {
 	t_node	*current_node;
@@ -75,7 +97,7 @@ t_node	*free_listnode(t_node *root)
 	return (root);
 }
 
-void	insert_after(t_node *node, int value)
+t_node	*insert_after(t_node *node, int value)
 {
 	t_node	*new_node;
 
@@ -83,6 +105,7 @@ void	insert_after(t_node *node, int value)
 	new_node->content = value;
 	new_node->next = node->next;
 	node->next = new_node;
+	return (node);
 }
 
 int		node_count(t_node *root)

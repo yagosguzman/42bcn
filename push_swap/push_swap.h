@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/14 18:49:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:26:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,27 @@ typedef struct t_node
 }	t_node;
 
 int		push_swap(int argc, char **argv);
-t_node	*extract_argv(int argc, char **argv);
+
+/*CHECKERS*/
 int		ft_checkrepeat(t_node *list);
 int		ft_checkvalid(char **argv);
 int		ft_isdigitplus(char *str);
-int		ft_atoi(char *str);
 int		ft_zerocmp(char *s1);
+
+/*LIST CREATION*/
+t_node	*extract_argv(int argc, char **argv);
+int		ft_atoi(char *str);
+int		order_a(t_node *root);
 char	**ft_split(char *str, char separator);
 int		argcounter(char *str, char separator);
 t_node	*ft_lstnew(int value);
-void	insert_front(t_node *root, int value);
+t_node	*insert_front(t_node *root, int value);
 t_node	*insert_end(t_node *root, int value);
-void	insert_after(t_node *node, int value);
+t_node	*insert_after(t_node *node, int value);
 t_node	*free_listnode(t_node *root);
 int		node_count(t_node *root);
+
+/*UTILS*/
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
 

@@ -6,11 +6,20 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/13 18:25:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:07:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_list(t_node *list_a)
+{
+	while (list_a->next != NULL)
+	{
+		printf("%i\n", list_a->content);
+		list_a = list_a->next;
+	}
+}
 
 int	ft_isdigitplus(char *str)
 {

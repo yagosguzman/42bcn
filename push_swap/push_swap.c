@@ -6,20 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/14 19:20:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:49:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(t_node *list_a)
-{
-	while (list_a->next != NULL)
-	{
-		printf("%i\n", list_a->content);
-		list_a = list_a->next;
-	}
-}
 
 // t_node	*MALextract_argv(char *argv, t_node *list_a)
 // {
@@ -64,11 +55,11 @@ void	print_list(t_node *list_a)
 // 	return (list_a);
 // }
 
-int	order_a(t_node **root)
+int	order_a(t_node *root)
 {
-	t_node *current_node;
+	t_node	*current_node;
 
-	current_node = *root;
+	current_node = root;
 	while (current_node->next != NULL)
 	{
 		if (current_node->content < current_node->next->content)
@@ -118,13 +109,13 @@ int	push_swap(int argc, char **argv)
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);
-	// while (order_a(list_a) == 1 && node_count(list_a) != node_length)
-	// {
-	// 	while (condition1(list_a, list_b) == 1)
-	// 	{
+	while (order_a(list_a) == 1 && node_count(list_a) != node_length)
+	{
+		while (condition1(list_a, list_b) == 1)
+		{
 
-	// 	}
-	// }
+		}
+	}
 	return (0);
 }
 
