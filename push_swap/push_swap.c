@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/15 19:49:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:12:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ int	push_swap(int argc, char **argv)
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);
-	while (order_a(list_a) == 1 && node_count(list_a) != node_length)
-	{
-		while (condition1(list_a, list_b) == 1)
-		{
+	// while (order_a(list_a) == 1 && node_count(list_a) != node_length)
+	// {
+	// 	while (condition1(list_a, list_b) == 1)
+	// 	{
 
-		}
-	}
+	// 	}
+	// }
 	return (0);
 }
 
