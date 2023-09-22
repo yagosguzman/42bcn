@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/20 17:12:27 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:56:18 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,31 +89,44 @@ int	push_swap(int argc, char **argv)
 {
 	t_node	*list_a;
 	t_node	*list_b;
-	int		node_length;
-
+	//int		node_length;
+	list_a = NULL;
 	if (ft_checkvalid(argv) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
-	if (!argc || argc < 2)
+	if (!argc || argc <= 2)
 		return (1);
 	if (argc > 2)
-		list_a = extract_argv(argc, argv);
-	if (argc == 2) // el argcounter está haciendo algo raro
-		list_a = extract_argv(argcounter(argv[1], ' '), ft_split(argv[1], ' '));
-	if (!list_a)
 	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
+		list_a = extract_argv(argc, argv);
+		if (!list_a)
+		{
+			ft_putstr_fd("Error\n", 2);
+			return (1);
+		}
 	}
+	// if (argc == 2) // el argcounter está haciendo algo raro
+	// 	list_a = extract_argv(argcounter(argv[1], ' '), ft_split(argv[1], ' '));
 	list_b = NULL;
-	node_length = node_count(list_a);
+	push_b(&list_b, &list_a);
+	push_b(&list_b, &list_a);
+	push_b(&list_b, &list_a);
+	rev_rotate_r(&list_a, &list_b);
+	printf("Lista A nueva\n");
+	print_list(list_a);
+	printf("Lista B nueva\n");
+	print_list(list_b);
+	// print_list(list_b);
+	// printf("LISTA B\n\n\nLista A\n");
+	// print_list(list_a);
+
+	//node_length = node_count(list_a);
 	// while (order_a(list_a) == 1 && node_count(list_a) != node_length)
 	// {
 	// 	while (condition1(list_a, list_b) == 1)
 	// 	{
-
 	// 	}
 	// }
 	return (0);

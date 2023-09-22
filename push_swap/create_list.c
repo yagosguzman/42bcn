@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/20 18:06:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:22:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*extract_argv(int argc, char **argv)
 		argc--;
 		i++;
 	}
-	if (ft_check_double(list_a) == 1)
+	if (ft_checkrepeat(list_a) == 1)
 		return (free_listnode(list_a));
 	return (list_a);
 }
@@ -85,20 +85,6 @@ int	ft_atoi(char *str)
 	if (result < -2147483648 || result > 2147483647)
 		return (0);
 	return (result);
-}
-
-int	ft_zerocmp(char *s1)
-{
-	int		i;
-
-	i = 0;
-	while (s1[i])
-	{
-		if (s1[i] != '0')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 static char	*ft_substr(char *s, int start, int len)

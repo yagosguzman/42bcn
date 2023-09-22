@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:55:39 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/15 19:55:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:23:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_node	*ft_lstnew(int value)
 	return (newnode);
 }
 
-t_node	*insert_front(t_node *root, int value)
+t_node	*insert_front(t_node **root, int value)
 {
 	t_node	*first_node;
 
@@ -33,20 +33,9 @@ t_node	*insert_front(t_node *root, int value)
 	if (!first_node)
 		exit (1);
 	first_node->content = value;
-	first_node->next = root;
-	root = first_node;
-	return (root);
-}
-
-t_node	*clone_node(t_node *origin, t_node *destiny)
-{
-	t_node	*clone;
-
-	if (origin == NULL)
-		return (NULL);
-	clone = ft_lstnew(origin->content);
-	clone->next = destiny;
-	return (clone);
+	first_node->next = *root;
+	*root = first_node;
+	return (*root);
 }
 
 t_node	*insert_end(t_node *root, int value)
@@ -72,12 +61,12 @@ t_node	*insert_end(t_node *root, int value)
 	return (root);
 }
 
-void	free_node(t_node *node)
+void	free_node(t_node **node)
 {
 	t_node	*aux_node;
 
-	aux_node = node;
-	node = node->next;
+	aux_node = *node;
+	*node = (*node)->next;
 	free(aux_node);
 }
 
