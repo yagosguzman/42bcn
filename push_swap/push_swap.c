@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/22 17:56:18 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:19:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	order_b(t_node **root)
 int	push_swap(int argc, char **argv)
 {
 	t_node	*list_a;
-	t_node	*list_b;
-	//int		node_length;
+	// t_node	*list_b;
+	int		node_length;
 	list_a = NULL;
 	if (ft_checkvalid(argv) == 1)
 	{
@@ -109,22 +109,22 @@ int	push_swap(int argc, char **argv)
 	}
 	// if (argc == 2) // el argcounter está haciendo algo raro
 	// 	list_a = extract_argv(argcounter(argv[1], ' '), ft_split(argv[1], ' '));
-	list_b = NULL;
-	push_b(&list_b, &list_a);
-	push_b(&list_b, &list_a);
-	push_b(&list_b, &list_a);
-	rev_rotate_r(&list_a, &list_b);
-	printf("Lista A nueva\n");
-	print_list(list_a);
-	printf("Lista B nueva\n");
-	print_list(list_b);
+	// list_b = NULL;
 	// print_list(list_b);
 	// printf("LISTA B\n\n\nLista A\n");
 	// print_list(list_a);
-
-	//node_length = node_count(list_a);
+	node_length = node_count(list_a);
+	if (node_length == 3)
+		alg_3(&list_a);
+	if (node_length == 4)
+		alg_4(&list_a);
 	// while (order_a(list_a) == 1 && node_count(list_a) != node_length)
 	// {
+	// 	if (node_length == 3)
+	// 	{
+	// 		alg_3(&list_a);
+	// 	}
+	// }
 	// 	while (condition1(list_a, list_b) == 1)
 	// 	{
 	// 	}
@@ -137,13 +137,3 @@ int	main(int argc, char **argv)
 	push_swap(argc, argv);
 	return (0);
 }
-// int	main(int argc, char **argv)
-// {
-// 	t_node	*list_a;
-
-// 	ft_checkvalid(list_a);
-// 	list_a = extract_argv(argc, argv);
-// 	print_list(list_a);
-// 	ft_checkrepeat(list_a);
-// 	return (0);
-// }
