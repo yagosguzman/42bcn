@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/25 18:19:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:23:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 // 		return (1);
 // 	return (0);
 // }
-
-
+// 
 // void	ft_ss_sa_sb(t_list *lst_a, t_list *lst_b)
 // {
 // 	if (lst_a->content > (lst_a->next)->content &&
@@ -44,45 +43,26 @@
 // 	}
 // }
 
-int	list_sorted(t_node *list_a)
-{
-	while (list_a->next != NULL)
-	{
-		if (list_a->content < list_a->next->content)
-			list_a = list_a->next;
-		else
-			return (1);
-	}
-	return (0);
-}
-
 void	alg_3(t_node **node)
 {
-	if (((*node)->content > (*node)->next->content)
-		&& ((*node)->next->content < (*node)->next->next->content))
-	{
-		if ((*node)->content < (*node)->next->next->content)
-			swap_a(node);
-		else
-			rotate_a(node);
-	}
-	else if (((*node)->content > (*node)->next->content)
-		&& ((*node)->next->content > (*node)->next->next->content))
-	{
+	t_node	*biggest;
+
+	biggest = biggest_node(*node);
+	if (*node == biggest)
 		rotate_a(node);
+	else if ((*node)->next == biggest)
+		rev_rotate_a(node);
+	if ((*node)->content > (*node)->next->content)
 		swap_a(node);
-	}
-	else if (((*node)->content < (*node)->next->content)
-		&& (*node)->next->content > (*node)->next->next->content)
+}
+void	alg_4(t_node **list_a, t_node **list_b);
+{
+	while (node_count(*list_a) > 3)
 	{
-		if ((*node)->content > (*node)->next->next->content)
-			rev_rotate_a(node);
-		else
-		{
-			swap_a(node);
-			rotate_a(node);
-		}
-	}
+		key_data(*list_a, *list_b);
+
+		push_b(list_b, list_a);
+	
 }
 
 void	alg_to5(t_node **list_a, t_node **list_b)
@@ -98,7 +78,7 @@ void	alg_to5(t_node **list_a, t_node **list_b)
 		max = (*list_b)->content;
 		min = (*list_b)->next->content;
 	}
-	else 
+	else
 	{
 		min = (*list_b)->content;
 		max = (*list_b)->next->content;
@@ -133,4 +113,8 @@ void	alg_to5(t_node **list_a, t_node **list_b)
 			}
 		}
 	}
+}
+void	place_on_top(t_node **list_a)
+{
+	
 }

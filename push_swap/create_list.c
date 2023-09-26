@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/21 14:22:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:13:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,93 +87,93 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-static char	*ft_substr(char *s, int start, int len)
-{
-	int	i;
-	char	*substr;
+// static char	*ft_substr(char *s, int start, int len)
+// {
+// 	int	i;
+// 	char	*substr;
 
-	i = 0;
-	if (start >= ft_strlen(s))
-		len = 0;
-	else if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	substr = malloc((len + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	while (start < ft_strlen(s) && s[start + i] && len > i)
-	{
-		substr[i] = ((char *)s)[start + i];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
+// 	i = 0;
+// 	if (start >= ft_strlen(s))
+// 		len = 0;
+// 	else if (len > ft_strlen(s + start))
+// 		len = ft_strlen(s + start);
+// 	substr = malloc((len + 1) * sizeof(char));
+// 	if (!substr)
+// 		return (NULL);
+// 	while (start < ft_strlen(s) && s[start + i] && len > i)
+// 	{
+// 		substr[i] = ((char *)s)[start + i];
+// 		i++;
+// 	}
+// 	substr[i] = '\0';
+// 	return (substr);
+// }
+// 
+// int	argcounter(char *str, char separator)
+// {
+// 	int				words;
+// 	unsigned long	i;
 
-int	argcounter(char *str, char separator)
-{
-	int				words;
-	unsigned long	i;
+// 	i = 0;
+// 	words = 0;
+// 	if (str[i] && str[i] != separator)
+// 		words++;
+// 	while (i < (unsigned long)ft_strlen(str))
+// 	{
+// 		if (i != 0 && str[i] != separator && str[i - 1] == separator)
+// 			words++;
+// 		i++;
+// 	}
+// 	return (words);
+// }
+// 
+// static void	aux_free(char **listword, int x)
+// {
+// 	while (--x >= 0)
+// 		free(listword[x]);
+// 	free(listword);
+// }
 
-	i = 0;
-	words = 0;
-	if (str[i] && str[i] != separator)
-		words++;
-	while (i < (unsigned long)ft_strlen(str))
-	{
-		if (i != 0 && str[i] != separator && str[i - 1] == separator)
-			words++;
-		i++;
-	}
-	return (words);
-}
+// static char	**aux_lenword(char *s, char c, char **listword, int i)
+// {
+// 	int		j;
+// 	int		x;
 
-static void	aux_free(char **listword, int x)
-{
-	while (--x >= 0)
-		free(listword[x]);
-	free(listword);
-}
+// 	j = 0;
+// 	x = 0;
+// 	while (i < ft_strlen(s))
+// 	{
+// 		if (s[i] != c && (s[i + 1] == c || (i + 1) == ft_strlen(s)))
+// 		{
+// 			listword[x] = ft_substr(s, (i - j), j + 1);
+// 			if (!listword[x])
+// 			{
+// 				aux_free(listword, x);
+// 				return (NULL);
+// 			}
+// 			j = 0;
+// 			x++;
+// 			i++;
+// 		}
+// 		if (s[i] != c)
+// 			j++;
+// 		i++;
+// 	}
+// 	return (listword);
+// }
 
-static char	**aux_lenword(char *s, char c, char **listword, int i)
-{
-	int		j;
-	int		x;
+// char	**ft_split(char *str, char separator)
+// {
+// 	int		i;
+// 	char	**listword;
 
-	j = 0;
-	x = 0;
-	while (i < ft_strlen(s))
-	{
-		if (s[i] != c && (s[i + 1] == c || (i + 1) == ft_strlen(s)))
-		{
-			listword[x] = ft_substr(s, (i - j), j + 1);
-			if (!listword[x])
-			{
-				aux_free(listword, x);
-				return (NULL);
-			}
-			j = 0;
-			x++;
-			i++;
-		}
-		if (s[i] != c)
-			j++;
-		i++;
-	}
-	return (listword);
-}
-
-char	**ft_split(char *str, char separator)
-{
-	int		i;
-	char	**listword;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	listword = (char **)malloc ((argcounter(str, separator) + 1)
-			* sizeof(char *));
-	if (!listword)
-		return (NULL);
-	listword[argcounter(str, separator)] = NULL;
-	return (aux_lenword(str, separator, listword, i));
-}
+// 	i = 0;
+// 	if (!str)
+// 		return (NULL);
+// 	listword = (char **)malloc ((argcounter(str, separator) + 1)
+// 			* sizeof(char *));
+// 	if (!listword)
+// 		return (NULL);
+// 	listword[argcounter(str, separator)] = NULL;
+// 	return (aux_lenword(str, separator, listword, i));
+// }s

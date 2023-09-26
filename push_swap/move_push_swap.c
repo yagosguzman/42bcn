@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/22 17:53:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:11:32 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,34 +80,33 @@ void	swap_ss(t_node **list_a, t_node **list_b)
 	ft_putstr_fd("ss\n", 1);
 }
 
-void	node_swap(t_node *node)
-{
-	t_node	*aux;
+// void	node_swap(t_node *node)
+// {
+// 	t_node	*aux;
 
-	aux = node;
-	node = node->next;
-	aux->next = node->next;
-	node->next = aux;
-}
+// 	aux = node;
+// 	node = node->next;
+// 	aux->next = node->next;
+// 	node->next = aux;
+// }
 
-void	ft_swap(t_node *list_a, t_node *list_b)
-{
-	if ((list_a->content > list_a->next->content)
-		&& (list_b->content < list_b->next->content))
-	{
-
-		node_swap(list_a);
-		node_swap(list_b);
-		ft_putstr_fd("ss\n", 1);
-	}
-	else if (list_a->content > (list_a->next)->content)
-	{
-		node_swap(list_a);
-		ft_putstr_fd("sa\n", 1);
-	}
-	else if (list_b->content < (list_b->next)->content)
-	{
-		node_swap(list_b);
-		ft_putstr_fd("sb\n", 1);
-	}
-}
+// void	ft_swap(t_node *list_a, t_node *list_b)
+// {
+// 	if ((list_a->content > list_a->next->content)
+// 		&& (list_b->content < list_b->next->content))
+// 	{
+// 		node_swap(list_a);
+// 		node_swap(list_b);
+// 		ft_putstr_fd("ss\n", 1);
+// 	}
+// 	else if (list_a->content > (list_a->next)->content)
+// 	{
+// 		node_swap(list_a);
+// 		ft_putstr_fd("sa\n", 1);
+// 	}
+// 	else if (list_b->content < (list_b->next)->content)
+// 	{
+// 		node_swap(list_b);
+// 		ft_putstr_fd("sb\n", 1);
+// 	}
+// }

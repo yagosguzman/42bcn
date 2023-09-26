@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 12:25:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:08:10 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
+# include <stdbool.h>
 # include <stdio.h> // BORRAR
 
 typedef struct t_node
 {
 	int				content;
+	int				position;
+	int				push_cost;
+	bool			first_half;
+	bool			best;
 	struct t_node	*next;
+	struct t_node	*target;
 }	t_node;
 
 int		push_swap(int argc, char **argv);
@@ -37,10 +44,8 @@ int		ft_atoi(char *str);
 int		order_a(t_node *root);
 char	**ft_split(char *str, char separator);
 int		argcounter(char *str, char separator);
-t_node	*ft_lstnew(int value);
 t_node	*insert_front(t_node **root, int value);
 t_node	*insert_end(t_node *root, int value);
-t_node	*insert_after(t_node *node, int value);
 t_node	*free_listnode(t_node *root);
 int		node_count(t_node *root);
 void	free_node(t_node **node);
@@ -62,12 +67,20 @@ void	rev_rotate_r(t_node **list_a, t_node **list_b);
 /*UTILS*/
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
-void	print_list(t_node *list_a);
+void	print_list(t_node *list_a); //BORRAR
 int		list_sorted(t_node *list_a);
-
+t_node	*biggest_node(t_node *node);
+t_node	*smallest_node(t_node *node);
+void	position_finder(t_node *node);
+void	target_finder(t_node *list_b, t_node *list_a);
+void	cost_calculator(t_node *list_a, t_node *list_b);
+void	best_option(t_node *list_b);
+void	key_data(t_node *list_a, t_node *list_b);
 
 /*ALGORYTHM*/
 void	alg_3(t_node **node);
-void	alg_to5(t_node **list_a, t_node **list_b);
+void	alg_4(t_node **list_a, t_node **list_b);
+void	alg_5(t_node **list_a, t_node **list_b);
+void	big_alg(t_node **list_a, t_node **list_b);
 
 #endif
