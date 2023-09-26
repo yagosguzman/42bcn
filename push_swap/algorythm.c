@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/22 20:27:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/25 18:19:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,19 @@
 // 	}
 // }
 
-void alg_3(t_node **node)
+int	list_sorted(t_node *list_a)
+{
+	while (list_a->next != NULL)
+	{
+		if (list_a->content < list_a->next->content)
+			list_a = list_a->next;
+		else
+			return (1);
+	}
+	return (0);
+}
+
+void	alg_3(t_node **node)
 {
 	if (((*node)->content > (*node)->next->content)
 		&& ((*node)->next->content < (*node)->next->next->content))
@@ -71,21 +83,54 @@ void alg_3(t_node **node)
 			rotate_a(node);
 		}
 	}
-	else if (((*node)->content < (*node)->next->content)
-		&& (*node)->next->content < (*node)->next->next->content)
-		exit(0);
 }
 
-void	alg_4(t_node **list_a, t_node **list_b)
+void	alg_to5(t_node **list_a, t_node **list_b)
 {
 	t_node	*tail;
+	int		min;
+	int		max;
 
-	tail = last_node(*list_a);
-	if (((*list_a)->content < (*list_b)->next->content)
-		&& ((*list_a)->content < tail->content))
-	{
+	while (node_count(*list_a) > 3)
 		push_b(list_b, list_a);
-		alg_3(list_a);
-		push_a(list_a, list_b);
+	if ((*list_b)->content > (*list_b)->next->content)
+	{
+		max = (*list_b)->content;
+		min = (*list_b)->next->content;
+	}
+	else 
+	{
+		min = (*list_b)->content;
+		max = (*list_b)->next->content;
+	}
+	alg_3(list_a);
+	tail = last_node(*list_a);
+	while (node_count(*list_b) != 0)
+	{
+		if ((*list_b)->content == min)
+		{
+			if (min < (*list_a)->content)
+				push_a(list_a, list_b);
+			else
+			{
+				push_a(list_a, list_b);
+				swap_a(list_a);
+			}
+		}
+		else
+		{
+			if (max > tail->content)
+			{
+				push_a(list_a, list_b);
+				rotate_a(list_a);
+			}
+			else
+			{
+				rev_rotate_a(list_a);
+				push_a(list_a, list_b);
+				rotate_a(list_a);
+				rotate_a(list_a);
+			}
+		}
 	}
 }

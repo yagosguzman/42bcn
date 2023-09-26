@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/22 20:28:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 12:25:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ void	rev_rotate_r(t_node **list_a, t_node **list_b);
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	print_list(t_node *list_a);
+int		list_sorted(t_node *list_a);
+
 
 /*ALGORYTHM*/
 void	alg_3(t_node **node);
-void	alg_4(t_node **list_a, t_node **list_b);
+void	alg_to5(t_node **list_a, t_node **list_b);
 
 #endif

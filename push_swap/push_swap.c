@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/22 20:19:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/26 12:25:43 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	order_b(t_node **root)
 int	push_swap(int argc, char **argv)
 {
 	t_node	*list_a;
-	// t_node	*list_b;
+	t_node	*list_b;
 	int		node_length;
 	list_a = NULL;
 	if (ft_checkvalid(argv) == 1)
@@ -107,17 +107,12 @@ int	push_swap(int argc, char **argv)
 			return (1);
 		}
 	}
-	// if (argc == 2) // el argcounter está haciendo algo raro
-	// 	list_a = extract_argv(argcounter(argv[1], ' '), ft_split(argv[1], ' '));
-	// list_b = NULL;
-	// print_list(list_b);
-	// printf("LISTA B\n\n\nLista A\n");
-	// print_list(list_a);
+	list_b = NULL;
 	node_length = node_count(list_a);
 	if (node_length == 3)
 		alg_3(&list_a);
-	if (node_length == 4)
-		alg_4(&list_a);
+	if (node_length <= 5 && node_length > 3)
+		alg_to5(&list_a, &list_b);
 	// while (order_a(list_a) == 1 && node_count(list_a) != node_length)
 	// {
 	// 	if (node_length == 3)
@@ -129,6 +124,7 @@ int	push_swap(int argc, char **argv)
 	// 	{
 	// 	}
 	// }
+	print_list(list_a);
 	return (0);
 }
 
