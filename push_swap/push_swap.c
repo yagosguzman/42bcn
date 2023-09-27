@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:09:54 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:35:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,7 @@ int	push_swap(int argc, char **argv)
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);
-	if (node_length == 3)
-		alg_3(&list_a);
-	if (node_length == 4)
-		alg_4(&list_a, &list_b);
-	if (node_length == 5)
-		alg_5(&list_a, &list_b);
-	if (node_length > 5)
-		big_alg(&list_a, &list_b);
+	algorithm_selection(list_a, list_b, node_length);
 	print_list(list_a);
 	return (0);
 }

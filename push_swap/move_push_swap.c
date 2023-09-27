@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:11:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:01:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ void	push_b(t_node **first_b, t_node **first_a)
 
 void	swap_a(t_node **node)
 {
-	t_node	*aux;
+	t_node	*first;
+	t_node	*second;
 
-	if (node_count(*node) < 2)
+	if (*node == NULL || (*node)->next == NULL)
 		exit(1);
-	aux = *node;
-	if (aux->next == NULL)
-		exit(0);
-	*node = (*node)->next;
-	aux->next = (*node)->next;
-	(*node)->next = aux;
+	first = *node;
+	second = (*node)->next;
+	first->next = second->next;
+	second->next = first;
+	*node = second;
+	// *node = (*node)->next;
+	// aux->next = (*node)->next;
+	// (*node)->next = aux;
 	ft_putstr_fd("sa\n", 1);
 }
 
@@ -53,7 +56,7 @@ void	swap_b(t_node **node)
 {
 	t_node	*aux;
 
-	if (node_count(*node) < 2)
+	if (*node == NULL || (*node)->next == NULL)
 		exit(1);
 	aux = *node;
 	*node = (*node)->next;

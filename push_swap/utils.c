@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:03:48 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:05:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:24:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,25 @@ int	node_count(t_node *root)
 		i++;
 	}
 	return (i);
+}
+
+void	place_on_top(t_node **node, t_node *top_node, char stack)
+{
+	while (*node != top_node)
+	{
+		if (stack == 'a')
+		{
+			if (top_node->first_half == true)
+				rotate_a(node);
+			else
+				rev_rotate_a(node);
+		}
+		if (stack == 'b')
+		{
+			if (top_node->first_half == true)
+				rotate_b(node);
+			else
+				rev_rotate_b(node);
+		}
+	}
 }

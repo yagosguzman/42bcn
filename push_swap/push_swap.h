@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:08:10 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:13:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,12 @@ void	swap_ss(t_node **list_a, t_node **list_b);
 void	rotate_a(t_node **list_a);
 void	rotate_b(t_node **list_b);
 void	rotate_r(t_node **list_a, t_node **list_b);
+void	rotate_both(t_node **list_a, t_node **list_b, t_node *best_option);
 void	rev_rotate_a(t_node **node);
 void	rev_rotate_b(t_node **node);
 void	rev_rotate_r(t_node **list_a, t_node **list_b);
+void	rev_rotate_both(t_node **list_a, t_node **list_b, t_node *best_option);
+void	place_on_top(t_node **node, t_node *top_node, char stack);
 
 /*UTILS*/
 int		ft_strlen(char *str);
@@ -75,12 +78,15 @@ void	position_finder(t_node *node);
 void	target_finder(t_node *list_b, t_node *list_a);
 void	cost_calculator(t_node *list_a, t_node *list_b);
 void	best_option(t_node *list_b);
+t_node	*return_best(t_node *node);
 void	key_data(t_node *list_a, t_node *list_b);
 
 /*ALGORYTHM*/
+void	algorithm_selection(t_node *list_a, t_node *list_b, int node_length);
 void	alg_3(t_node **node);
 void	alg_4(t_node **list_a, t_node **list_b);
 void	alg_5(t_node **list_a, t_node **list_b);
 void	big_alg(t_node **list_a, t_node **list_b);
+void	move_node(t_node **list_a, t_node **list_b);
 
 #endif

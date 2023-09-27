@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorythm.c                                        :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:23:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:35:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@
 // 	}
 // }
 
+void	algorithm_selection(t_node *list_a, t_node *list_b, int node_length)
+{
+	if (node_length == 3)
+		alg_3(&list_a);
+	if (node_length == 4)
+		alg_4(&list_a, &list_b);
+	if (node_length == 5)
+		alg_5(&list_a, &list_b);
+	if (node_length > 5)
+		big_alg(&list_a, &list_b);
+}
+
 void	alg_3(t_node **node)
 {
 	t_node	*biggest;
@@ -55,66 +67,49 @@ void	alg_3(t_node **node)
 	if ((*node)->content > (*node)->next->content)
 		swap_a(node);
 }
-void	alg_4(t_node **list_a, t_node **list_b);
+
+void	alg_4(t_node **list_a, t_node **list_b)
+{
+	place_on_top(list_a, smallest_node(*list_a), 'a');
+	push_b(list_b, list_a);
+	alg_3(list_a);
+	push_a(list_a, list_b);
+}
+
+void	alg_5(t_node **list_a, t_node **list_b)
 {
 	while (node_count(*list_a) > 3)
 	{
 		key_data(*list_a, *list_b);
-
+		place_on_top(list_a, smallest_node(*list_a), 'a');
 		push_b(list_b, list_a);
-	
+	}
 }
 
-void	alg_to5(t_node **list_a, t_node **list_b)
+void	big_alg(t_node **list_a, t_node **list_b)
 {
-	t_node	*tail;
-	int		min;
-	int		max;
+	t_node	*smallest;
+	int		length_a;
 
-	while (node_count(*list_a) > 3)
+	length_a = node_count(*list_a);
+	while (length_a > 3)
+	{
 		push_b(list_b, list_a);
-	if ((*list_b)->content > (*list_b)->next->content)
-	{
-		max = (*list_b)->content;
-		min = (*list_b)->next->content;
-	}
-	else
-	{
-		min = (*list_b)->content;
-		max = (*list_b)->next->content;
+		length_a--;
 	}
 	alg_3(list_a);
-	tail = last_node(*list_a);
-	while (node_count(*list_b) != 0)
+	while (*list_b != NULL)
 	{
-		if ((*list_b)->content == min)
-		{
-			if (min < (*list_a)->content)
-				push_a(list_a, list_b);
-			else
-			{
-				push_a(list_a, list_b);
-				swap_a(list_a);
-			}
-		}
-		else
-		{
-			if (max > tail->content)
-			{
-				push_a(list_a, list_b);
-				rotate_a(list_a);
-			}
-			else
-			{
-				rev_rotate_a(list_a);
-				push_a(list_a, list_b);
-				rotate_a(list_a);
-				rotate_a(list_a);
-			}
-		}
+		key_data(*list_a, *list_b);
+		move_node(list_a, list_b);
 	}
+	position_finder(*list_a);
+	smallest = smallest_node(*list_a);
+	if (smallest->first_half == true)
+		while (*list_a != smallest)
+			rotate_a(list_a);
+	else
+		while (*list_a != smallest)
+			rev_rotate_a(list_a);
 }
-void	place_on_top(t_node **list_a)
-{
-	
-}
+

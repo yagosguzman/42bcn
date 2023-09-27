@@ -6,14 +6,15 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 14:55:58 by ysanchez          #+#    #+#              #
-#    Updated: 2023/09/22 14:17:11 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/09/27 18:13:38 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libpushswap.a
+NAME = push_swap.a
 
-SRC = push_swap.c, lists_tools.c, checks.c, create_list.c \
-	instructions.c, instructions2.c
+SRC = push_swap.c lists_tools.c checks.c create_list.c \
+	calculators.c utils.c move_push_swap.c move_rotate.c \
+	move_rev_rotate.c maintester.c \
 
 OBJ = $(SRC:.c=.o)
 
