@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/27 19:13:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:46:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		ft_zerocmp(char *s1);
 /*LIST CREATION*/
 t_node	*extract_argv(int argc, char **argv);
 int		ft_atoi(char *str);
-int		order_a(t_node *root);
 char	**ft_split(char *str, char separator);
 int		argcounter(char *str, char separator);
 t_node	*insert_front(t_node **root, int value);

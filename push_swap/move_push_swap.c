@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/27 20:01:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:44:03 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	swap_a(t_node **node)
 	t_node	*first;
 	t_node	*second;
 
-	if (*node == NULL || (*node)->next == NULL)
-		exit(1);
+	if (*node == NULL || (*node)->next == NULL || node == NULL)
+		return ;
 	first = *node;
 	second = (*node)->next;
 	first->next = second->next;
