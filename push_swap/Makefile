@@ -6,15 +6,15 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 14:55:58 by ysanchez          #+#    #+#              #
-#    Updated: 2023/09/27 18:13:38 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/09/28 17:41:20 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 
 SRC = push_swap.c lists_tools.c checks.c create_list.c \
 	calculators.c utils.c move_push_swap.c move_rotate.c \
-	move_rev_rotate.c maintester.c \
+	move_rev_rotate.c \
 
 OBJ = $(SRC:.c=.o)
 

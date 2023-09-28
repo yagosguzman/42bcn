@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/28 15:46:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 16:50:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_node	*return_best(t_node *node);
 void	key_data(t_node *list_a, t_node *list_b);
 
 /*ALGORYTHM*/
-void	algorithm_selection(t_node *list_a, t_node *list_b, int node_length);
+void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length);
 void	alg_3(t_node **node);
 void	alg_4(t_node **list_a, t_node **list_b);
 void	alg_5(t_node **list_a, t_node **list_b);

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:45:55 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:04:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:05:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	target_finder(t_node *list_b, t_node *list_a)
 				best = current_a->content;
 				target = current_a;
 			}
+			current_a = current_a->next;
 		}
 		if (best == LONG_MAX)
 			list_b->target = smallest_node(list_a);

@@ -6,11 +6,27 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/28 15:45:15 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:40:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_list(t_node *list_a)
+{
+	if (list_a == NULL) 
+	{
+		printf("La lista está vacía.\n");
+	}
+	else 
+	{
+		while (list_a != NULL)
+		{
+			printf("%i\n", list_a->content);
+			list_a = list_a->next;
+		}
+	}
+}
 
 int	push_swap(int argc, char **argv)
 {
@@ -37,7 +53,7 @@ int	push_swap(int argc, char **argv)
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);
-	algorithm_selection(list_a, list_b, node_length);
+	algorithm_selection(&list_a, &list_b, node_length);
 	return (0);
 }
 
