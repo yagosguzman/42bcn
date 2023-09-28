@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/28 14:44:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:12:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,14 @@ void	push_b(t_node **first_b, t_node **first_a)
 
 void	swap_a(t_node **node)
 {
-	t_node	*first;
-	t_node	*second;
+	t_node	*aux;
 
 	if (*node == NULL || (*node)->next == NULL || node == NULL)
 		return ;
-	first = *node;
-	second = (*node)->next;
-	first->next = second->next;
-	second->next = first;
-	*node = second;
-	// *node = (*node)->next;
-	// aux->next = (*node)->next;
-	// (*node)->next = aux;
+	aux = *node;
+	*node = (*node)->next;
+	aux->next = (*node)->next;
+	(*node)->next = aux;
 	ft_putstr_fd("sa\n", 1);
 }
 
@@ -82,34 +77,3 @@ void	swap_ss(t_node **list_a, t_node **list_b)
 	(*list_b)->next = aux_b;
 	ft_putstr_fd("ss\n", 1);
 }
-
-// void	node_swap(t_node *node)
-// {
-// 	t_node	*aux;
-
-// 	aux = node;
-// 	node = node->next;
-// 	aux->next = node->next;
-// 	node->next = aux;
-// }
-
-// void	ft_swap(t_node *list_a, t_node *list_b)
-// {
-// 	if ((list_a->content > list_a->next->content)
-// 		&& (list_b->content < list_b->next->content))
-// 	{
-// 		node_swap(list_a);
-// 		node_swap(list_b);
-// 		ft_putstr_fd("ss\n", 1);
-// 	}
-// 	else if (list_a->content > (list_a->next)->content)
-// 	{
-// 		node_swap(list_a);
-// 		ft_putstr_fd("sa\n", 1);
-// 	}
-// 	else if (list_b->content < (list_b->next)->content)
-// 	{
-// 		node_swap(list_b);
-// 		ft_putstr_fd("sb\n", 1);
-// 	}
-// }

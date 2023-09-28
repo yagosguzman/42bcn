@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/28 17:34:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:13:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length)
 		alg_5(list_a, list_b);
 	if (node_length > 5)
 		big_alg(list_a, list_b);
-	// print_list(*list_a);
 }
 
 void	alg_3(t_node **node)
