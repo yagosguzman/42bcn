@@ -6,15 +6,15 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 14:55:58 by ysanchez          #+#    #+#              #
-#    Updated: 2023/09/28 17:41:20 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/09/29 20:01:43 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRC = push_swap.c lists_tools.c checks.c create_list.c \
-	calculators.c utils.c move_push_swap.c move_rotate.c \
-	move_rev_rotate.c \
+	calculators.c move_push_swap.c move_rotate.c \
+	move_rev_rotate.c algorithm.c utils.c utils2.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -25,10 +25,10 @@ HEADER = push_swap.h
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-		ar rc $(NAME) $(OBJ)
+		cc ${SRC} -o ${NAME}
 
 %.o: %.c
-		gcc $(FLAGS) -c -o $@ $<
+		cc $(FLAGS) -c $< -o $@
 
 clean:
 		/bin/rm -f *.o
