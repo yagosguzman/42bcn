@@ -20,6 +20,7 @@
         "tuple": "c",
         "type_traits": "c",
         "vector": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "push_swap.h": "c"
     }
 }
