@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:20:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/21 14:22:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:51:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int	ft_isdigitplus(char *str)
 
 	i = 0;
 	if (str[0] == '+' || str[0] == '-')
+	{
 		i++;
+		if (!str[1])
+			return (1);
+	}
 	while (str[i])
 	{
 		if ((str[i] < '0' && str[i] != ' ') || str[i] > '9')
@@ -35,6 +39,8 @@ int	ft_checkvalid(char **argv)
 	i = 1;
 	while (argv[i])
 	{
+		if (ft_atoi(argv[i]) == 0 && ft_zerocmp(argv[i]) == 1)
+			return (1);
 		if (ft_isdigitplus(argv[i]) == 1)
 			return (1);
 		else
