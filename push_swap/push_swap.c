@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/02 17:10:27 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:26:17 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,14 @@ int	push_swap(int argc, char **argv)
 
 	list_a = NULL;
 	if (ft_checkvalid(argv) == 1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
+		ft_error();
 	if (!argc || argc <= 2)
 		return (1);
 	if (argc > 2)
 	{
 		list_a = extract_argv(argc, argv);
 		if (!list_a)
-		{
-			ft_putstr_fd("Error\n", 2);
-			return (1);
-		}
+			ft_error();
 	}
 	list_b = NULL;
 	node_length = node_count(list_a);

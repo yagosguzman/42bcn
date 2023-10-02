@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/26 18:13:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:56:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	ft_strlen(char *str)
 int	ft_atoi(char *str)
 {
 	int		i;
-	int		flag;
+	int		sign;
 	long	result;
 
-	flag = 0;
+	sign = 1;
 	result = 0;
 	i = 0;
 	while (str[i] == ' ')
@@ -72,21 +72,24 @@ int	ft_atoi(char *str)
 		|| (str[i] == '+' && ft_isdigitplus(&str[i + 1]) == 0))
 	{
 		if (str[i] == '-')
-			flag++;
+			sign = -1;
 		i++;
 	}
 	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
 	{
-		result = result * 10 + (str[i] - 48);
+		result = result * 10 + ((str[i] - 48) * sign);
 		i++;
 	}
-	if (flag == 1)
-		result = -result;
 	if (result < -2147483648 || result > 2147483647)
 		return (0);
 	return (result);
 }
 
+int	ft_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	return (1);
+}
 // static char	*ft_substr(char *s, int start, int len)
 // {
 // 	int	i;

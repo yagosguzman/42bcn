@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/28 16:50:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:25:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	rev_rotate_both(t_node **list_a, t_node **list_b, t_node *best_option);
 void	place_on_top(t_node **node, t_node *top_node, char stack);
 
 /*UTILS*/
+int		ft_error(void);
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	print_list(t_node *list_a); //BORRAR
