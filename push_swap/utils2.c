@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:58:10 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/03 19:14:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:26:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ void	index_assign(t_node *list_a)
 		list_a = list_a->next;
 	}
 	index[i] = '\0';
-	index = bubbleSort(index, (i - 1));
+	index = bubbleSort(index, i);
 	i = 0;
+	// while (i < node_count(head))
+	// {
+    // 	printf("%d ", index[i]);
+    //     i++;
+    // }
 	list_a = head;
 	while (index[i])
 	{
@@ -121,6 +126,11 @@ int *bubbleSort(int *arr, int size)
             }
             j++;
         }
+        i++;
+    }
+	while (arr[i])
+	{
+    	printf("%i ", arr[i]);
         i++;
     }
 	return (arr);
