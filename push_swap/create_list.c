@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:27:37 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:03:56 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_node	*extract_argv(int argc, char **argv)
 	}
 	if (ft_checkrepeat(list_a) == 1)
 		return (free_listnode(list_a));
+	index_assign(list_a);
 	return (list_a);
 }
 

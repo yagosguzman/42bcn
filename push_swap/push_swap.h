@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/02 17:25:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:14:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct t_node
 	int				content;
 	int				position;
 	int				push_cost;
+	int				index;
 	bool			first_half;
 	bool			best;
 	struct t_node	*next;
@@ -49,6 +50,7 @@ t_node	*free_listnode(t_node *root);
 int		node_count(t_node *root);
 void	free_node(t_node **node);
 t_node	*last_node(t_node *root);
+void	index_assign(t_node *list_a);
 
 /*INSTRUCTIONS/MOVES*/
 void	push_a(t_node **first_a, t_node **first_b);
@@ -80,12 +82,13 @@ void	cost_calculator(t_node *list_a, t_node *list_b);
 void	best_option(t_node *list_b);
 t_node	*return_best(t_node *node);
 void	key_data(t_node *list_a, t_node *list_b);
+int *bubbleSort(int *arr, int size);
 
 /*ALGORYTHM*/
 void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length);
 void	alg_3(t_node **node);
 void	alg_4(t_node **list_a, t_node **list_b);
-void	alg_5(t_node **list_a, t_node **list_b);
+void	alg_to10(t_node **list_a, t_node **list_b);
 void	big_alg(t_node **list_a, t_node **list_b);
 void	move_node(t_node **list_a, t_node **list_b);
 

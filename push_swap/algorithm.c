@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:37 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:10:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length)
 {
+	if (list_sorted(*list_a) == 0)
+		return ;
 	if (node_length <= 3)
 		alg_3(list_a);
 	if (node_length == 4)
 		alg_4(list_a, list_b);
-	if (node_length == 5)
-		alg_5(list_a, list_b);
+	if (node_length <= 10 && node_length > 4)
+		alg_to10(list_a, list_b);
 	if (node_length > 5)
 		big_alg(list_a, list_b); //problema + de 31 argv KO checker
 }
@@ -45,7 +47,7 @@ void	alg_4(t_node **list_a, t_node **list_b)
 	push_a(list_a, list_b);
 }
 
-void	alg_5(t_node **list_a, t_node **list_b)
+void	alg_to10(t_node **list_a, t_node **list_b)
 {
 	while (node_count(*list_a) > 3)
 	{

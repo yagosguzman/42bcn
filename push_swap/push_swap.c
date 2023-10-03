@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/02 17:26:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:48:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_list(t_node *list_a)
 	{
 		while (list_a != NULL)
 		{
-			printf("%i\n", list_a->content);
+			printf("%i %i\n", list_a->content, list_a->index);
 			list_a = list_a->next;
 		}
 	}
