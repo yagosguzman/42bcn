@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/04 17:17:28 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:36:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length)
 	if (node_length <= 10 && node_length > 4)
 		alg_to10(list_a, list_b);
 	if (node_length > 10 && node_length <= 100)
-		alg_to100(list_a, list_b, node_length);
+		big_alg(list_a, list_b);
+	if (list_sorted(*list_a) == 0)
+		printf("done");
 }
 
 void	alg_3(t_node **node)
@@ -64,28 +66,28 @@ void	alg_to100(t_node **list_a, t_node **list_b, int node_length)
 {
 	int		key_num;
 
-	key_num = node_length / 4;
+	key_num = node_length * 1 / 4;
 	while (node_count(*list_b) < key_num)
 	{
 		position_finder(*list_a);
 		place_on_top(list_a, smallest_node(*list_a), 'a');
 		push_b(list_b, list_a);
 	}
-	key_num *= 2;
+	key_num = node_length * 2 / 4;
 	while (node_count(*list_b) < key_num)
 	{
 		position_finder(*list_a);
 		place_on_top(list_a, smallest_node(*list_a), 'a');
 		push_b(list_b, list_a);
 	}
-	key_num = node_count(*list_a) / 2;
+	key_num = node_length * 3 / 4;
 	while (node_count(*list_b) < key_num)
 	{
 		position_finder(*list_a);
 		place_on_top(list_a, smallest_node(*list_a), 'a');
 		push_b(list_b, list_a);
 	}
-	while (list_b != NULL)
+	while (*list_b != NULL)
 	{
 		position_finder(*list_a);
 		place_on_top(list_a, smallest_node(*list_a), 'a');
@@ -97,7 +99,6 @@ void	alg_to100(t_node **list_a, t_node **list_b, int node_length)
 
 void	big_alg(t_node **list_a, t_node **list_b)
 {
-	t_node	*smallest;
 	int		length_a;
 
 	length_a = node_count(*list_a);
@@ -113,11 +114,19 @@ void	big_alg(t_node **list_a, t_node **list_b)
 		move_node(list_a, list_b);
 	}
 	position_finder(*list_a);
-	smallest = smallest_node(*list_a);
-	if (smallest->first_half == true)
-		while (*list_a != smallest)
-			rotate_a(list_a);
-	else
-		while (*list_a != smallest)
-			rev_rotate_a(list_a);
+	place_on_top(list_a, smallest_node(*list_a), 'a');
+}
+
+void	alg_index(t_node **list_a, t_node **list_b, int node_length)
+{
+	int	key_num;
+	int	i;
+
+	i = 1;
+	key_num = (node_length / 4 * i);
+	while (node_count(*list_b) < key_num)
+	{
+		if ((*list_a)->index <= key_num)
+			push_b(list_b, list_a);
+	}
 }

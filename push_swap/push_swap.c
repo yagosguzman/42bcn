@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/04 17:08:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:46:54 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,32 @@
 
 void	print_list(t_node *list_a)
 {
+	printf("---------STACK A---------\n\n");
 	if (list_a == NULL) 
 	{
-		printf("La lista está vacía.\n");
+		printf("La lista a está vacía.\n\n");
 	}
 	else 
 	{
 		while (list_a != NULL)
 		{
-			printf("%i %i\n", list_a->content, list_a->index);
+			printf("%i \n", list_a->content);
 			list_a = list_a->next;
 		}
 	}
+	// printf("\n---------STACK B---------\n\n");
+	// if (list_b == NULL) 
+	// {
+	// 	printf("La lista b está vacía.\n\n");
+	// }
+	// else 
+	// {
+	// 	while (list_b != NULL)
+	// 	{
+	// 		printf("%i \n", list_b->content);
+	// 		list_b = list_b->next;
+	// 	}
+	// }
 }
 
 int	push_swap(int argc, char **argv)
