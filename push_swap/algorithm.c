@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/04 20:36:05 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:39:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length)
 		alg_4(list_a, list_b);
 	if (node_length <= 10 && node_length > 4)
 		alg_to10(list_a, list_b);
-	if (node_length > 10 && node_length <= 100)
+	if (node_length > 10)
 		big_alg(list_a, list_b);
-	if (list_sorted(*list_a) == 0)
-		printf("done");
+	// if (list_sorted(*list_a) == 0)
+	// 	printf("done");
 }
 
 void	alg_3(t_node **node)
