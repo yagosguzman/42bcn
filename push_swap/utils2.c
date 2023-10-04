@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:58:10 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/03 19:26:19 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:48:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	move_node(t_node **list_a, t_node **list_b)
 
 void	index_assign(t_node *list_a)
 {
-	int	*index;
-	int	i;
-	t_node *head;
+	int		*index;
+	int		size;
+	int		i;
+	t_node	*head;
 
-	index = malloc(sizeof(int) * node_count(list_a));
+	size = node_count(list_a);
+	index = malloc(sizeof(int) * size);
 	i = 0;
 	head = list_a;
 	while (list_a != NULL)
@@ -53,16 +55,10 @@ void	index_assign(t_node *list_a)
 		index[i++] = list_a->content;
 		list_a = list_a->next;
 	}
-	index[i] = '\0';
-	index = bubbleSort(index, i);
+	index = bubblesort(index, size);
 	i = 0;
-	// while (i < node_count(head))
-	// {
-    // 	printf("%d ", index[i]);
-    //     i++;
-    // }
 	list_a = head;
-	while (index[i])
+	while (i < size)
 	{
 		if (list_a->content == index[i])
 		{
@@ -70,68 +66,37 @@ void	index_assign(t_node *list_a)
 			i++;
 			list_a = head;
 		}
-		list_a = list_a->next;
+		else
+			list_a = list_a->next;
 	}
-	list_a = head;
-	print_list(list_a);
+	free(index);
 }
 
-// int	*sorting_array(int *arr, int size)
-// {
-// 	int	i;
-// 	int min;
-// 	int j;
-
-// 	i = 0;
-// 	while (i < (size - 1))
-// 	{
-// 		min = i;
-// 		j = i + 1;
-// 		while (j < size)
-// 		{	if (arr[j] < arr[min])
-// 				min = j;
-// 			j++;
-// 		}
-// 		if (min != i)
-// 		{
-// 			arr[i] = arr[i] + arr[min];
-// 			arr[min] = arr[min] - arr[i];
-// 			arr[i] = arr[i] - arr[min];
-// 		}
-// 		i++;
-// 	}
-// 	return (arr);
-// }
-
-int *bubbleSort(int *arr, int size)
+int	*bubblesort(int *arr, int size)
 {
-    int i;
-    int j;
-    int swapped;
+	int	swapped;
+	int	pass;
+	int	j;
+	int	temp;
 
-	i = 0;
 	swapped = 1;
-    while (i < size - 1 && swapped) 
+	pass = 0;
+	while (swapped)
 	{
-        swapped = 0;
-        j = 0;
-        while (j < size - i - 1)
+		swapped = 0;
+		j = 0;
+		while (j < size - pass - 1)
 		{
-            if (arr[j] > arr[j + 1])
+			if (arr[j] > arr[j + 1])
 			{
-                arr[j] = arr[j] + arr[j + 1];
-                arr[j + 1] = arr[j] - arr[j + 1];
-                arr[j] = arr[j] - arr[j + 1];
-                swapped = 1;
-            }
-            j++;
-        }
-        i++;
-    }
-	while (arr[i])
-	{
-    	printf("%i ", arr[i]);
-        i++;
-    }
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+				swapped = 1;
+			}
+			j++;
+		}
+		pass++;
+	}
 	return (arr);
 }

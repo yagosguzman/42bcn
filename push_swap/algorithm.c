@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:13:31 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/03 17:10:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:17:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	algorithm_selection(t_node **list_a, t_node **list_b, int node_length)
 		alg_4(list_a, list_b);
 	if (node_length <= 10 && node_length > 4)
 		alg_to10(list_a, list_b);
-	if (node_length > 5)
-		big_alg(list_a, list_b); //problema + de 31 argv KO checker
+	if (node_length > 10 && node_length <= 100)
+		alg_to100(list_a, list_b, node_length);
 }
 
 void	alg_3(t_node **node)
@@ -58,6 +58,41 @@ void	alg_to10(t_node **list_a, t_node **list_b)
 	alg_3(list_a);
 	while (*list_b != NULL)
 		push_a(list_a, list_b);
+}
+
+void	alg_to100(t_node **list_a, t_node **list_b, int node_length)
+{
+	int		key_num;
+
+	key_num = node_length / 4;
+	while (node_count(*list_b) < key_num)
+	{
+		position_finder(*list_a);
+		place_on_top(list_a, smallest_node(*list_a), 'a');
+		push_b(list_b, list_a);
+	}
+	key_num *= 2;
+	while (node_count(*list_b) < key_num)
+	{
+		position_finder(*list_a);
+		place_on_top(list_a, smallest_node(*list_a), 'a');
+		push_b(list_b, list_a);
+	}
+	key_num = node_count(*list_a) / 2;
+	while (node_count(*list_b) < key_num)
+	{
+		position_finder(*list_a);
+		place_on_top(list_a, smallest_node(*list_a), 'a');
+		push_b(list_b, list_a);
+	}
+	while (list_b != NULL)
+	{
+		position_finder(*list_a);
+		place_on_top(list_a, smallest_node(*list_a), 'a');
+		place_on_top(list_b, biggest_node(*list_b), 'b');
+		push_a(list_a, list_b);
+	}
+	place_on_top(list_a, smallest_node(*list_a), 'a');
 }
 
 void	big_alg(t_node **list_a, t_node **list_b)
