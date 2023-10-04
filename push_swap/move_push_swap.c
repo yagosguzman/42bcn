@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:34:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/04 20:28:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/05 00:12:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	push_a(t_node **first_a, t_node **first_b)
 	*first_a = insert_front(first_a, node2push->content);
 	free_node(&node2push);
 	ft_putstr_fd("pa\n", 1);
-	// print_list(*first_a);
 }
 
 void	push_b(t_node **first_b, t_node **first_a)
@@ -40,7 +39,7 @@ void	swap_a(t_node **node)
 	t_node	*aux;
 
 	if (*node == NULL || (*node)->next == NULL || node == NULL)
-		return ;
+		exit(1);
 	aux = *node;
 	*node = (*node)->next;
 	aux->next = (*node)->next;
