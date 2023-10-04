@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:50:45 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/04 20:28:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/05 00:03:26 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rev_rotate_r(t_node **list_a, t_node **list_b)
 	tail_b->next = *list_b;
 	*list_b = tail_b;
 	aux_b->next = NULL;
-	ft_putstr_fd("rr\n", 1);
+	ft_putstr_fd("rrr\n", 1);
 }
 
 void	rev_rotate_both(t_node **list_a, t_node **list_b, t_node *best_option)
