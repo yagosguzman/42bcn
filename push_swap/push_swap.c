@@ -6,28 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:55:33 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/05 00:08:09 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:47:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(t_node *list_a)
-{
-	printf("---------STACK A---------\n\n");
-	if (list_a == NULL) 
-	{
-		printf("La lista a está vacía.\n\n");
-	}
-	else 
-	{
-		while (list_a != NULL)
-		{
-			printf("%i \n", list_a->content);
-			list_a = list_a->next;
-		}
-	}
-}
 
 int	push_swap(int argc, char **argv)
 {
