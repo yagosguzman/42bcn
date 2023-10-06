@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:20:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/06 17:31:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:20:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
-# include <stdio.h> // BORRAR
 
 typedef struct t_node
 {
@@ -68,8 +67,9 @@ void	place_on_top(t_node **node, t_node *top_node, char stack);
 int		ft_error(void);
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
-void	print_list(t_node *list_a); //BORRAR
 int		list_sorted(t_node *list_a);
+
+/*CALCULATORS*/
 t_node	*biggest_node(t_node *node);
 t_node	*smallest_node(t_node *node);
 void	position_finder(t_node *node);
