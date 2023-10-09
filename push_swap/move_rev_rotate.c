@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:50:45 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/05 00:03:26 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:54:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	rev_rotate_a(t_node **node)
 	t_node	*aux;
 	t_node	*tail;
 
-	if (node_count(*node) < 2)
-		exit(1);
+	if (*node == NULL || node == NULL || node_count(*node) < 2)
+		return ;
 	aux = *node;
 	tail = last_node(*node);
 	while (aux->next->next != NULL)
@@ -34,8 +34,8 @@ void	rev_rotate_b(t_node **node)
 	t_node	*aux;
 	t_node	*tail;
 
-	if (node_count(*node) < 2)
-		exit(1);
+	if (*node == NULL || node == NULL || node_count(*node) < 2)
+		return ;
 	aux = *node;
 	tail = last_node(*node);
 	while (aux->next->next != NULL)
@@ -53,8 +53,9 @@ void	rev_rotate_r(t_node **list_a, t_node **list_b)
 	t_node	*tail_a;
 	t_node	*tail_b;
 
-	if (node_count(*list_a) < 2 || node_count(*list_b) < 2)
-		exit(1);
+	if (*list_a == NULL || list_a == NULL || *list_b == NULL
+		|| list_b == NULL || node_count(*list_a) < 2 || node_count(*list_b) < 2)
+		return ;
 	aux_a = *list_a;
 	aux_b = *list_b;
 	tail_a = last_node(*list_a);
