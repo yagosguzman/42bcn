@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:16:09 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/13 18:42:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:56:26 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 
 # include <unistd.h>
 # include <signal.h>
+# include <stdio.h>
+# include <limits.h>
+# include "ft_printf/ft_printf.h"
 
-void	handle_sigusr1(int sig);
-void	handle_sigusr2(int sig);
+void	handle_sigusr(int sig);
+int		ft_isdigit(char *str);
+void	char_2_bin(int pid, char c);
+void	ft_putstr_fd(char *s, int fd);
 
 #endif
