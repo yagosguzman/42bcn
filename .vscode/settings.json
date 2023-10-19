@@ -21,6 +21,8 @@
         "type_traits": "c",
         "vector": "c",
         "unistd.h": "c",
-        "push_swap.h": "c"
+        "push_swap.h": "c",
+        "ft_printf.h": "c",
+        "minitalk.h": "c"
     }
 }
