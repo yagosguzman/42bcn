@@ -6,12 +6,21 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:57:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/18 20:09:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:19:18 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
@@ -52,7 +61,7 @@ int	ft_isdigit(char *str)
 	return (0);
 }
 
-void	char_2_bin(int pid, char c)
+void	char_2_bin(const int pid, char c)
 {
 	int	bit;
 
@@ -61,10 +70,19 @@ void	char_2_bin(int pid, char c)
 	{
 		if ((c & (1 << bit)) != 0)
 		{
-			if (kill(pid, SIGUSR1) != 0)
-				ft_putstr_fd("Failed to send signal.\n", 2);
-			if (kill(pid, SIGUSR2) != 0)
-				ft_putstr_fd("Failed to send signal.\n", 2);
+			if (kill(pid, SIGUSR1) == -1)
+			{
+				ft_putstr_fd("Failed to send signal 1.\n", 2);
+				exit (EXIT_FAILURE);
+			}
+		}
+		else
+		{
+			if (kill(pid, SIGUSR2) == -1)
+			{
+				ft_putstr_fd("Failed to send signal 2.\n", 2);
+				exit (EXIT_FAILURE);
+			}
 		}
 		usleep(50);
 		bit++;
@@ -85,7 +103,7 @@ int	main(int argc, char **argv)
 	}
 	if (ft_isdigit(argv[1]) == 1)
 		ft_putstr_fd("Invalid PID, please check the PID number again.\n", 2);
-	if (!argv[2])
+	if (ft_strlen(argv[2]) == 0)
 		ft_putstr_fd("ERROR, Empty message, please check your input.\n", 2);
 	else
 	{
@@ -93,7 +111,7 @@ int	main(int argc, char **argv)
 		pid = ft_atoi(argv[1]);
 		if (pid == -1)
 			ft_putstr_fd("Invalid PID, please check the PID number again.\n", 2);
-		while (argv[2] && argv[2][i])
+		while (argv[2][i] != '\0')
 			char_2_bin(pid, argv[2][i++]);
 		char_2_bin(pid, '\n');
 	}

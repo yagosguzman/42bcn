@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/18 19:59:04 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/19 19:25:06 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,12 @@ FLAGS = -Wall -Werror -Wextra
 CC = gcc
 HEADER = minitalk.h
 
-SRC.SV = server.c
+SRC.SV = oldserver.c
 SRC.CL = client.c
 OBJ.SV = $(SRC.SV:.c=.o)
 OBJ.CL = $(SRC.CL:.c=.o)
 
 all: $(OBJ.SV) $(OBJ.CL) $(HEADER)
-	@make -s -C $(PRINTF)
 	@$(CC) $(FLAGS) $(SRC.SV) -o $(SERVER)
 	@$(CC) $(FLAGS) $(SRC.CL) -o $(CLIENT)
 	@echo "Server and Client ready to go!"

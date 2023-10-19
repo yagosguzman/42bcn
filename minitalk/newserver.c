@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   newserver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:15:50 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/18 20:00:05 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/10/19 19:08:46 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/10/19 19:17:42 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int num)
+{
+	if (num > 9)
+	{
+		ft_putnbr(num / 10);
+		num = num % 10;
+	}
+	if (num <= 9)
+		ft_putchar(('0' + num));
+}
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -26,19 +42,15 @@ void	ft_putstr_fd(char *s, int fd)
 
 void	handle_sigusr(int sig)
 {
-	static int	bit;
-	static int	i;
-	int			n;
+	static int	bit = 0;
+	static int	i = '\0';
 
 	if (sig == SIGUSR1)
-		n = 1;
-	if (sig == SIGUSR2)
-		n = 0;
-	i = (i << 1) + n;
+		i = i | (1 << bit);	
 	bit++;
 	if (bit == 8)
 	{
-		write (1, &n, 1);
+		ft_putchar(i);
 		bit = 0;
 		i = 0;
 	}
@@ -46,16 +58,13 @@ void	handle_sigusr(int sig)
 
 int	main(void)
 {
-	struct sigaction	sa;
-
-	sa.sa_handler = &handle_sigusr;
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-		ft_putstr_fd("Error handling signals\n", 2);
-	if (sigaction(SIGUSR2, &sa, NULL) == -1)
-		ft_putstr_fd("Error handling signals\n", 2);
-	printf("Welcome to ysanchez's server, your PID is [%i]\n", getpid());
+	ft_putstr_fd("Welcome to ysanchez's server, your PID is [", 1);
+	ft_putnbr(getpid());
+	ft_putstr_fd("]\n", 1);
 	while (1)
-		usleep(100);
+	{
+		signal(SIGUSR1, handle_sigusr);
+		signal(SIGUSR2, handle_sigusr);
+	}
 	return (0);
 }
