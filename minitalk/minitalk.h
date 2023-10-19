@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:16:09 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/19 18:53:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:05:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@
 # include <limits.h>
 # include <stdlib.h>
 
-void	handle_sigusr(int sig);
-int		ft_isdigit(char *str);
-void	char_2_bin(int pid, char c);
+int		ft_strlen(char *str);
+int		ft_atoi(char *str);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_isdigit(char *str);
+int		ft_isdigit(char *str);
+void	ft_putchar(char c);
+void	ft_putnbr(int num);
 
 #endif

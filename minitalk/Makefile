@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/19 19:25:06 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/19 20:56:16 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,29 +16,29 @@ PRINTF = ft_printf
 
 FLAGS = -Wall -Werror -Wextra
 CC = gcc
-HEADER = minitalk.h
 
-SRC.SV = oldserver.c
+SRC.SV = server.c
 SRC.CL = client.c
+SRC.UTILS = utils.c
 OBJ.SV = $(SRC.SV:.c=.o)
 OBJ.CL = $(SRC.CL:.c=.o)
+OBJ.UTILS = $(SRC.UTILS:.c=.o)
 
-all: $(OBJ.SV) $(OBJ.CL) $(HEADER)
-	@$(CC) $(FLAGS) $(SRC.SV) -o $(SERVER)
-	@$(CC) $(FLAGS) $(SRC.CL) -o $(CLIENT)
+all: $(OBJ.SV) $(OBJ.CL) $(OBJ.UTILS)
+	@$(CC) $(FLAGS) $(SRC.SV) $(SRC.UTILS) -o $(SERVER)
+	@$(CC) $(FLAGS) $(SRC.CL) $(SRC.UTILS) -o $(CLIENT)
 	@echo "Server and Client ready to go!"
 
-client: $(OBJ.CL) $(HEADER)
-	@$(CC) $(FLAGS) $(SRC.CL) -o $(CLIENT)
+client: $(OBJ.CL) $(OBJ.UTILS)
+	@$(CC) $(FLAGS) $(SRC.CL) $(SRC.UTILS) -o $(CLIENT)
 	@echo "Client ready to go!"
 
-server: $(OBJ.SV) $(HEADER)
-	@$(CC) $(FLAGS) $(SRC.SV) -o $(SERVER)
+server: $(OBJ.SV) $(OBJ.UTILS)
+	@$(CC) $(FLAGS) $(SRC.SV) $(SRC.UTILS) -o $(SERVER)
 	@echo "Server ready to go!"
 
 clean:
-	@make clean -s -C $(PRINTF)
-	@rm -f $(OBJ.SV) $(OBJ.CL)
+	@rm -f $(OBJ.SV) $(OBJ.CL) $(OBJ.UTILS)
 	@echo "Objects successfully removed"
 
 fclean: clean
@@ -47,4 +47,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: make all client server clean fclean re Makefile
+.PHONY: make all client server clean fclean re
