@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/21 22:34:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:09:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ typedef struct s_node
 }	t_node;
 
 /*CHECKERS*/
-int		valid_file(char *map);
+int		valid_file(t_node *game, char *map);
 int		allowed_map(t_node *game, char *map);
+int		closed_map(t_node *game, char *map);
+int		check_rectangular(t_node *game, char *map);
+int		check_elements(t_node *game, char *map);
 
 /*UTILS*/
-int		ft_error(t_node *game, int num);
+int		ft_error(t_node *game, int errnum);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
 

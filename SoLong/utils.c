@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/21 22:34:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:21:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,18 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-int	ft_error(t_node *game, int num)
+int	ft_error(t_node *game, int errnum)
 {
-	if (num == 1)
-		ft_putstr_fd("Incorrect map file extension, all maps must be .ber", 2);
-	if (num == 2)
-		ft_putstr_fd("Unexpected elements on the map, impossible to launch", 2);
-
-	ft_free(game);
+	ft_putstr_fd("Error\n", 2);
+	if (errnum == 1)
+		ft_putstr_fd("Incorrect map file extension.\n", 2);
+	if (errnum == 2)
+		ft_putstr_fd("Unexpected elements on the map.\n", 2);
+	if (errnum == 3)
+		ft_putstr_fd("The map is not completely surrounded by walls.\n", 2);
+	if (errnum == 4)
+		ft_putstr_fd("The map is not rectangular.\n", 2);
+	if (errnum == 5)
+		ft_putstr_fd("The amount of players, coins or exits is wrong.\n", 2);
+	return (ft_free(game));
 }
