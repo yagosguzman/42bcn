@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 20:56:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/19 21:04:11 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/22 19:43:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "minitalk.h"
 
 int	ft_strlen(char *str)
 {
@@ -20,23 +20,6 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	ft_atoi(char *str)
-{
-	int				i;
-	long long int	result;
-
-	result = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-		if (result > INT_MAX)
-			return (-1);
-	}
-	return (result);
 }
 
 void	ft_putstr_fd(char *s, int fd)

@@ -6,45 +6,55 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/19 20:56:16 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/22 21:05:52 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server
 CLIENT = client
-PRINTF = ft_printf
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
 
 FLAGS = -Wall -Werror -Wextra
 CC = gcc
 
-SRC.SV = server.c
-SRC.CL = client.c
-SRC.UTILS = utils.c
-OBJ.SV = $(SRC.SV:.c=.o)
-OBJ.CL = $(SRC.CL:.c=.o)
-OBJ.UTILS = $(SRC.UTILS:.c=.o)
+SRC_SV = server.c
+SRC_CL = client.c
+SRC_SV_BONUS = server_bonus.c
+SRC_CL_BONUS = client_bonus.c
+SRC_UTILS = utils.c
+OBJ_SV = $(SRC_SV:.c=.o)
+OBJ_CL = $(SRC_CL:.c=.o)
+OBJ_SV_BONUS = $(SRC_SV_BONUS:.c=.o)
+OBJ_CL_BONUS = $(SRC_CL_BONUS:.c=.o)
+OBJ_UTILS = $(SRC_UTILS:.c=.o)
 
-all: $(OBJ.SV) $(OBJ.CL) $(OBJ.UTILS)
-	@$(CC) $(FLAGS) $(SRC.SV) $(SRC.UTILS) -o $(SERVER)
-	@$(CC) $(FLAGS) $(SRC.CL) $(SRC.UTILS) -o $(CLIENT)
+all: $(OBJ_SV) $(OBJ_CL) $(OBJ_UTILS)
+	@$(CC) $(FLAGS) $(SRC_SV) $(SRC_UTILS) -o $(SERVER)
+	@$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
 	@echo "Server and Client ready to go!"
 
-client: $(OBJ.CL) $(OBJ.UTILS)
-	@$(CC) $(FLAGS) $(SRC.CL) $(SRC.UTILS) -o $(CLIENT)
+client: $(OBJ_CL) $(OBJ_UTILS)
+	@$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
 	@echo "Client ready to go!"
 
-server: $(OBJ.SV) $(OBJ.UTILS)
-	@$(CC) $(FLAGS) $(SRC.SV) $(SRC.UTILS) -o $(SERVER)
+server: $(OBJ_SV) $(OBJ_UTILS)
+	@$(CC) $(FLAGS) $(SRC_SV) $(SRC_UTILS) -o $(SERVER)
 	@echo "Server ready to go!"
 
+bonus: $(OBJ_SV_BONUS) $(OBJ_CL_BONUS)
+	@$(CC) $(FLAGS) $(SRC_SV_BONUS) $(SRC_UTILS) -o $(SERVER_BONUS)
+	@$(CC) $(FLAGS) $(SRC_CL_BONUS) $(SRC_UTILS) -o $(CLIENT_BONUS)
+	@echo "BONUS: Server and Client ready to go!"
+
 clean:
-	@rm -f $(OBJ.SV) $(OBJ.CL) $(OBJ.UTILS)
+	@rm -f $(OBJ_SV) $(OBJ_CL) $(OBJ_UTILS) $(OBJ_SV_BONUS) $(OBJ_CL_BONUS)
 	@echo "Objects successfully removed"
 
 fclean: clean
-	@rm -f $(SERVER) $(CLIENT)
+	@rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
 	@echo "Server and Client successfully removed"
 
 re: fclean all
 
-.PHONY: make all client server clean fclean re
+.PHONY: make all client server clean fclean re bonus
