@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/23 13:50:08 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/23 13:52:29 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all: $(OBJ_SV) $(OBJ_CL) $(OBJ_UTILS)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 client: $(OBJ_CL) $(OBJ_UTILS)
-	$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
+	@$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
 	@echo "Client ready to go!"
 
 server: $(OBJ_SV) $(OBJ_UTILS)
