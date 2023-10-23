@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:57:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/22 20:37:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:25:42 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int	ft_error(int errnum)
 	if (errnum == 3)
 	{
 		ft_putstr_fd("ERROR\nEmpty message, please check your input.\n", 2);
+		return (1);
+	}
+	if (errnum == 4)
+	{
+		ft_putstr_fd("Invalid PID, please check the PID again.\n", 2);
 		return (1);
 	}
 	return (0);
@@ -91,15 +96,12 @@ int	main(int argc, char **argv)
 		return (ft_error(3));
 	else
 	{
-		i = -1;
+		i = 0;
 		pid = ft_atoi(argv[1]);
 		if (pid == -1)
-		{
-			ft_putstr_fd("Invalid PID, please check the PID again.\n", 2);
-			exit(1);
-		}
-		while (argv[2][++i] != '\0')
-			char_2_bin(pid, argv[2][i]);
+			exit(ft_error(4));
+		while (argv[2][i] != '\0')
+			char_2_bin(pid, argv[2][i++]);
 		char_2_bin(pid, '\n');
 	}
 	return (0);

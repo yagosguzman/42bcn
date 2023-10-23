@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/22 21:05:52 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/23 13:50:08 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,6 @@ SERVER = server
 CLIENT = client
 SERVER_BONUS = server_bonus
 CLIENT_BONUS = client_bonus
-
-FLAGS = -Wall -Werror -Wextra
-CC = gcc
 
 SRC_SV = server.c
 SRC_CL = client.c
@@ -29,20 +26,26 @@ OBJ_SV_BONUS = $(SRC_SV_BONUS:.c=.o)
 OBJ_CL_BONUS = $(SRC_CL_BONUS:.c=.o)
 OBJ_UTILS = $(SRC_UTILS:.c=.o)
 
+CC = gcc
+FLAGS = -Wall -Werror -Wextra
+
 all: $(OBJ_SV) $(OBJ_CL) $(OBJ_UTILS)
 	@$(CC) $(FLAGS) $(SRC_SV) $(SRC_UTILS) -o $(SERVER)
 	@$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
 	@echo "Server and Client ready to go!"
 
+%.o: %.c
+	@$(CC) $(FLAGS) -c $< -o $@
+
 client: $(OBJ_CL) $(OBJ_UTILS)
-	@$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
+	$(CC) $(FLAGS) $(SRC_CL) $(SRC_UTILS) -o $(CLIENT)
 	@echo "Client ready to go!"
 
 server: $(OBJ_SV) $(OBJ_UTILS)
 	@$(CC) $(FLAGS) $(SRC_SV) $(SRC_UTILS) -o $(SERVER)
 	@echo "Server ready to go!"
 
-bonus: $(OBJ_SV_BONUS) $(OBJ_CL_BONUS)
+bonus: $(OBJ_SV_BONUS) $(OBJ_CL_BONUS) $(OBJ_UTILS)
 	@$(CC) $(FLAGS) $(SRC_SV_BONUS) $(SRC_UTILS) -o $(SERVER_BONUS)
 	@$(CC) $(FLAGS) $(SRC_CL_BONUS) $(SRC_UTILS) -o $(CLIENT_BONUS)
 	@echo "BONUS: Server and Client ready to go!"
