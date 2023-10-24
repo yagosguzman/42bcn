@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:57:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/23 18:32:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:25:30 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,6 @@ void	char_2_bin(const int pid, char c)
 		usleep(50);
 		bit++;
 	}
-}
-
-void	sig_confirm(int sig)
-{
-	printf("ENTRA AQUI\n");
-	if (sig == SIGUSR1)
-		ft_putstr_fd("Signal SIGUSR1 received by the server\n", 1);
-	if (sig == SIGUSR2)
-		ft_putstr_fd("Signal SIGUSR2 received by the server\n", 1);
 }
 
 int	main(int argc, char **argv)
