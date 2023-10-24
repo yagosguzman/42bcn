@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/21 22:44:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:22:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error, please write ./so_long <anymap.ber>", 2);
 		return (1);
 	}
-	if (checker_exec(game, argv) != 0)
+	if (checker_exec(game, argv[1]) != 0)
 		return (1);
 	return (0);
 }

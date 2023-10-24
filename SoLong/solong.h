@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/22 13:09:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:21:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
+# include <limits.h>
 # include "./minilibx/mlx.h"
 
 typedef struct s_node
@@ -32,6 +34,8 @@ int		allowed_map(t_node *game, char *map);
 int		closed_map(t_node *game, char *map);
 int		check_rectangular(t_node *game, char *map);
 int		check_elements(t_node *game, char *map);
+int		checker_exec(t_node *game, char *argv);
+
 
 /*UTILS*/
 int		ft_error(t_node *game, int errnum);
