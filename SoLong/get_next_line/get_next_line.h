@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:16:09 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/24 20:27:22 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/08/04 20:38:04 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/10/21 15:33:42 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <signal.h>
-# include <stdio.h>
-# include <limits.h>
 # include <stdlib.h>
+# include <fcntl.h> // QUITAR
+# include <stdio.h> // QUITAR
 
-int		ft_strlen(char *str);
-int		ft_atoi(char *str);
-void	ft_putstr_fd(char *s, int fd);
-int		ft_isdigit(char *str);
-int		ft_isdigit(char *str);
-void	ft_putchar(char c);
-void	ft_putnbr(int num);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+char	*get_next_line(int fd);
+char	*read_line(int fd, char *stash);
+char	*find_line(char *stash);
+char	*clean_stash(char *line, char *stash);
+char	*ft_free(char **str);
+char	*merge_strings(char *s1, char *s2);
+int		ft_strlen(const char *str, int mode);
 
 #endif

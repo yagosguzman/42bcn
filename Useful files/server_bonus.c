@@ -1,58 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oldserver.c                                        :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:15:50 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/19 19:25:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:23:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int num)
-{
-	if (num > 9)
-	{
-		ft_putnbr(num / 10);
-		num = num % 10;
-	}
-	if (num <= 9)
-		ft_putchar(('0' + num));
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write (fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	handle_sigusr(int sig)
+void	handle_sigusr(int sig, siginfo_t *info, void *s)
 {
 	static int	bit = 0;
-	static int	i = '\0';
+	static char	c = '\0';
 
+	(void)info;
+	(void)s;
 	if (sig == SIGUSR1)
-		i = i | (1 << bit);	
+		c = c | (1 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		ft_putchar(i);
+		ft_putchar(c);
 		bit = 0;
-		i = 0;
+		c = 0;
+		kill(info->si_pid, SIGUSR1);
 	}
 }
 
@@ -60,8 +35,9 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	sa.sa_handler = &handle_sigusr;
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_handler = handle_sigusr;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_putstr_fd("Error handling signals\n", 2);
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
@@ -71,7 +47,5 @@ int	main(void)
 	ft_putstr_fd("]\n", 1);
 	while (1)
 		usleep(50);
-		// signal(SIGUSR1, handle_sigusr);
-		// signal(SIGUSR2, handle_sigusr);
 	return (0);
 }

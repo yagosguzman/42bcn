@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/23 19:21:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:15:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_node
 	void	*win;
 	void	*player;
 	int		error;
+	int		line;
+	int		linecheck;
+	int		moves;
+	int		map;
+	int		len;
+	int		height;
 }	t_node;
 
 /*CHECKERS*/
@@ -39,6 +45,7 @@ int		checker_exec(t_node *game, char *argv);
 
 /*UTILS*/
 int		ft_error(t_node *game, int errnum);
+int		ft_free(t_node *game);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
 

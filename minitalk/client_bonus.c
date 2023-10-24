@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:57:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/24 20:25:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:27:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ int	main(int argc, char **argv)
 		return (ft_error(2));
 	if (ft_strlen(argv[2]) == 0)
 		return (ft_error(3));
-	signal(SIGUSR1, sig_confirm);
-	signal(SIGUSR2, sig_confirm);
 	i = 0;
 	pid = ft_atoi(argv[1]);
 	if (pid == -1)
