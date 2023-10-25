@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:38:04 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 12:14:08 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:56:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h> // QUITAR
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
@@ -28,6 +28,6 @@ char	*find_line(char *stash);
 char	*clean_stash(char *line, char *stash);
 char	*ft_free_gnl(char **str);
 char	*merge_strings(char *s1, char *s2);
-int		ft_strlen_mode(const char *str, int mode);
+int		ft_strlen_mode(char *str, int mode);
 
 #endif

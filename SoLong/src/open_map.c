@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 13:59:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:33:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_walls(t_node *game)
 	int	last;
 
 	first = 0;
-	last = game->len - 1;
+	last = game->len - 2;
 	check_firstline(game);
 	check_lastline(game);
 	while (game->wholemap) // este while no va a funcionar.
@@ -79,9 +79,12 @@ int	open_map(char *map, t_node *game)
 		game->linecheck = 1;
 		game->height++;
 		line = get_next_line(fd);
+			printf("%s", line);
+		return (3);
 		if (!line)
 			ft_error(game, 6);
-		game->len = ft_strlen(line);
+		if (game->len == 0)
+			game->len = ft_strlen(line);
 		check_endline(line, game);
 		if (ft_strlen(line) + game->linecheck != game->len)
 			ft_error(game, 4);
@@ -91,4 +94,12 @@ int	open_map(char *map, t_node *game)
 	}
 	close(fd);
 
+}
+
+int	main (int argc, char **argv)
+{
+	t_node	*game;
+
+	printf("%i", open_map(argv[1], game));
+	return (1);
 }
