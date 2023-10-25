@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 13:58:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:59:33 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,20 @@ void	check_lastline(t_node *game)
 }
 
 void	check_walls(t_node *game)
-{	
+{
 	int	first;
 	int	last;
 
-	first = 0
+	first = 0;
 	last = game->len - 1;
 	check_firstline(game);
 	check_lastline(game);
-	while (game->wholemap)// este while no va a funcionar.
+	while (game->wholemap) // este while no va a funcionar.
 	{
 		if (game->wholemap[first] != 1 || game->wholemap[last] != 1)
-		ft_error(game, 3);
+			ft_error(game, 3);
 		first += game->len;
-		last += game->len;  
+		last += game->len;
 	}
 }
 
