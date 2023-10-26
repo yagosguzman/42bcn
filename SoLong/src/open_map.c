@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 20:33:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:39:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "../inc/solong.h"
 
 void	check_firstline(t_node *game)
 {
@@ -61,7 +61,7 @@ void	check_endline(char *line, t_node *game)
 	while (line[i])
 	{
 		if (line[i] == '\n')
-			game->linecheck == 0;
+			game->linecheck = 0;
 		i++;
 	}
 }
@@ -93,13 +93,17 @@ int	open_map(char *map, t_node *game)
 			free(line);
 	}
 	close(fd);
-
+	return (0);
 }
 
 int	main (int argc, char **argv)
 {
 	t_node	*game;
 
-	printf("%i", open_map(argv[1], game));
-	return (1);
+	game = 0;
+	if (argc == 2)
+		printf("%i", open_map(argv[1], game));
+	else
+		return (1);
+	return (0);
 }

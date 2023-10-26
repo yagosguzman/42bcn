@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/23 19:22:19 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:41:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "../inc/solong.h"
 
 int	init_data(t_node *game, char *map)
 {
@@ -22,6 +22,8 @@ int	init_data(t_node *game, char *map)
 int	main(int argc, char **argv)
 {
 	t_node	*game;
+
+	game = NULL;
 
 	if (argc != 2)
 	{

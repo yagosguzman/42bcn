@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 13:42:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:38:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
-# include "./minilibx/mlx.h"
-# include "./get_next_line/get_next_line.h"
+# include "../minilibx/mlx.h"
+# include "../get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
@@ -50,6 +50,7 @@ int		ft_error(t_node *game, int errnum);
 int		ft_free(t_node *game);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
 
 /*MAP*/
 int		open_map(char *map, t_node *game);

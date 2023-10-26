@@ -24,6 +24,7 @@
         "push_swap.h": "c",
         "ft_printf.h": "c",
         "minitalk.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "solong.h": "c"
     }
 }
