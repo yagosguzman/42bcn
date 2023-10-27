@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:18:19 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:02:52 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ typedef struct s_node
 {
 	void	*mlx;
 	void	*win;
-	// void	*player;
+	void	*images[9];
+	char	*line;
+	char	*wholemap;
 	int		coins;
 	int		exit;
 	int		player;
 	int		error;
-	char	*line;
-	char	*wholemap;
 	int		linecheck;
 	int		moves;
-	int		map;
 	int		len;
 	int		height;
 }	t_node;

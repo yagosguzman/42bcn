@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:42:28 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:54:55 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,19 @@ int	open_map(char *map, t_node *game)
 		game->wholemap = ft_strjoin(game->wholemap, line);
 		if (line)
 			free(line);
-		i++;
 	}
 	close(fd);
 	return (0);
 }
 
-int	main (int argc, char **argv)
-{
-	t_node	*game;
+// int	main (int argc, char **argv)
+// {
+// 	t_node	*game;
 
-	game = 0;
-	if (argc == 2)
-		printf("%i", open_map(argv[1], game));
-	else
-		return (1);
-	return (0);
-}
+// 	game = 0;
+// 	if (argc == 2)
+// 		printf("%i", open_map(argv[1], game));
+// 	else
+// 		return (1);
+// 	return (0);
+// }

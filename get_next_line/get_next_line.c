@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/22 19:40:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:50:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,25 @@ char	*read_line(int fd, char *stash)
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (NULL);
+		return (ft_free_gnl(&stash));
 	i = 1;
-	while (i > 0 && !ft_strlen(stash, 2))
+	while (i > 0 && !ft_strlen_mode(stash, 2))
 	{
 		i = read (fd, buffer, BUFFER_SIZE);
-		if (i == -1)
-		{
-			free(buffer);
-			return (ft_free(&stash));
-		}
 		if (i > 0)
 		{
 			buffer[i] = '\0';
 			stash = merge_strings(stash, buffer);
 			if (!stash)
-				return (ft_free(&buffer));
+			{
+				free (buffer);
+				return (ft_free_gnl(&stash));
+			}
 		}
 	}
 	free(buffer);
-	if (i == 0 && ft_strlen(stash, 1) == 0)
-		return (ft_free(&stash));
+	if (i == -1 || (i == 0 && ft_strlen_mode(stash, 1) == 0))
+		return (ft_free_gnl(&stash));
 	return (stash);
 }
 
@@ -49,12 +47,12 @@ char	*find_line(char *stash)
 	char	*line;
 
 	i = 0;
-	if (stash[ft_strlen(stash, 3)] == '\n')
-		line = malloc((ft_strlen(stash, 3) + 2) * sizeof(char));
+	if (stash[ft_strlen_mode(stash, 3)] == '\n')
+		line = malloc((ft_strlen_mode(stash, 3) + 2) * sizeof(char));
 	else
-		line = malloc((ft_strlen(stash, 3) + 1) * sizeof(char));
+		line = malloc((ft_strlen_mode(stash, 3) + 1) * sizeof(char));
 	if (!line)
-		return (NULL);
+		return (ft_free_gnl(&stash));
 	while (stash[i] && stash[i] != '\n')
 	{
 		line[i] = stash[i];
@@ -73,32 +71,26 @@ char	*clean_stash(char *line, char *stash)
 {
 	int			i;
 	int			j;
-	static char	*new_stash;
+	char		*new;
 
 	i = 0;
-	j = (ft_strlen(stash, 3) + ft_strlen(stash, 2));
-	new_stash = malloc((ft_strlen(stash, 1) - 
-				ft_strlen(line, 1) + 1) * sizeof(char));
-	if (!new_stash)
-		return (ft_free(&stash));
-	if (ft_strlen(stash, 2) && stash[ft_strlen(stash, 3) + 1])
+	j = (ft_strlen_mode(stash, 3) + ft_strlen_mode(stash, 2));
+	new = malloc((ft_strlen_mode(stash, 1) - ft_strlen_mode(line, 1) + 1) * sizeof(char));
+	if (!new)
+		return (ft_free_gnl(&stash));
+	if (ft_strlen_mode(stash, 2) && stash[j])
 	{
 		while (stash[j] != '\0')
-		{
-			new_stash[i] = stash[j];
-			i++;
-			j++;
-		}
-		new_stash[i] = '\0';
-		if (stash != NULL)
-			free(stash);
+			new[i++] = stash[j++];
+		new[i] = '\0';
+		ft_free_gnl(&stash);
 	}
 	else
 	{
-		ft_free(&new_stash);
-		return (ft_free(&stash));
+		free(new);
+		return (ft_free_gnl(&stash));
 	}
-	return (new_stash);
+	return (new);
 }
 
 char	*get_next_line(int fd)
@@ -119,20 +111,18 @@ char	*get_next_line(int fd)
 	if (!stash)
 		return (NULL);
 	line = find_line(stash);
-	stash = clean_stash(line, stash);
 	if (!line)
-		return (ft_free(&stash));
+		return (NULL);
+	stash = clean_stash(line, stash);
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int	fd;
+int	main(void)
+{
+	int	fd;
 
-// 	fd = open("sample1.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	return (0);
-// }
+	fd = open("lorem.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	close (fd);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/08/22 19:39:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:49:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* VARIANTE 1 : UN STRLEN NORMAL*/
 /* VARIANTE 2 : NOS DEVUELVE SI HAY UN \n O NO */
 /* VARIANTE 3 : CUANTO FALTA HASTA \n O \0 */
-int	ft_strlen(const char *str, int mode)
+int	ft_strlen_mode(char *str, int mode)
 {
 	int	i;
 
@@ -52,9 +52,9 @@ char	*merge_strings(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	newstr = malloc ((ft_strlen(s1, 1) + ft_strlen(s2, 1) + 1) * sizeof(char));
+	newstr = malloc ((ft_strlen_mode(s1, 1) + ft_strlen_mode(s2, 1) + 1) * sizeof(char));
 	if (!newstr)
-		ft_free(&s1);
+		return (NULL);
 	while (s1[i])
 	{
 		newstr[i] = s1[i];
@@ -67,18 +67,13 @@ char	*merge_strings(char *s1, char *s2)
 		j++;
 	}
 	newstr[i] = '\0';
-	ft_free(&s1);
+	ft_free_gnl(&s1);
 	return (newstr);
 }
 
-char	*ft_free(char **str)
+char	*ft_free_gnl(char **str)
 {
-	if (*str)
-	{
-		free(*str);
-		*str = NULL;
-		str = NULL;
-		return (NULL);
-	}
+	free(*str);
+	*str = NULL;
 	return (NULL);
 }

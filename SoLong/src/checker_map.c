@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:48:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:56:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	checker_exec(t_node *game, char *argv)
 {
-	if (valid_file(game, &argv[1]) != 0 || closed_map(game, &argv[1]) != 0
-		|| check_rectangular(game, &argv[1]) != 0)
+	if (valid_file(game, &argv[1]) != 0)
+		return (1);
+	open_map(argv[1], game);
+	if (closed_map(game, &argv[1]) != 0 || check_rectangular(game, &argv[1]) != 0)
 		return (1);
 	return (0);
 }
@@ -33,6 +35,7 @@ int	valid_file(t_node *game, char *map)
 
 int	closed_map(t_node *game, char *map)
 {
+	
 		return (ft_error(game, 3));
 	return (0);
 }
