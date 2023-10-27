@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 22:05:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:25:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	*find_line(char *stash)
 		i++;
 	}
 	line[i] = '\0';
-	printf("%i",ft_strlen(line));
 	return (line);
 }
 
