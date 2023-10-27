@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 17:34:44 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:48:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ int	valid_file(t_node *game, char *map)
 
 int	closed_map(t_node *game, char *map)
 {
-	map = 0; // borrar
 		return (ft_error(game, 3));
 	return (0);
 }
 int	check_rectangular(t_node *game, char *map)
 {
-	map = 0; // borrar
 		return (ft_error(game, 4));
 	return (0);
 }
@@ -64,6 +62,10 @@ void	check_wholemap(t_node *game)
 	}
 	if (game->coins == 0 || game->exit != 1 || game->player != 1)
 		ft_error(game, 5);
+}
+void	data_init(t_node *game)
+{
+	
 }
 
 

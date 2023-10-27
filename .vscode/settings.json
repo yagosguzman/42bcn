@@ -25,6 +25,7 @@
         "ft_printf.h": "c",
         "minitalk.h": "c",
         "stdlib.h": "c",
-        "solong.h": "c"
+        "solong.h": "c",
+        "get_next_line.h": "c"
     }
 }

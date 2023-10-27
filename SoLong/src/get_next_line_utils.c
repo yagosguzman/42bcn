@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 20:54:38 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:18:20 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/solong.h"
 
 /* VARIANTE 1 : UN STRLEN NORMAL*/
 /* VARIANTE 2 : NOS DEVUELVE SI HAY UN \n O NO */

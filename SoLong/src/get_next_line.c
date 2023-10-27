@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/25 20:56:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:18:20 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/solong.h"
 
 char	*read_line(int fd, char *stash)
 {
@@ -21,7 +21,7 @@ char	*read_line(int fd, char *stash)
 	if (!buffer)
 		return (ft_free_gnl(&stash));
 	i = 1;
-	while (i > 0 && !ft_strlen(stash, 2))
+	while (i > 0 && !ft_strlen_mode(stash, 2))
 	{
 		i = read (fd, buffer, BUFFER_SIZE);
 		if (i > 0)

@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/10/26 17:27:08 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/10/26 19:31:34 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ EXEC = so_long
 EXEC_BONUS = so_long_bonus
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+# TIENES PUESTO EL DEBUGGER EN FLAGS
+FLAGS = -g -Wall -Werror -Wextra
 RM = rm -f
 
 HEADER = ./inc/solong.h
 SRC = $(wildcard src/*.c)
-# ./src/$(wildcard *.c)
 SRC_BONUS = ./bonus/$(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)

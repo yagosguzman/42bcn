@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 17:38:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:18:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <limits.h>
 # include "../minilibx/mlx.h"
-# include "../get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
@@ -30,7 +29,7 @@ typedef struct s_node
 	int		exit;
 	int		player;
 	int		error;
-	int		line;
+	char	*line;
 	char	*wholemap;
 	int		linecheck;
 	int		moves;
@@ -38,6 +37,19 @@ typedef struct s_node
 	int		len;
 	int		height;
 }	t_node;
+
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 100
+# endif
+
+/*GET NEXT LINE*/
+char	*get_next_line(int fd);
+char	*read_line(int fd, char *stash);
+char	*find_line(char *stash);
+char	*clean_stash(char *line, char *stash);
+char	*ft_free_gnl(char **str);
+char	*merge_strings(char *s1, char *s2);
+int		ft_strlen_mode(char *str, int mode);
 
 /*CHECKERS*/
 int		valid_file(t_node *game, char *map);
