@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 21:50:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:07:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*find_line(char *stash)
 		i++;
 	}
 	line[i] = '\0';
+	 printf("THE LENGTH OF THIS MAP IS :%i\n",ft_strlen_mode(line, 1));
 	return (line);
 }
 
@@ -121,7 +122,7 @@ int	main(void)
 {
 	int	fd;
 
-	fd = open("lorem.txt", O_RDONLY);
+	fd = open("validmap1.ber", O_RDONLY);
 	printf("%s", get_next_line(fd));
 	close (fd);
 	return (0);

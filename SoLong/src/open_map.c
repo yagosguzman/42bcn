@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 21:54:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:18:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,11 @@ int	open_map(char *map, t_node *game)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		ft_free(game);
-	while (/*PENDIENTE DE DECIDIR*/)
+	while (map)
 	{
 		game->linecheck = 1;
 		game->height++;
 		line = get_next_line(fd);
-			printf("%s", line);
-		return (3);
 		if (!line)
 			ft_error(game, 6);
 		if (game->len == 0)

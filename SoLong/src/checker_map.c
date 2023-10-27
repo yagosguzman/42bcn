@@ -6,31 +6,29 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 21:56:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:24:45 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	checker_exec(t_node *game, char *argv)
+void	checker_exec(t_node *game, char *argv)
 {
-	if (valid_file(game, &argv[1]) != 0)
-		return (1);
+	valid_file(game, argv[1]);
 	open_map(argv[1], game);
 	if (closed_map(game, &argv[1]) != 0 || check_rectangular(game, &argv[1]) != 0)
 		return (1);
 	return (0);
 }
 
-int	valid_file(t_node *game, char *map)
+void	valid_file(t_node *game, char *map)
 {
 	int	len;
 
 	len = ft_strlen(map) - 1;
 	if (map[len] != 'r' || map[len - 1] != 'e' || map[len - 2] != 'b'
 		|| map[len - 3] != '.' || len < 3)
-		return (ft_error(game, 1));
-	return (0);
+			ft_error(game, 1);
 }
 
 int	closed_map(t_node *game, char *map)

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 21:23:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:24:43 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	checker_exec(game, argv[1]);
+	open_map(argv[1], game);
 	mlx_key_hook(game->win,/*función por definir*/,game);
 	mlx_hook(game->win,);
 	mlx_loop(game->mlx);
