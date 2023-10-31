@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 21:02:52 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/31 21:56:45 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ char	*merge_strings(char *s1, char *s2);
 int		ft_strlen_mode(char *str, int mode);
 
 /*CHECKERS*/
-int		valid_file(t_node *game, char *map);
-int		closed_map(t_node *game, char *map);
-int		check_rectangular(t_node *game, char *map);
-int		checker_exec(t_node *game, char *argv);
+void	valid_file(t_node *game, char *map);
+void	check_walls(t_node *game);
+void	check_rectangular(t_node *game);
+void	checker_exec(t_node *game, char *argv);
+
 
 /*UTILS*/
 int		ft_error(t_node *game, int errnum);
@@ -68,6 +69,9 @@ int		open_map(char *map, t_node *game);
 void	check_firstline(t_node *game);
 void	check_lastline(t_node *game);
 void	check_wholemap(t_node *game);
+
+/*GAME*/
+void	window_init(t_node *game, char *map);
 
 #endif
 

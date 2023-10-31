@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 17:42:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:29:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	ft_error(t_node *game, int errnum)
 		ft_putstr_fd("The amount of players, coins or exits is wrong.\n", 2);
 	if (errnum == 6)
 		ft_putstr_fd("Problem reading the map.\n", 2);
+	if (errnum == 7)
+		ft_putstr_fd("The map has no possible solution.\n", 2);
 	return (ft_free(game));
 }
 
