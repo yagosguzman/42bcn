@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 15:03:44 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:42:12 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	init_data(t_game *game, char *map)
 {
 	game->moves = 0;
+	window_init(game);
+	init_img(game);
 	
 }
 
@@ -23,11 +25,11 @@ void	init_img(t_game *game)
 	int	w;
 	int	h;
 
-	w = 50;
-	h = 50;
-	game->x = (game->len -1) * 50;
-	game->y = (ft_strlen(game->wholemap) / game->len + 1) * 50;
-	game->tile = mlx_xpm_file_to_image(game->mlx, "img/tile.xpm", &w, &h);
+	w = 80;
+	h = 80;
+	game->x = (game->len -1) * 80;
+	game->y = (ft_strlen(game->wholemap) / game->len + 1) * 80;
+	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &w, &h);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &w, &h);
 	game->key = mlx_xpm_file_to_image(game->mlx, "img/key.xpm", &w, &h);
 	game->door = mlx_xpm_file_to_image(game->mlx, "img/door.xpm", &w, &h);
@@ -53,26 +55,26 @@ void	init_img(t_game *game)
 // 		return map_valid;
 // 	return (game->error);
 // }
-void	check_solution(t_game *game)
-{
-	int	i;
-	int	up;
-	int	down;
+// void	check_solution(t_game *game)
+// {
+// 	int	i;
+// 	int	up;
+// 	int	down;
 
-	i = 0;
-	while (game->wholemap[i])
-	{
-		up = i - game->len; // esto no siempre va a ser posible
-		down = i + game->len; // tambien puede ser que no sea totalmente rodeado si el mapa es grande
-		if (game->wholemap[i] == 'C' || game->wholemap[i] == 'E'
-			|| game->wholemap[i] == 'P')
-		{
-			if (game->wholemap[i + 1] == '1' && game->wholemap[i - 1] == '1'
-				&& game->wholemap[up] == '1' && game->wholemap[down] == '1')
-				ft_error(game, 7);
-		}
-	}
-}
+// 	i = 0;
+// 	while (game->wholemap[i])
+// 	{
+// 		up = i - game->len; // esto no siempre va a ser posible
+// 		down = i + game->len; // tambien puede ser que no sea totalmente rodeado si el mapa es grande
+// 		if (game->wholemap[i] == 'C' || game->wholemap[i] == 'E'
+// 			|| game->wholemap[i] == 'P')
+// 		{
+// 			if (game->wholemap[i + 1] == '1' && game->wholemap[i - 1] == '1'
+// 				&& game->wholemap[up] == '1' && game->wholemap[down] == '1')
+// 				ft_error(game, 7);
+// 		}
+// 	}
+// }
 
 int	main(int argc, char **argv)
 {
@@ -86,7 +88,7 @@ int	main(int argc, char **argv)
 	checker_exec(game, argv[1]);
 	init_data(game, argv[1]);
 	mlx_key_hook(game->win,/*función por definir*/,game);
-	mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, &game);
+	mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

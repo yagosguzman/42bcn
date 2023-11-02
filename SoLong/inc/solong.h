@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 15:02:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:24:56 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdbool.h>
-# include "../minilibx/mlx.h"
-/*# include <X11/X.h> // donde encuentro esto
-# include <X11/keysym.h> // donde encuentro esto
-*/
+# include "../mlx/mlx.h"
+
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void	*tile;
+	void	*floor;
 	void	*wall;
-	void	*key;
+	void	*katana;
 	void	*door;
 	void	*opdoor;
 	void	*pdown;
@@ -48,6 +46,8 @@ typedef struct s_game
 	int		moves;
 	int		len;
 	int		height;
+	int		x;
+	int		y;
 }	t_game;
 
 # ifndef BUFFER_SIZE
@@ -87,9 +87,12 @@ void	check_lastline(t_game *game);
 void	check_wholemap(t_game *game);
 
 /*GAME*/
-int		window_init(t_game *game, char *map);
+int		window_init(t_game *game);
 int		keypress(int keysym, t_game *game);
 int		destroy_test(t_game *game);
+
+/*MLX*/
+int		init_data(t_game *game, char *map);
 
 #endif
 

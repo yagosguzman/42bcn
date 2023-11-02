@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/02 12:36:10 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/02 20:07:24 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,12 @@ all: $(EXEC)
 
 -include $(DEPS)
 $(EXEC): $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(SRC) -o $(EXEC)
-	@make -C ./minilibx all
+	@$(CC) $(FLAGS) $(SRC) -L../mlx -lmlx -framework OpenGL -framework AppKit -o $(EXEC)
+	@make -C ./mlx all
 	@echo "Executable ready!"
 
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -Imlx -c $< -o $@
 
 -include $(BONUS_DEPS)
 bonus: $(OBJ_BONUS) $(HEADER)
