@@ -6,46 +6,54 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/01 18:15:25 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:03:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	window_init(t_node *game, char *map)
+int	init_data(t_game *game, char *map)
 {
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
-		return (ft_error_mlx(game, 1));
-	game->win = mlx_new_window(game->mlx, 600, 400, "Ninja Escape");
-	if (game->win == NULL)
-		return (free(game->mlx), ft_error_mlx(game, 2));
+	game->moves = 0;
 	
-
 }
 
-int	init_data(t_node *game, char *map)
+void	init_img(t_game *game)
 {
-	/*ponemos todo a 0, hacemos checks del mapa, leemos el mapa
-	y lo printamos en pantalla si es correcto*/
+	int	w;
+	int	h;
+
+	w = 50;
+	h = 50;
+	game->x = (game->len -1) * 50;
+	game->y = (ft_strlen(game->wholemap) / game->len + 1) * 50;
+	game->tile = mlx_xpm_file_to_image(game->mlx, "img/tile.xpm", &w, &h);
+	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &w, &h);
+	game->key = mlx_xpm_file_to_image(game->mlx, "img/key.xpm", &w, &h);
+	game->door = mlx_xpm_file_to_image(game->mlx, "img/door.xpm", &w, &h);
+	game->opdoor = mlx_xpm_file_to_image(game->mlx, "img/opdoor.xpm", &w, &h);
+	game->pup = mlx_xpm_file_to_image(game->mlx, "img/pup.xpm", &w, &h);
+	game->pdown = mlx_xpm_file_to_image(game->mlx, "img/pdown.xpm", &w, &h);
+	game->pleft = mlx_xpm_file_to_image(game->mlx, "img/pleft.xpm", &w, &h);
+	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &w, &h);
 
 }
 
-void	check_possible(t_node *game)
-{
-	if (game->all_collected && exit == 1)
-		return map_valid;
-	if (on_wall)
-		return (game->error);
-	if (on_coin)
-		game->coin++;
-	if (on_exit && game->all_collected)
-		finish_game;
-	if(game->can_move)
-		return map_valid;
-	return (game->error);
-}
-void	check_solution(t_node *game)
+// void	check_possible(t_game *game)
+// {
+// 	if (game->all_collected && exit == 1)
+// 		return map_valid;
+// 	if (on_wall)
+// 		return (game->error);
+// 	if (on_coin)
+// 		game->coin++;
+// 	if (on_exit && game->all_collected)
+// 		finish_game;
+// 	if (game->can_move)
+// 		return map_valid;
+// 	return (game->error);
+// }
+void	check_solution(t_game *game)
 {
 	int	i;
 	int	up;
@@ -68,7 +76,7 @@ void	check_solution(t_node *game)
 
 int	main(int argc, char **argv)
 {
-	t_node	*game;
+	t_game	*game;
 
 	if (argc != 2)
 	{
@@ -76,7 +84,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	checker_exec(game, argv[1]);
-
+	init_data(game, argv[1]);
 	mlx_key_hook(game->win,/*función por definir*/,game);
 	mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, &game);
 	mlx_loop(game->mlx);

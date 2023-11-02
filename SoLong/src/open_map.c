@@ -6,13 +6,13 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/30 19:15:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:03:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-void	check_firstline(t_node *game)
+void	check_firstline(t_game *game)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	check_firstline(t_node *game)
 	}
 }
 
-void	check_lastline(t_node *game)
+void	check_lastline(t_game *game)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	check_lastline(t_node *game)
 			ft_error(game, 3);
 }
 
-void	check_walls(t_node *game)
+void	check_walls(t_game *game)
 {
 	int	first;
 	int	last;
@@ -54,7 +54,7 @@ void	check_walls(t_node *game)
 	}
 }
 
-void	check_endline(char *line, t_node *game)
+void	check_endline(char *line, t_game *game)
 {
 	int	i;
 
@@ -67,7 +67,7 @@ void	check_endline(char *line, t_node *game)
 	}
 }
 
-int	open_map(char *map, t_node *game)
+int	open_map(char *map, t_game *game)
 {
 	int		fd;
 	char	*line;

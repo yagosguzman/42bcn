@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/01 18:16:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:02:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,22 @@
 # include <limits.h>
 # include <stdbool.h>
 # include "../minilibx/mlx.h"
-# include <X11/X.h> // donde encuentro esto
+/*# include <X11/X.h> // donde encuentro esto
 # include <X11/keysym.h> // donde encuentro esto
-
-typedef struct s_node
+*/
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void	*images[9];
+	void	*tile;
+	void	*wall;
+	void	*key;
+	void	*door;
+	void	*opdoor;
+	void	*pdown;
+	void	*pup;
+	void	*pleft;
+	void	*pright;
 	char	*line;
 	char	*wholemap;
 	bool	all_collected;
@@ -40,7 +48,7 @@ typedef struct s_node
 	int		moves;
 	int		len;
 	int		height;
-}	t_node;
+}	t_game;
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 100
@@ -56,32 +64,32 @@ char	*merge_strings(char *s1, char *s2);
 int		ft_strlen_mode(char *str, int mode);
 
 /*CHECKERS*/
-void	valid_file(t_node *game, char *map);
-void	check_walls(t_node *game);
-void	check_rectangular(t_node *game);
-void	checker_exec(t_node *game, char *argv);
+void	valid_file(t_game *game, char *map);
+void	check_walls(t_game *game);
+void	check_rectangular(t_game *game);
+void	checker_exec(t_game *game, char *argv);
 
 /*UTILS*/
-int		ft_free(t_node *game);
+int		ft_free(t_game *game);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 
 /*ERROR HANDLER*/
-int		ft_error(t_node *game, int errnum);
-int		ft_error_mlx(t_node *game, int errnum);
+int		ft_error(t_game *game, int errnum);
+int		ft_error_mlx(t_game *game, int errnum);
 
 
 /*MAP*/
-int		open_map(char *map, t_node *game);
-void	check_firstline(t_node *game);
-void	check_lastline(t_node *game);
-void	check_wholemap(t_node *game);
+int		open_map(char *map, t_game *game);
+void	check_firstline(t_game *game);
+void	check_lastline(t_game *game);
+void	check_wholemap(t_game *game);
 
 /*GAME*/
-int		window_init(t_node *game, char *map);
-int		keypress(int keysym, t_node *game);
-int		destroy_test(t_node *game);
+int		window_init(t_game *game, char *map);
+int		keypress(int keysym, t_game *game);
+int		destroy_test(t_game *game);
 
 #endif
 

@@ -6,13 +6,13 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/30 19:19:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:01:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-void	valid_file(t_node *game, char *map)
+void	valid_file(t_game *game, char *map)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ void	valid_file(t_node *game, char *map)
 		ft_error(game, 1);
 }
 
-void	check_rectangular(t_node *game)
+void	check_rectangular(t_game *game)
 {
 	int	check;
 
@@ -35,7 +35,7 @@ void	check_rectangular(t_node *game)
 	}
 }
 
-void	check_wholemap(t_node *game)
+void	check_wholemap(t_game *game)
 {
 	int	i;
 
@@ -57,14 +57,14 @@ void	check_wholemap(t_node *game)
 		ft_error(game, 5);
 }
 
-void	checker_exec(t_node *game, char *argv)
+void	checker_exec(t_game *game, char *argv)
 {
 	valid_file(game, argv[1]);
 	open_map(argv[1], game);
 	check_walls(game);
 	check_rectangular(game);
 }
-void	data_init(t_node *game)
+void	data_init(t_game *game)
 {
 	
 }
