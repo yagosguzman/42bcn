@@ -1,0 +1,65 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile copy                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
+#    Updated: 2023/11/02 12:46:07 by ysanchez         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+EXEC = so_long
+EXEC_BONUS = so_long_bonus
+
+CC = gcc
+FLAGS = -Wall -Werror -Wextra
+RM = rm -f
+
+HEADER = ./inc/solong.h
+SRC = $(wildcard src/*.c)
+SRC_BONUS = ./bonus/$(wildcard *.c)
+OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
+DEPS = $(addsuffix .d, $(basename $(SRC)))
+BONUSDEPS = $(addsuffix .d, $(basename $(SRC_BONUS)))\
+MLX_LIB = ./minilibx/libmlx.a
+INCLUDES = -I/opt/X11/include -Imlx
+MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+ 
+all: ./minilibx $(EXEC)
+
+ -include $(DEPS)
+.c.o:
+	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
+
+$(EXEC): $(OBJ)
+	$(CC) $(FLAGS) -o $(EXEC) $(OBJ) $(MLX_FLAGS)
+
+$(MLX_LIB):
+	@make -C ./minilibx
+	@echo "Executable ready!"
+
+-include $(BONUS_DEPS)
+bonus: $(OBJ_BONUS) $(HEADER)
+	@$(CC) $(FLAGS) $(SRC_BONUS) -o $(EXEC_BONUS)
+	@make -C ./minilibx all
+	# @touch $@
+	@echo "BONUS: Executable ready!"
+
+clean:
+	@make -C ./minilibx clean
+	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) $(DEPS) $(BONUS_DEPS)
+	@echo "Objects successfully removed"
+
+fclean: clean
+	@$(RM) $(EXEC) $(EXEC_BONUS)
+	# @${RM} bonus
+	@${RM} ${EXEC} ${EXEC_BONUS} libmlx.a
+	@echo "Executable successfully removed"
+
+re: fclean all
+
+.PHONY: make all clean fclean re bonus
