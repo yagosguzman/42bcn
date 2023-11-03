@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 21:25:19 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:50:52 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	select_img(t_game *game, char c, int i)
 	int	x;
 	int	y;
 
-	x = (i % game->len) * 80;
-	y = (i / game->len) * 80;
+	x = (i % game->len) * T_SIZE;
+	y = (i / game->len) * T_SIZE;
 	if (!game->error)
 	{
 		if (c == '0')
@@ -51,6 +51,7 @@ void	render_map(t_game *game)
 	i = 0;
 	while (game->wholemap[i])
 	{
+		select_img(game, '0', i);
 		if (game->wholemap[i] == '\n')
 			i++;
 		if (game->wholemap[i] == '0')

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 21:24:56 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:07:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # include <limits.h>
 # include <stdbool.h>
 # include "../mlx/mlx.h"
+
+# define T_SIZE 80
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define ARR_UP 
+# define ARR_DOWN 
+# define ARR_LEFT 
+# define ARR_RIGHT 
 
 typedef struct s_game
 {
@@ -35,7 +45,7 @@ typedef struct s_game
 	void	*pleft;
 	void	*pright;
 	char	*line;
-	char	*wholemap;
+	char	**wholemap;
 	bool	all_collected;
 	bool	can_move;
 	int		coins;
@@ -70,10 +80,11 @@ void	check_rectangular(t_game *game);
 void	checker_exec(t_game *game, char *argv);
 
 /*UTILS*/
-int		ft_free(t_game *game);
+void	*ft_calloc(int n, int size);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
+int		ft_free(t_game *game);
 
 /*ERROR HANDLER*/
 int		ft_error(t_game *game, int errnum);

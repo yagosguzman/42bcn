@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 19:42:12 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:10:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,20 @@ int	init_data(t_game *game, char *map)
 
 void	init_img(t_game *game)
 {
-	int	w;
-	int	h;
+	int	sz;
 
-	w = 80;
-	h = 80;
+	sz = T_SIZE;
 	game->x = (game->len -1) * 80;
 	game->y = (ft_strlen(game->wholemap) / game->len + 1) * 80;
-	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &w, &h);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &w, &h);
-	game->key = mlx_xpm_file_to_image(game->mlx, "img/key.xpm", &w, &h);
-	game->door = mlx_xpm_file_to_image(game->mlx, "img/door.xpm", &w, &h);
-	game->opdoor = mlx_xpm_file_to_image(game->mlx, "img/opdoor.xpm", &w, &h);
-	game->pup = mlx_xpm_file_to_image(game->mlx, "img/pup.xpm", &w, &h);
-	game->pdown = mlx_xpm_file_to_image(game->mlx, "img/pdown.xpm", &w, &h);
-	game->pleft = mlx_xpm_file_to_image(game->mlx, "img/pleft.xpm", &w, &h);
-	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &w, &h);
-
+	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &sz, &sz);
+	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &sz, &sz);
+	game->katana = mlx_xpm_file_to_image(game->mlx, "img/katana.xpm", &sz, &sz);
+	game->door = mlx_xpm_file_to_image(game->mlx, "img/door.xpm", &sz, &sz);
+	game->opdoor = mlx_xpm_file_to_image(game->mlx, "img/opdoor.xpm", &sz, &sz);
+	game->pup = mlx_xpm_file_to_image(game->mlx, "img/pup.xpm", &sz, &sz);
+	game->pdown = mlx_xpm_file_to_image(game->mlx, "img/pdown.xpm", &sz, &sz);
+	game->pleft = mlx_xpm_file_to_image(game->mlx, "img/pleft.xpm", &sz, &sz);
+	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &sz, &sz);
 }
 
 // void	check_possible(t_game *game)
@@ -85,6 +82,9 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error, please write ./so_long <maps/anymap.ber>\n", 2);
 		return (1);
 	}
+	game = ft_calloc(1, sizeof(t_game));
+	if (!game)
+		return (1);
 	checker_exec(game, argv[1]);
 	init_data(game, argv[1]);
 	mlx_key_hook(game->win,/*función por definir*/,game);

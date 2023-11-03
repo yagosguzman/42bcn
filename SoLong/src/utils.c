@@ -6,11 +6,22 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/01 17:15:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:07:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
+
+void	*ft_calloc(int n, int size)
+{
+	unsigned char	*ptr;
+
+	ptr = malloc(n * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero((void *)ptr, n * size);
+	return ((void *)ptr);
+}
 
 int	ft_strlen(char *str)
 {
