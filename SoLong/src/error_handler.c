@@ -6,11 +6,21 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:16:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 15:03:08 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:40:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
+
+int	ft_free(t_game *game)
+{
+	game->error = 1;
+	if (game->line)
+		free(game->line);
+	if (game)
+		free(game);
+	return (1);
+}
 
 int	ft_error(t_game *game, int errnum)
 {

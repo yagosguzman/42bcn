@@ -6,23 +6,24 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/02 15:01:51 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:44:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-void	valid_file(t_game *game, char *map)
+int	valid_file(t_game *game, char *map)
 {
 	int	len;
 
 	len = ft_strlen(map) - 1;
 	if (map[len] != 'r' || map[len - 1] != 'e' || map[len - 2] != 'b'
 		|| map[len - 3] != '.' || len < 3)
-		ft_error(game, 1);
+		return (ft_error(game, 1));
+	return (0);
 }
 
-void	check_rectangular(t_game *game)
+int	check_rectangular(t_game *game)
 {
 	int	check;
 
@@ -30,12 +31,13 @@ void	check_rectangular(t_game *game)
 	while (check < ft_strlen(game->wholemap))
 	{
 		if (game->wholemap[check] != '\n' || game->wholemap[check] != '\0')
-			ft_error(game, 4);
+			return (ft_error(game, 4));
 		check += game->len;
 	}
+	return (0);
 }
 
-void	check_wholemap(t_game *game)
+int	check_wholemap(t_game *game)
 {
 	int	i;
 
@@ -45,7 +47,7 @@ void	check_wholemap(t_game *game)
 		if (game->wholemap[i] != '1' || game->wholemap[i] != '0'
 			|| game->wholemap[i] != 'C' || game->wholemap[i] != 'E'
 			|| game->wholemap[i] != 'P' || game->wholemap[i] != '\n')
-			ft_error(game, 2);
+			return (ft_error(game, 2));
 		if (game->wholemap[i] == 'C')
 			game->coins++;
 		if (game->wholemap[i] == 'E')
@@ -54,19 +56,38 @@ void	check_wholemap(t_game *game)
 			game->player++;
 	}
 	if (game->coins == 0 || game->exit != 1 || game->player != 1)
-		ft_error(game, 5);
+		return (ft_error(game, 5));
+	return (0);
+}
+
+int	check_walls(t_game *game)
+{
+	int	first;
+	int	last;
+
+	first = 0;
+	last = game->len - 2;
+	check_firstline(game);
+	check_lastline(game);
+	while (first < ft_strlen(game->wholemap)
+		|| last < ft_strlen(game->wholemap))
+	{
+		if (game->wholemap[first] != '1' || game->wholemap[last] != '1')
+			return (ft_error(game, 3));
+		first += game->len;
+		last += game->len;
+	}
+	return (0);
 }
 
 void	checker_exec(t_game *game, char *argv)
 {
 	valid_file(game, argv[1]);
 	open_map(argv[1], game);
+	check_wholemap(game);
 	check_walls(game);
 	check_rectangular(game);
 }
-void	data_init(t_game *game)
-{
-	
-}
+
 
 

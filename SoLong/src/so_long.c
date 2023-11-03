@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 14:10:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:56:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 int	init_data(t_game *game, char *map)
 {
 	game->moves = 0;
-	window_init(game);
 	init_img(game);
+	minilib_init(game);
 	
 }
 
+/*tengo dudas con el calculo de game->y */
 void	init_img(t_game *game)
 {
 	int	sz;
 
 	sz = T_SIZE;
-	game->x = (game->len -1) * 80;
-	game->y = (ft_strlen(game->wholemap) / game->len + 1) * 80;
+	game->x = (game->len -1) * T_SIZE;
+	game->y = game->height * T_SIZE;
 	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &sz, &sz);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &sz, &sz);
 	game->katana = mlx_xpm_file_to_image(game->mlx, "img/katana.xpm", &sz, &sz);

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 14:07:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:57:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,36 +74,37 @@ char	*merge_strings(char *s1, char *s2);
 int		ft_strlen_mode(char *str, int mode);
 
 /*CHECKERS*/
-void	valid_file(t_game *game, char *map);
-void	check_walls(t_game *game);
-void	check_rectangular(t_game *game);
+int		valid_file(t_game *game, char *map);
+int		check_firstline(t_game *game);
+int		check_lastline(t_game *game);
+int		check_walls(t_game *game);
+int		check_rectangular(t_game *game);
+int		check_wholemap(t_game *game);
 void	checker_exec(t_game *game, char *argv);
 
 /*UTILS*/
 void	*ft_calloc(int n, int size);
-void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
-int		ft_free(t_game *game);
+void	ft_putstr_fd(char *s, int fd);
 
 /*ERROR HANDLER*/
+int		ft_free(t_game *game);
 int		ft_error(t_game *game, int errnum);
 int		ft_error_mlx(t_game *game, int errnum);
 
 
 /*MAP*/
 int		open_map(char *map, t_game *game);
-void	check_firstline(t_game *game);
-void	check_lastline(t_game *game);
-void	check_wholemap(t_game *game);
+
 
 /*GAME*/
-int		window_init(t_game *game);
+void	init_img(t_game *game);
+int		minilib_init(t_game *game);
 int		keypress(int keysym, t_game *game);
 int		destroy_test(t_game *game);
-
-/*MLX*/
 int		init_data(t_game *game, char *map);
+
 
 #endif
 

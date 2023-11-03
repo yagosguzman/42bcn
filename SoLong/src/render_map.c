@@ -6,18 +6,18 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 13:50:52 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/03 19:58:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	window_init(t_game *game)
+int	minilib_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (ft_error_mlx(game, 1));
-	game->win = mlx_new_window(game->mlx, game->x, game->y, "Ninja Escape");
+	game->win = mlx_new_window(game->mlx, game->x, game->y, "Samurai Escape");
 	if (game->win == NULL)
 		return (free(game->mlx), ft_error_mlx(game, 2));
 }
