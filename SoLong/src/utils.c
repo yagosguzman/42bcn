@@ -6,11 +6,23 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 19:40:10 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:47:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
+
+void	ft_bzero(void *str, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)str)[i] = '\0';
+		i++;
+	}
+}
 
 void	*ft_calloc(int n, int size)
 {

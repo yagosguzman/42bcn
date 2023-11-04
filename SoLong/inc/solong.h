@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 19:57:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:10:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_game
 	void	*pleft;
 	void	*pright;
 	char	*line;
-	char	**wholemap;
+	char	*wholemap;
 	bool	all_collected;
 	bool	can_move;
 	int		coins;
@@ -80,7 +80,7 @@ int		check_lastline(t_game *game);
 int		check_walls(t_game *game);
 int		check_rectangular(t_game *game);
 int		check_wholemap(t_game *game);
-void	checker_exec(t_game *game, char *argv);
+int		checker_exec(t_game *game, char *argv);
 
 /*UTILS*/
 void	*ft_calloc(int n, int size);
@@ -91,20 +91,19 @@ void	ft_putstr_fd(char *s, int fd);
 /*ERROR HANDLER*/
 int		ft_free(t_game *game);
 int		ft_error(t_game *game, int errnum);
-int		ft_error_mlx(t_game *game, int errnum);
+int		ft_error_mlx(int errnum);
 
 
 /*MAP*/
 int		open_map(char *map, t_game *game);
-
+void	render_map(t_game *game);
 
 /*GAME*/
 void	init_img(t_game *game);
 int		minilib_init(t_game *game);
 int		keypress(int keysym, t_game *game);
 int		destroy_test(t_game *game);
-int		init_data(t_game *game, char *map);
-
+int		init_data(t_game *game);
 
 #endif
 

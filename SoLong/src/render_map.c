@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 19:58:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:45:55 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ int	minilib_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		return (ft_error_mlx(game, 1));
-	game->win = mlx_new_window(game->mlx, game->x, game->y, "Samurai Escape");
+		return (ft_error_mlx(1));
+	game->win = mlx_new_window(game->mlx, game->x, game->y, "so_long");
 	if (game->win == NULL)
-		return (free(game->mlx), ft_error_mlx(game, 2));
+		return (free(game->mlx), ft_error_mlx(2));
+	return (0);
 }
 
 void	select_img(t_game *game, char c, int i)
@@ -51,9 +52,10 @@ void	render_map(t_game *game)
 	i = 0;
 	while (game->wholemap[i])
 	{
-		select_img(game, '0', i);
 		if (game->wholemap[i] == '\n')
 			i++;
+		if (game->wholemap[i] != '0')
+			select_img(game, '0', i);
 		if (game->wholemap[i] == '0')
 			select_img(game, '0', i);
 		if (game->wholemap[i] == '1')

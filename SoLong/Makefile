@@ -6,15 +6,15 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/02 20:07:24 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/04 13:58:24 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC = so_long
 EXEC_BONUS = so_long_bonus
-
+#FLAG -g para debuggear
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 RM = rm -f
 
 HEADER = ./inc/solong.h
@@ -29,8 +29,8 @@ all: $(EXEC)
 
 -include $(DEPS)
 $(EXEC): $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(SRC) -L../mlx -lmlx -framework OpenGL -framework AppKit -o $(EXEC)
 	@make -C ./mlx all
+	@$(CC) $(FLAGS) $(SRC) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(EXEC)
 	@echo "Executable ready!"
 
 %.o: %.c
@@ -39,12 +39,12 @@ $(EXEC): $(OBJ) $(HEADER)
 -include $(BONUS_DEPS)
 bonus: $(OBJ_BONUS) $(HEADER)
 	@$(CC) $(FLAGS) $(SRC_BONUS) -o $(EXEC_BONUS)
-	@make -C ./minilibx all
+	@make -C ./mlx all
 	# @touch $@
 	@echo "BONUS: Executable ready!"
 
 clean:
-	@make -C ./minilibx clean
+	@make -C ./mlx clean
 	@$(RM) $(OBJ) $(OBJ_BONUS)
 	@$(RM) $(DEPS) $(BONUS_DEPS)
 	@echo "Objects successfully removed"

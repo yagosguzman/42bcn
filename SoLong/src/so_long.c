@@ -6,18 +6,19 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 19:56:51 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:10:52 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	init_data(t_game *game, char *map)
+int	init_data(t_game *game)
 {
 	game->moves = 0;
 	init_img(game);
 	minilib_init(game);
-	
+	render_map(game);
+	return (0);
 }
 
 /*tengo dudas con el calculo de game->y */
@@ -80,16 +81,17 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error, please write ./so_long <maps/anymap.ber>\n", 2);
+		ft_putstr_fd("Error\nPlease write ./so_long <maps/anymap.ber>\n", 2);
 		return (1);
 	}
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (1);
-	checker_exec(game, argv[1]);
-	init_data(game, argv[1]);
-	mlx_key_hook(game->win,/*función por definir*/,game);
-	mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, game);
+	if (checker_exec(game, argv[1]) != 0)
+		return (1);
+	init_data(game);
+	// mlx_key_hook(game->win,/*función por definir*/,game);
+	// mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:16:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/03 19:40:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:43:55 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "../inc/solong.h"
 
 int	ft_free(t_game *game)
 {
@@ -42,7 +42,7 @@ int	ft_error(t_game *game, int errnum)
 	return (ft_free(game));
 }
 
-int	ft_error_mlx(t_game *game, int errnum)
+int	ft_error_mlx(int errnum)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (errnum == 1)
