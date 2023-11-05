@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/04 13:47:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:54:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,20 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+void	ft_putchar(char c)
 {
-	int		i;
-	int		j;
-	char	*newstr;
-
-	i = 0;
-	j = 0;
-	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!newstr)
-		return (NULL);
-	while (s1[i])
-	{
-		newstr[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		newstr[i] = s2[j];
-		i++;
-		j++;
-	}
-	newstr[i] = '\0';
-	return (newstr);
+	write(1, &c, 1);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putnbr(int num)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (num > 9)
 	{
-		write (fd, &s[i], 1);
-		i++;
+		ft_putnbr(num / 10);
+		num = num % 10;
 	}
+	if (num <= 9)
+		ft_putchar(('0' + num));
 }
 
 

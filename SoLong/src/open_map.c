@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/04 14:03:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:54:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,30 @@ int	open_map(char *map, t_game *game)
 	}
 	close(fd);
 	return (0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*newstr;
+
+	i = 0;
+	j = 0;
+	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!newstr)
+		return (NULL);
+	while (s1[i])
+	{
+		newstr[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		newstr[i] = s2[j];
+		i++;
+		j++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
 }

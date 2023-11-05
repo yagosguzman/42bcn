@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/04 14:10:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:45:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 # define A 0
 # define S 1
 # define D 2
-# define ARR_UP 
-# define ARR_DOWN 
-# define ARR_LEFT 
-# define ARR_RIGHT 
+# define ESC 53
+# define ARR_UP 126
+# define ARR_DOWN 125
+# define ARR_LEFT 123
+# define ARR_RIGHT 124
 
 typedef struct s_game
 {
@@ -45,7 +46,7 @@ typedef struct s_game
 	void	*pleft;
 	void	*pright;
 	char	*line;
-	char	*wholemap;
+	char	**wholemap;
 	bool	all_collected;
 	bool	can_move;
 	int		coins;
@@ -83,12 +84,15 @@ int		check_wholemap(t_game *game);
 int		checker_exec(t_game *game, char *argv);
 
 /*UTILS*/
+void	ft_bzero(void *str, int n);
 void	*ft_calloc(int n, int size);
 int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar(char c);
+void	ft_putnbr(int num);
 
 /*ERROR HANDLER*/
+void	ft_putstr_fd(char *s, int fd);
 int		ft_free(t_game *game);
 int		ft_error(t_game *game, int errnum);
 int		ft_error_mlx(int errnum);
@@ -101,8 +105,7 @@ void	render_map(t_game *game);
 /*GAME*/
 void	init_img(t_game *game);
 int		minilib_init(t_game *game);
-int		keypress(int keysym, t_game *game);
-int		destroy_test(t_game *game);
+int		keypress(t_game *game, int key);
 int		init_data(t_game *game);
 
 #endif
