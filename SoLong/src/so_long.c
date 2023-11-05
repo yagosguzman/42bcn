@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/04 14:10:52 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:16:03 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	init_data(t_game *game)
 {
 	game->moves = 0;
-	init_img(game);
 	minilib_init(game);
+	init_img(game);
 	render_map(game);
 	return (0);
 }
@@ -27,8 +27,6 @@ void	init_img(t_game *game)
 	int	sz;
 
 	sz = T_SIZE;
-	game->x = (game->len -1) * T_SIZE;
-	game->y = game->height * T_SIZE;
 	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &sz, &sz);
 	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &sz, &sz);
 	game->katana = mlx_xpm_file_to_image(game->mlx, "img/katana.xpm", &sz, &sz);
@@ -38,6 +36,7 @@ void	init_img(t_game *game)
 	game->pdown = mlx_xpm_file_to_image(game->mlx, "img/pdown.xpm", &sz, &sz);
 	game->pleft = mlx_xpm_file_to_image(game->mlx, "img/pleft.xpm", &sz, &sz);
 	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &sz, &sz);
+	game->currentpos = game->pdown;
 }
 
 // void	check_possible(t_game *game)
@@ -75,6 +74,13 @@ void	init_img(t_game *game)
 // 	}
 // }
 
+static int exit_game(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	free(game);
+	exit (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -85,13 +91,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (1);
 	if (checker_exec(game, argv[1]) != 0)
 		return (1);
 	init_data(game);
-	// mlx_key_hook(game->win,/*función por definir*/,game);
-	// mlx_hook(game->win, Keyrelease, KeyReleaseMask, &keypress, game);
+	mlx_key_hook(game->win, keypress, game);
+	mlx_hook(game->win, 17, 0, exit_game, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

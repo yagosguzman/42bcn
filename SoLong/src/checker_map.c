@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:57:38 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 12:52:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:10:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ int	check_rectangular(t_game *game)
 	check = game->len - 1;
 	while (check < ft_strlen(game->wholemap))
 	{
-		if (game->wholemap[check] != '\n' || game->wholemap[check] != '\0')
+		if (game->wholemap[check] != '\n' && game->wholemap[check] != '\0')
 			return (ft_error(game, 4));
 		check += game->len;
 	}
 	return (0);
 }
+
+
 
 int	check_wholemap(t_game *game)
 {
@@ -44,9 +46,7 @@ int	check_wholemap(t_game *game)
 	i = 0;
 	while (game->wholemap[i])
 	{
-		if (game->wholemap[i] != '1' || game->wholemap[i] != '0'
-			|| game->wholemap[i] != 'C' || game->wholemap[i] != 'E'
-			|| game->wholemap[i] != 'P' || game->wholemap[i] != '\n')
+		if (ft_strchr("10CPE\n", game->wholemap[i]) == NULL)
 			return (ft_error(game, 2));
 		if (game->wholemap[i] == 'C')
 			game->coins++;
@@ -54,6 +54,7 @@ int	check_wholemap(t_game *game)
 			game->exit++;
 		if (game->wholemap[i] == 'P')
 			game->player++;
+		i++;
 	}
 	if (game->coins == 0 || game->exit != 1 || game->player != 1)
 		return (ft_error(game, 5));
@@ -82,8 +83,8 @@ int	check_walls(t_game *game)
 
 int	checker_exec(t_game *game, char *argv)
 {
-	if (valid_file(game, &argv[1]) == 0)
-		if (open_map(&argv[1], game) == 0)
+	if (valid_file(game, argv) == 0)
+		if (open_map(argv, game) == 0)
 			if (check_wholemap(game) == 0)
 				if (check_walls(game) == 0)
 					if (check_rectangular(game) == 0)

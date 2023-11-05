@@ -6,14 +6,23 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/04 13:45:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:38:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
+void	print_moves(t_game *game)
+{
+	ft_putstr_fd("Player moves :", 1);
+	ft_putnbr(game->moves);
+	write(1, "\n", 1);
+}
+
 int	minilib_init(t_game *game)
 {
+	game->x = (game->len - 1) * T_SIZE;
+	game->y = (game->height) * T_SIZE;
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (ft_error_mlx(1));
@@ -23,13 +32,13 @@ int	minilib_init(t_game *game)
 	return (0);
 }
 
-void	select_img(t_game *game, char c, int i)
+void	select_img(t_game *game, char c, int pos)
 {
 	int	x;
 	int	y;
 
-	x = (i % game->len) * T_SIZE;
-	y = (i / game->len) * T_SIZE;
+	x = (pos % game->len) * T_SIZE;
+	y = (pos / game->len) * T_SIZE;
 	if (!game->error)
 	{
 		if (c == '0')
@@ -41,7 +50,7 @@ void	select_img(t_game *game, char c, int i)
 		if (c == 'E')
 			mlx_put_image_to_window(game->mlx, game->win, game->door, x, y);
 		if (c == 'P')
-			mlx_put_image_to_window(game->mlx, game->win, game->pdown, x, y);
+			mlx_put_image_to_window(game->mlx, game->win, game->currentpos, x, y);
 	}
 }
 
@@ -50,10 +59,8 @@ void	render_map(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->wholemap[i])
+	while (game->wholemap[i] != '\0')
 	{
-		if (game->wholemap[i] == '\n')
-			i++;
 		if (game->wholemap[i] != '0')
 			select_img(game, '0', i);
 		if (game->wholemap[i] == '0')

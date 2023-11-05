@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:14:56 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/23 16:15:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:34:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
+	if (s)
+		while (str[i] != '\0')
+			i++;
 	return (i);
 }

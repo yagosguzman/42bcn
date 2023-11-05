@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 16:45:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:17:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ typedef struct s_game
 	void	*katana;
 	void	*door;
 	void	*opdoor;
+	void	*currentpos;
 	void	*pdown;
 	void	*pup;
 	void	*pleft;
 	void	*pright;
-	char	*line;
-	char	**wholemap;
-	bool	all_collected;
-	bool	can_move;
+	char	*wholemap;
 	int		coins;
 	int		exit;
 	int		player;
@@ -59,6 +57,7 @@ typedef struct s_game
 	int		height;
 	int		x;
 	int		y;
+	int		pos;
 }	t_game;
 
 # ifndef BUFFER_SIZE
@@ -90,6 +89,7 @@ int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 void	ft_putchar(char c);
 void	ft_putnbr(int num);
+char	*ft_strchr(char *s, int c);
 
 /*ERROR HANDLER*/
 void	ft_putstr_fd(char *s, int fd);
@@ -101,13 +101,24 @@ int		ft_error_mlx(int errnum);
 /*MAP*/
 int		open_map(char *map, t_game *game);
 void	render_map(t_game *game);
+void	select_img(t_game *game, char c, int pos);
+
 
 /*GAME*/
+int		init_data(t_game *game);
 void	init_img(t_game *game);
 int		minilib_init(t_game *game);
-int		keypress(t_game *game, int key);
-int		init_data(t_game *game);
+int		keypress(int key, t_game *game);
+void	print_moves(t_game *game);
+void	pick_collectable(t_game *game, int pos);
+int		check_win(t_game *game, int pos);
+
+/*CONTROLS*/
+void	player_move(t_game *game, int key, int pos);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 
 #endif
-
 

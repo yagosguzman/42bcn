@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:51:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 12:54:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:35:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
-		i++;
+	if (str)
+		while (str[i])
+			i++;
 	return (i);
 }
 
@@ -61,5 +62,17 @@ void	ft_putnbr(int num)
 		ft_putchar(('0' + num));
 }
 
+char	*ft_strchr(char *s, int c)
+{
+	while (*s)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			return (s);
+		s++;
+	}
+	if ((unsigned char)c == '\0')
+		return (s);
+	return (0);
+}
 
 
