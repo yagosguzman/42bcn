@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:12:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 21:16:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:15:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,39 @@
 
 int	keypress(int key, t_game *game)
 {
-	if (key == ESC)
+	if (key == ESC || key == 17)
 	{
 		mlx_destroy_window(game->mlx, game->win);
 		free(game);
 		exit (0);
 	}
 	if (key == W || key == ARR_UP)
-		player_move(game, W, game->pos);
+		player_move(W, game);
 	if (key == A || key == ARR_LEFT)
-		player_move(game, A, game->pos);
+		player_move(A, game);
 	if (key == S || key == ARR_DOWN)
-		player_move(game, S, game->pos);
+		player_move(S, game);
 	if (key == D || key == ARR_RIGHT)
-		player_move(game, D, game->pos);
+		player_move(D, game);
 	return (0);
 }
 
-void	pick_collectable(t_game *game, int pos)
+int	check_win(int pos, t_game *game)
 {
-	if (game->wholemap[pos] == 'C')
-	{
-		game->katana--;
-		game->wholemap[pos] = '0';
-	}
-
-}
-
-int	check_win(t_game *game, int pos)
-{
-	if (game->wholemap[pos] == 'E' && game->katana == 0)
+	if (game->coins == 0)
+		select_img(game, 'X', game->exitloc);
+	if (game->wholemap[pos] == 'E' && game->coins == 0)
 	{
 		ft_putstr_fd("CONGRATULATIONS!\nThe samurai escaped!", 1);
-		ft_free(game);
-		return (0);
+		game->finish = 1;
+		// ft_free(game);
+		return (1);
 	}
-	if (game->wholemap[pos] == 'E' && game->katana != 0)
+	if (game->wholemap[pos] == 'E' && game->coins != 0)
 	{
 		ft_putstr_fd("Collect all the katanas to open the door.", 1);
-		return (1);
+		return (0);
 	}
 	else
 		return (0);
 }
-
-

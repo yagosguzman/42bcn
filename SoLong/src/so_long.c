@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 21:16:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:28:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	init_data(t_game *game)
 {
-	game->moves = 0;
 	minilib_init(game);
 	init_img(game);
 	render_map(game);
 	return (0);
 }
 
-/*tengo dudas con el calculo de game->y */
 void	init_img(t_game *game)
 {
 	int	sz;
@@ -74,7 +72,7 @@ void	init_img(t_game *game)
 // 	}
 // }
 
-static int exit_game(t_game *game)
+static int	exit_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	free(game);

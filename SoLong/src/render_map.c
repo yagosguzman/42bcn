@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 20:38:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:35:08 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 void	print_moves(t_game *game)
 {
-	ft_putstr_fd("Player moves :", 1);
-	ft_putnbr(game->moves);
-	write(1, "\n", 1);
+	if (!game->finish)
+	{
+		ft_putstr_fd("Player moves :", 1);
+		ft_putnbr(game->moves);
+		write(1, "\n", 1);
+		printf("%s\n", game->wholemap); // OJO ESTE PRINT
+	}
 }
 
 int	minilib_init(t_game *game)
@@ -39,7 +43,7 @@ void	select_img(t_game *game, char c, int pos)
 
 	x = (pos % game->len) * T_SIZE;
 	y = (pos / game->len) * T_SIZE;
-	if (!game->error)
+	if (1) // Pongo aqui un if permanente
 	{
 		if (c == '0')
 			mlx_put_image_to_window(game->mlx, game->win, game->floor, x, y);
@@ -51,6 +55,8 @@ void	select_img(t_game *game, char c, int pos)
 			mlx_put_image_to_window(game->mlx, game->win, game->door, x, y);
 		if (c == 'P')
 			mlx_put_image_to_window(game->mlx, game->win, game->currentpos, x, y);
+		if (c == 'X')
+			mlx_put_image_to_window(game->mlx, game->win, game->opdoor, x, y);
 	}
 }
 
@@ -69,8 +75,10 @@ void	render_map(t_game *game)
 			select_img(game, '1', i);
 		if (game->wholemap[i] == 'C')
 			select_img(game, 'C', i);
-		if (game->wholemap[i] == 'E')
+		if (game->wholemap[i] == 'E' && game->coins > 0)
 			select_img(game, 'E', i);
+		if (game->wholemap[i] == 'E' && game->coins == 0)
+			select_img(game, 'X', i);
 		if (game->wholemap[i] == 'P')
 			select_img(game, 'P', i);
 		i++;
