@@ -6,11 +6,21 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:12:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 23:30:44 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:34:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
+
+void	print_moves(t_game *game)
+{
+	if (!game->finish)
+	{
+		ft_putstr_fd("Player moves : ", 1);
+		ft_putnbr(game->moves);
+		write(1, "\n", 1);
+	}
+}
 
 int	keypress(int key, t_game *game)
 {
@@ -43,8 +53,6 @@ int	check_win(int fpos, t_game *game)
 		game->pos = fpos;
 		ft_putstr_fd("🎊 CONGRATULATIONS! 🎊\nThe samurai escaped! 🥷\n", 1);
 		game->finish = 1; 
-		// render_win(game);
-		// ft_free(game);
 		return (1);
 	}
 	if (game->wholemap[fpos] == 'E' && game->coins != 0)

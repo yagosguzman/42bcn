@@ -6,21 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 21:38:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:41:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
-
-void	print_moves(t_game *game)
-{
-	if (!game->finish)
-	{
-		ft_putstr_fd("Player moves : ", 1);
-		ft_putnbr(game->moves);
-		write(1, "\n", 1);
-	}
-}
 
 int	minilib_init(t_game *game)
 {
