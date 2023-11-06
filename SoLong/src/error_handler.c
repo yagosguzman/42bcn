@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:16:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 20:03:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:57:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_free(t_game *game)
 {
-	game->error = 1;
+	free(game);
 	exit (1);
 }
 

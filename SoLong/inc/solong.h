@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 18:52:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:34:18 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <limits.h>
-# include <stdbool.h>
 # include "../mlx/mlx.h"
 
 # define T_SIZE 80
@@ -112,7 +110,7 @@ void	print_moves(t_game *game);
 void	select_img(t_game *game, char c, int pos);
 void	render_map(t_game *game);
 void	render_win(t_game *game);
-int		check_win(int pos, t_game *game);
+int		check_win(int fpos, t_game *game);
 
 /*CONTROLS*/
 int		keypress(int key, t_game *game);

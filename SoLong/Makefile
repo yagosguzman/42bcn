@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/06 11:26:22 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/06 21:30:28 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(EXEC): $(OBJ) $(HEADER)
 bonus: $(OBJ_BONUS) $(HEADER)
 	@$(CC) $(FLAGS) $(SRC_BONUS) -o $(EXEC_BONUS)
 	@make -C ./mlx all
-	# @touch $@
+	@touch $@
 	@echo "BONUS: Executable ready!"
 
 clean:
@@ -50,7 +50,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(EXEC) $(EXEC_BONUS)
-	# @${RM} bonus
+	@${RM} bonus
 	@${RM} ${EXEC} ${EXEC_BONUS} libmlx.a
 	@echo "Executable successfully removed"
 

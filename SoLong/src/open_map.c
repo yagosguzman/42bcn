@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/05 20:03:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:23:58 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	newstr[i] = '\0';
+	// free(s1); ESTE FREE ES NECESARIO POR TEMA DE LEAKS PERO CON EL NO EJECUTA
 	return (newstr);
 }

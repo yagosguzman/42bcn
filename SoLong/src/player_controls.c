@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:42:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 19:09:57 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:38:48 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,6 @@ void	player_move(int key, t_game *game)
 	if (key == D)
 		move_right(game);
 	render_map(game);
+	printf("%s\n", game->wholemap);
+
 }
