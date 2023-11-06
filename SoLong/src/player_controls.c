@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:42:08 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 13:32:52 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:09:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,117 +14,129 @@
 
 void	move_up(t_game *game)
 {
-	int	i;
 	int	next;
 
-	i = game->pos;
-	next = i - game->len;
-	if (game->wholemap[next] && game->wholemap[next] != '1')
+	next = game->pos - game->len;
+	if (game->wholemap[next] != '1' && check_win(next, game) == 0)
 	{
-		if (!check_win(next, game))
+		print_moves(game);
+		game->moves++;
+		if (game->wholemap[next] == 'E')
 		{
-			game->moves++;
+			game->wholemap[game->pos] = '0';
+			game->wholemap[next] = 'X';
+		}
+		else
+		{
 			if (game->wholemap[next] == 'C')
 				game->coins--;
-			game->wholemap[i] = '0';
+			if (game->wholemap[game->pos] == 'X')
+				game->wholemap[game->pos] = 'E';
+			else
+				game->wholemap[game->pos] = '0';
 			game->wholemap[next] = 'P';
 		}
+		game->pos = next;
 	}
 	game->currentpos = game->pup;
 }
 
 void	move_down(t_game *game)
 {
-	int	i;
 	int	next;
 
-	i = game->pos;
-	next = i + game->len;
-	if (game->wholemap[next] != '1')
+	next = game->pos + game->len;
+	if (game->wholemap[next] != '1' && check_win(next, game) == 0)
 	{
-		if (!check_win(next, game))
+		print_moves(game);
+		game->moves++;
+		if (game->wholemap[next] == 'E')
 		{
-			game->moves++;
+			game->wholemap[game->pos] = '0';
+			game->wholemap[next] = 'X';
+		}
+		else
+		{
 			if (game->wholemap[next] == 'C')
 				game->coins--;
-			game->wholemap[i] = '0';
+			if (game->wholemap[game->pos] == 'X')
+				game->wholemap[game->pos] = 'E';
+			else
+				game->wholemap[game->pos] = '0';
 			game->wholemap[next] = 'P';
 		}
+		game->pos = next;
 	}
 	game->currentpos = game->pdown;
 }
 
 void	move_left(t_game *game)
 {
-	int	i;
 	int	next;
 
-	i = game->pos;
-	next = i - 1;
-	if (game->wholemap[next] && game->wholemap[next] != '1')
+	next = game->pos - 1;
+	if (game->wholemap[next] != '1' && check_win(next, game) == 0)
 	{
-		if (!check_win(next, game))
+		print_moves(game);
+		game->moves++;
+		if (game->wholemap[next] == 'E')
 		{
-			game->moves++;
+			game->wholemap[game->pos] = '0';
+			game->wholemap[next] = 'X';
+		}
+		else
+		{
 			if (game->wholemap[next] == 'C')
 				game->coins--;
-			game->wholemap[i] = '0';
+			if (game->wholemap[game->pos] == 'X')
+				game->wholemap[game->pos] = 'E';
+			else
+				game->wholemap[game->pos] = '0';
 			game->wholemap[next] = 'P';
 		}
+		game->pos = next;
 	}
 	game->currentpos = game->pleft;
 }
 
 void	move_right(t_game *game)
 {
-	int	i;
 	int	next;
 
-	i = game->pos;
-	next = i + 1;
-	if (game->wholemap[next] && game->wholemap[next] != '1')
+	next = game->pos + 1;
+	if (game->wholemap[next] != '1' && check_win(next, game) == 0)
 	{
-		if (!check_win(next, game))
+		print_moves(game);
+		game->moves++;
+		if (game->wholemap[next] == 'E')
 		{
-			game->moves++;
+			game->wholemap[game->pos] = '0';
+			game->wholemap[next] = 'X';
+		}
+		else
+		{
 			if (game->wholemap[next] == 'C')
 				game->coins--;
-			game->wholemap[i] = '0';
+			if (game->wholemap[game->pos] == 'X')
+				game->wholemap[game->pos] = 'E';
+			else
+				game->wholemap[game->pos] = '0';
 			game->wholemap[next] = 'P';
 		}
+		game->pos = next;
 	}
 	game->currentpos = game->pright;
 }
 
 void	player_move(int key, t_game *game)
 {
-	// mlx_put_image_to_window(game->mlx, game->win, game->floor, game->x, game->y);
 	if (key == W)
-	{
 		move_up(game);
-		check_win(game->pos, game);
-		print_moves(game);
-		render_map(game);
-	}
 	if (key == S)
-	{
 		move_down(game);
-		check_win(game->pos, game);
-		print_moves(game);
-		render_map(game);
-	}
 	if (key == A)
-	{
 		move_left(game);
-		check_win(game->pos, game);
-		print_moves(game);
-		render_map(game);
-	}
 	if (key == D)
-	{
 		move_right(game);
-		check_win(game->pos, game);
-		print_moves(game);
-		render_map(game);
-	}
+	render_map(game);
 }

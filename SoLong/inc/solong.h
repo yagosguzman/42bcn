@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 13:09:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:52:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,20 @@ int		ft_error_mlx(int errnum);
 
 /*MAP*/
 int		open_map(char *map, t_game *game);
-void	render_map(t_game *game);
-void	select_img(t_game *game, char c, int pos);
 
 
 /*GAME*/
 int		init_data(t_game *game);
 void	init_img(t_game *game);
 int		minilib_init(t_game *game);
-int		keypress(int key, t_game *game);
 void	print_moves(t_game *game);
+void	select_img(t_game *game, char c, int pos);
+void	render_map(t_game *game);
+void	render_win(t_game *game);
 int		check_win(int pos, t_game *game);
 
 /*CONTROLS*/
+int		keypress(int key, t_game *game);
 void	player_move(int key, t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
