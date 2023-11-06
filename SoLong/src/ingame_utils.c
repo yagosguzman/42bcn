@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:12:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 21:35:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:44:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_win(int fpos, t_game *game)
 	{
 		game->wholemap[fpos] = 'X';
 		game->wholemap[game->pos] = '0';
-		// render_map(game);
+		game->pos = fpos;
 		mlx_put_image_to_window(game->mlx, game->win, game->currentpos,((game->pos % game->len) * T_SIZE), ((game->pos / game->len) * T_SIZE));
 		ft_putstr_fd("🎊 CONGRATULATIONS! 🎊\nThe samurai escaped! 🥷\n", 1);
 		game->finish = 1; 
