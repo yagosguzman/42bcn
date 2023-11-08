@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:12:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 18:45:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:54:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_win(int fpos, t_game *game)
 	}
 	if (game->wholemap[fpos] == 'E' && game->coins != 0)
 	{
-		ft_putstr_fd("Collect all the katanas to open the door. 🗡️ 👀\n", 1);
+		ft_putstr_fd("Collect all the katanas to open the door. 🗡️  👀\n", 1);
 		return (0);
 	}
 	else

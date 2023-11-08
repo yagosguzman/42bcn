@@ -6,24 +6,36 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:49:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 23:41:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:01:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	minilib_init(t_game *game)
+void	init_img(t_game *game)
 {
-	game->x = (game->len - 1) * T_SIZE;
-	game->y = (game->height) * T_SIZE;
-	game->moves = 1;
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
-		return (ft_error_mlx(1));
-	game->win = mlx_new_window(game->mlx, game->x, game->y, "so_long");
-	if (game->win == NULL)
-		return (free(game->mlx), ft_error_mlx(2));
-	return (0);
+	int	sz;
+
+	sz = T_SIZE;
+	game->floor = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm",
+			&sz, &sz);
+	game->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm",
+			&sz, &sz);
+	game->katana = mlx_xpm_file_to_image(game->mlx, "textures/katana.xpm",
+			&sz, &sz);
+	game->door = mlx_xpm_file_to_image(game->mlx, "textures/door.xpm",
+			&sz, &sz);
+	game->opdoor = mlx_xpm_file_to_image(game->mlx, "textures/opdoor.xpm",
+			&sz, &sz);
+	game->pup = mlx_xpm_file_to_image(game->mlx, "textures/pup.xpm",
+			&sz, &sz);
+	game->pdown = mlx_xpm_file_to_image(game->mlx, "textures/pdown.xpm",
+			&sz, &sz);
+	game->pleft = mlx_xpm_file_to_image(game->mlx, "textures/pleft.xpm",
+			&sz, &sz);
+	game->pright = mlx_xpm_file_to_image(game->mlx, "textures/pright.xpm",
+			&sz, &sz);
+	game->currentpos = game->pdown;
 }
 
 void	select_img(t_game *game, char c, int pos)

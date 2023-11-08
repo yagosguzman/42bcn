@@ -6,43 +6,54 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/08 19:10:18 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/07 20:51:29 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
+EXEC = so_long
+EXEC_BONUS = so_long_bonus
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -f
 
 HEADER = ./inc/solong.h
 SRC = $(wildcard src/*.c)
 SRC_BONUS = ./bonus/$(wildcard *.c)
 OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 DEPS = $(addsuffix .d, $(basename $(SRC)))
+BONUSDEPS = $(addsuffix .d, $(basename $(SRC_BONUS)))\
 
-all: $(NAME)
+all: $(EXEC)
 
 -include $(DEPS)
-$(NAME): $(OBJ) $(HEADER)
+$(EXEC): $(OBJ) $(HEADER)
 	@make -C ./mlx all
-	@$(CC) $(FLAGS) $(SRC) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(EXEC)
 	@echo "Executable ready!"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -Imlx -c $< -o $@
 
+-include $(BONUS_DEPS)
+bonus: $(OBJ_BONUS) $(HEADER)
+	@$(CC) $(FLAGS) $(SRC_BONUS) -o $(EXEC_BONUS)
+	@make -C ./mlx all
+	@touch $@
+	@echo "BONUS: Executable ready!"
+
 clean:
 	@make -C ./mlx clean
-	@$(RM) $(OBJ)
-	@$(RM) $(DEPS)
-	@echo "Objects and libraries successfully removed"
+	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) $(DEPS) $(BONUS_DEPS)
+	@echo "Objects successfully removed"
 
 fclean: clean
-	@$(RM) $(NAME)
-	@${RM} ${NAME}
+	@$(RM) $(EXEC) $(EXEC_BONUS)
+	@${RM} bonus
+	@${RM} ${EXEC} ${EXEC_BONUS} libmlx.a
 	@echo "Executable successfully removed"
 
 re: fclean all
 
-.PHONY: make all clean fclean re
+.PHONY: make all clean fclean re bonus

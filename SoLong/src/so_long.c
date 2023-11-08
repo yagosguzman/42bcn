@@ -6,11 +6,25 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 12:43:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:01:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
+
+int	minilib_init(t_game *game)
+{
+	game->x = (game->len - 1) * T_SIZE;
+	game->y = (game->height) * T_SIZE;
+	game->moves = 1;
+	game->mlx = mlx_init();
+	if (game->mlx == NULL)
+		return (ft_error_mlx(1));
+	game->win = mlx_new_window(game->mlx, game->x, game->y, "so_long");
+	if (game->win == NULL)
+		return (free(game->mlx), ft_error_mlx(2));
+	return (0);
+}
 
 int	init_data(t_game *game)
 {
@@ -18,23 +32,6 @@ int	init_data(t_game *game)
 	init_img(game);
 	render_map(game);
 	return (0);
-}
-
-void	init_img(t_game *game)
-{
-	int	sz;
-
-	sz = T_SIZE;
-	game->floor = mlx_xpm_file_to_image(game->mlx, "img/floor.xpm", &sz, &sz);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &sz, &sz);
-	game->katana = mlx_xpm_file_to_image(game->mlx, "img/katana.xpm", &sz, &sz);
-	game->door = mlx_xpm_file_to_image(game->mlx, "img/door.xpm", &sz, &sz);
-	game->opdoor = mlx_xpm_file_to_image(game->mlx, "img/opdoor.xpm", &sz, &sz);
-	game->pup = mlx_xpm_file_to_image(game->mlx, "img/pup.xpm", &sz, &sz);
-	game->pdown = mlx_xpm_file_to_image(game->mlx, "img/pdown.xpm", &sz, &sz);
-	game->pleft = mlx_xpm_file_to_image(game->mlx, "img/pleft.xpm", &sz, &sz);
-	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &sz, &sz);
-	game->currentpos = game->pdown;
 }
 
 static int	exit_game(t_game *game)
