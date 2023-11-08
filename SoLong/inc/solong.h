@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:58:12 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 21:34:18 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:42:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_game
 	void	*pleft;
 	void	*pright;
 	char	*wholemap;
+	char	*btmap;
 	int		coins;
 	int		exit;
 	int		player;
@@ -56,7 +57,6 @@ typedef struct s_game
 	int		x;
 	int		y;
 	int		pos;
-	int		exitloc;
 	int		finish;
 }	t_game;
 
@@ -81,6 +81,8 @@ int		check_walls(t_game *game);
 int		check_rectangular(t_game *game);
 int		check_wholemap(t_game *game);
 int		checker_exec(t_game *game, char *argv);
+int		check_solution(t_game *game);
+
 
 /*UTILS*/
 void	ft_bzero(void *str, int n);
@@ -99,6 +101,8 @@ int		ft_error_mlx(int errnum);
 
 
 /*MAP*/
+void	create_btmap(t_game *game);
+void	backtrack_map(t_game *game, int pos);
 int		open_map(char *map, t_game *game);
 
 

@@ -6,14 +6,14 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/06 21:30:28 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/07 20:51:29 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC = so_long
 EXEC_BONUS = so_long_bonus
 CC = gcc
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -f
 
 HEADER = ./inc/solong.h

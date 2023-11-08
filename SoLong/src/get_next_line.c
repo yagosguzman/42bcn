@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:36:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/27 22:25:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:38:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ char	*clean_stash(char *line, char *stash)
 
 	i = 0;
 	j = (ft_strlen_mode(stash, 3) + ft_strlen_mode(stash, 2));
-	new = malloc((ft_strlen_mode(stash, 1) - ft_strlen_mode(line, 1) + 1) * sizeof(char));
+	new = malloc((ft_strlen_mode(stash, 1)
+				- ft_strlen_mode(line, 1) + 1) * sizeof(char));
 	if (!new)
 		return (ft_free_gnl(&stash));
 	if (ft_strlen_mode(stash, 2) && stash[j])
@@ -116,12 +117,3 @@ char	*get_next_line(int fd)
 	stash = clean_stash(line, stash);
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	int	fd;
-
-// 	fd = open("sample1.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	return (0);
-// }

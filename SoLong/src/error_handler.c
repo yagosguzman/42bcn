@@ -6,17 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:16:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 20:57:09 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:40:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
-
-int	ft_free(t_game *game)
-{
-	free(game);
-	exit (1);
-}
 
 int	ft_error(t_game *game, int errnum)
 {
@@ -35,6 +29,8 @@ int	ft_error(t_game *game, int errnum)
 		ft_putstr_fd("Problem reading the map.\n", 2);
 	if (errnum == 7)
 		ft_putstr_fd("The map has no possible solution.\n", 2);
+	if (errnum == 8)
+		ft_putstr_fd("Problem with mallocs.\n", 2);
 	return (ft_free(game));
 }
 

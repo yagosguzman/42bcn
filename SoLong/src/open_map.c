@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 21:23:58 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:41:17 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ int	open_map(char *map, t_game *game)
 {
 	int		fd;
 	char	*line;
+	char	*tmpstash;
 
-	game->len = 0;
-	game->height = 0;
+	tmpstash = "";
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (ft_free(game));
-	game->wholemap = NULL;
 	line = get_next_line(fd);
 	if (!line)
 		return (ft_error(game, 6));
@@ -73,39 +72,12 @@ int	open_map(char *map, t_game *game)
 		check_endline(line, game);
 		if (ft_strlen(line) + game->linecheck != game->len)
 			return (ft_error(game, 4));
-		game->wholemap = ft_strjoin(game->wholemap, line);
+		tmpstash = game->wholemap;
+		game->wholemap = ft_strjoin(tmpstash, line);
+		free(tmpstash);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*newstr;
-
-	i = 0;
-	j = 0;
-	if (!s1)
-		s1 = "";
-	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!newstr)
-		return (NULL);
-	while (s1[i])
-	{
-		newstr[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		newstr[i] = s2[j];
-		i++;
-		j++;
-	}
-	newstr[i] = '\0';
-	// free(s1); ESTE FREE ES NECESARIO POR TEMA DE LEAKS PERO CON EL NO EJECUTA
-	return (newstr);
 }

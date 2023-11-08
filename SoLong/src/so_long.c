@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 15:49:59 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/06 18:53:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:43:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,41 +36,6 @@ void	init_img(t_game *game)
 	game->pright = mlx_xpm_file_to_image(game->mlx, "img/pright.xpm", &sz, &sz);
 	game->currentpos = game->pdown;
 }
-
-// void	check_possible(t_game *game)
-// {
-// 	if (game->all_collected && exit == 1)
-// 		return map_valid;
-// 	if (on_wall)
-// 		return (game->error);
-// 	if (on_coin)
-// 		game->coin++;
-// 	if (on_exit && game->all_collected)
-// 		finish_game;
-// 	if (game->can_move)
-// 		return map_valid;
-// 	return (game->error);
-// }
-// void	check_solution(t_game *game)
-// {
-// 	int	i;
-// 	int	up;
-// 	int	down;
-
-// 	i = 0;
-// 	while (game->wholemap[i])
-// 	{
-// 		up = i - game->len; // esto no siempre va a ser posible
-// 		down = i + game->len; // tambien puede ser que no sea totalmente rodeado si el mapa es grande
-// 		if (game->wholemap[i] == 'C' || game->wholemap[i] == 'E'
-// 			|| game->wholemap[i] == 'P')
-// 		{
-// 			if (game->wholemap[i + 1] == '1' && game->wholemap[i - 1] == '1'
-// 				&& game->wholemap[up] == '1' && game->wholemap[down] == '1')
-// 				ft_error(game, 7);
-// 		}
-// 	}
-// }
 
 static int	exit_game(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/10/26 19:18:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:36:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ char	*merge_strings(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	newstr = malloc ((ft_strlen_mode(s1, 1) + ft_strlen_mode(s2, 1) + 1) * sizeof(char));
+	newstr = malloc ((ft_strlen_mode(s1, 1)
+				+ ft_strlen_mode(s2, 1) + 1) * sizeof(char));
 	if (!newstr)
 		return (NULL);
 	while (s1[i])
