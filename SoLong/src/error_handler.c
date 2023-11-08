@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:16:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 12:40:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:43:12 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,4 @@ int	ft_error_mlx(int errnum)
 	if (errnum == 2)
 		ft_putstr_fd("Problem initializing Window on MLX.\n", 2);
 	return (1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write (fd, &s[i], 1);
-		i++;
-	}
 }

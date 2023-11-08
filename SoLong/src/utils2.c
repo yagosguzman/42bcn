@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:39:57 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 12:42:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:43:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ int	ft_free(t_game *game)
 {
 	free(game);
 	exit (1);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
 }
 
 char	*ft_strjoin(char *s1, char *s2)

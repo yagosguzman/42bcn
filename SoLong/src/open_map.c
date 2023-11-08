@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:45:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 12:41:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:36:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	check_endline(char *line, t_game *game)
 	}
 }
 
+static void	transfer_stash(t_game *game, char *tmpstash, char *line)
+{
+	tmpstash = game->wholemap;
+	game->wholemap = ft_strjoin(tmpstash, line);
+	free(tmpstash);
+	free(line);
+}
+
 int	open_map(char *map, t_game *game)
 {
 	int		fd;
@@ -72,10 +80,7 @@ int	open_map(char *map, t_game *game)
 		check_endline(line, game);
 		if (ft_strlen(line) + game->linecheck != game->len)
 			return (ft_error(game, 4));
-		tmpstash = game->wholemap;
-		game->wholemap = ft_strjoin(tmpstash, line);
-		free(tmpstash);
-		free(line);
+		transfer_stash(game, tmpstash, line);
 		line = get_next_line(fd);
 	}
 	close(fd);
