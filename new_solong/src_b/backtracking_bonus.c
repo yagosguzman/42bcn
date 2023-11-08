@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtracking.c                                     :+:      :+:    :+:   */
+/*   backtracking_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:18:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 20:13:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 22:12:10 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/solong.h"
+# include "../inc/solong_bonus.h"
 
 void	create_btmap(t_game *game)
 {

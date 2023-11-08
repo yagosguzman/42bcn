@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ingame_utils.c                                     :+:      :+:    :+:   */
+/*   ingame_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:12:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 20:27:23 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/08 22:11:30 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/solong.h"
+# include "../inc/solong_bonus.h"
 
 void	print_moves(t_game *game)
 {
@@ -54,7 +54,7 @@ int	check_win(int fpos, t_game *game)
 		game->wholemap[game->pos] = '0';
 		game->pos = fpos;
 		print_moves(game);
-		ft_putstr_fd("🎊 CONGRATULATIONS! 🎊\nThe samurai escaped! 🥷\n", 1);
+		ft_putstr_fd("🎊 CONGRATULATIONS! 🎊\nThe samurai escaped!\n", 1);
 		game->finish = 1;
 		return (1);
 	}

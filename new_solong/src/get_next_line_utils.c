@@ -1,38 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 12:39:57 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/08 20:34:32 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/08/04 20:49:44 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/11/08 12:36:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 
-int	ft_free(t_game *game)
-{
-	free(game->wholemap);
-	free(game->btmap);
-	free(game);
-	exit (1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
+/* VARIANTE 1 : UN STRLEN NORMAL*/
+/* VARIANTE 2 : NOS DEVUELVE SI HAY UN \n O NO */
+/* VARIANTE 3 : CUANTO FALTA HASTA \n O \0 */
+int	ft_strlen_mode(char *str, int mode)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (mode == 1 && str[i])
 	{
-		write (fd, &s[i], 1);
-		i++;
+		while (str[i] != '\0')
+			i++;
+		return (i);
 	}
+	else if (mode == 2 && str[i])
+	{
+		while (str[i])
+		{
+			if (str[i] == '\n')
+				return (1);
+			i++;
+		}
+	}
+	else if (mode == 3 && str[i])
+	{
+		while (str[i] != '\n' && str[i] != '\0')
+			i++;
+		return (i);
+	}
+	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*merge_strings(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -40,9 +52,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1)
-		s1 = "";
-	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	newstr = malloc ((ft_strlen_mode(s1, 1)
+				+ ft_strlen_mode(s2, 1) + 1) * sizeof(char));
 	if (!newstr)
 		return (NULL);
 	while (s1[i])
@@ -57,18 +68,13 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	newstr[i] = '\0';
+	ft_free_gnl(&s1);
 	return (newstr);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_free_gnl(char **str)
 {
-	while (*s)
-	{
-		if ((unsigned char)*s == (unsigned char)c)
-			return (s);
-		s++;
-	}
-	if ((unsigned char)c == '\0')
-		return (s);
-	return (0);
+	free(*str);
+	*str = NULL;
+	return (NULL);
 }

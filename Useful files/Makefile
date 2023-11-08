@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/07 20:51:29 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/08 22:04:16 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ clean:
 fclean: clean
 	@$(RM) $(EXEC) $(EXEC_BONUS)
 	@${RM} bonus
-	@${RM} ${EXEC} ${EXEC_BONUS} libmlx.a
 	@echo "Executable successfully removed"
 
 re: fclean all
