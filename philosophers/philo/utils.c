@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 13:03:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/16 19:58:42 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
+/*   Updated: 2023/11/16 14:41:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// int	init_philo(char **argv)
-// {
-
-// }
-
-int	main(int argc, char **argv)
+int	custom_usleep(int milliseconds)
 {
-	t_args	args;
+	long	start;
+	long	elapsed;
+	long	rem;
 
-	if (argc < 5 || argc > 6)
-		return (ft_error(0));
-	checker_philo(argc, argv, &args);
-	// init_philo(argv);
-	return (0);
+	start = 
 }

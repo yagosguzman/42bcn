@@ -6,18 +6,18 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2023/11/14 13:28:34 by ysanchez         ###   ########.fr        #
+#    Updated: 2023/11/16 18:27:27 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 NAME_BONUS = philo_bonus
 CC = gcc
-FLAGS = -Wall -Werror -Wextra - g -fsanitize=Address
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -f
-HEADER = ./inc/philo.h
-HEADER_BONUS = ./inc/philo_bonus.h
-SRC = philo/
+HEADER = philo.h
+HEADER_BONUS = philo_bonus.h
+SRC = main.c error_handler.c check_arg.c
 SRC_BONUS = philo_bonus/
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
