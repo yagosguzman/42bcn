@@ -6,13 +6,13 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/16 20:00:10 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:26:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_valid_arg(char **argv)
+static int	check_valid_arg(char **argv)
 {
 	int	i;
 	int	j;
@@ -21,13 +21,12 @@ int	check_valid_arg(char **argv)
 	j = 0;
 	while (argv[i])
 	{
-		while (((argv[i][j] >= 9 && argv[i][j] <= 13) || argv[i][j] == 32)
-			&& argv[i][j] != '\0')
+		while ((argv[i][j] >= 9 && argv[i][j] <= 13) || argv[i][j] == 32)
+			j++;
+		if (argv[i][j] == '+')
 			j++;
 		while (argv[i][j] != '\0')
 		{
-			if (argv[i][j] == '+')
-				j++;
 			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (1);
 			else
@@ -44,11 +43,11 @@ static void	save_info(int i, long result, t_args *args)
 	if (i == 1)
 		args->philo_num = result;
 	if (i == 2)
-		args->time_to_die = result;
+		args->time_to_die = result * 1000;
 	if (i == 3)
-		args->time_to_eat = result;
+		args->time_to_eat = result * 1000;
 	if (i == 4)
-		args->time_to_sleep = result;
+		args->time_to_sleep = result * 1000;
 	if (i == 5)
 		args->max_eat = result;
 }
@@ -82,8 +81,8 @@ int	checker_philo(int argc, char **argv, t_args *args)
 	int	i;
 
 	i = 1;
-	// if (argc == 5)
-	// 	args->max_eat = -1;
+	if (argc == 5)
+		args->max_eat = -1;
 	if (check_valid_arg(argv) == 1)
 		return (ft_error(1));
 	while (i < argc)

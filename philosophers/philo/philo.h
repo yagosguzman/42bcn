@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/16 19:19:18 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:33:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
+
+# define INIT 0
+# define LOCK 1
+# define UNLOCK 2
+# define DESTROY 3
+# define CREATE 4
+# define JOIN 5
+# define DETACH 6
 
 typedef struct s_args	t_args;
 
@@ -50,12 +58,22 @@ struct s_args
 	int		start;
 	int		finish;
 	t_fork	*forks;
-	t_philo	*philo;
+	t_philo	*philoarr;
 } ;
 
-int	init_philo(char **argv);
-int	checker_philo(int argc, char **argv, t_args *args);
-int	check_valid_arg(char **argv);
-int	ft_error(int errnum);
+/*CHECKER + DATA INIT*/
+int		checker_philo(int argc, char **argv, t_args *args);
+int		init_data(t_args *args);
+void	init_philo(t_args *args);
+
+/*UTILS*/
+int		mutex_handler(pthread_mutex_t *mutex, int operation);
+int		thread_handler(pthread_t *thread, void *(*foo)(void *),
+			void *data, int operation);
+
+/*ERROR HANDLER*/
+int		ft_error(int errnum);
+int		ft_mutex_error(int errnum);
+int		ft_thread_error(int errnum);
 
 #endif
