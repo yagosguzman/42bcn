@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/22 21:33:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:25:03 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ struct s_args
 int		checker_philo(int argc, char **argv, t_args *args);
 int		init_data(t_args *args);
 void	init_philo(t_args *args);
+void	init_forks(t_philo *philo, int pos, t_fork *forks);
 
 /*UTILS*/
 int		mutex_handler(pthread_mutex_t *mutex, int operation);
