@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 18:26:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/22 21:17:56 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:45:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	ft_error(int errnum)
 		printf("Error\nYou can only use unsigned integers as arguments.\n");
 	if (errnum == 3)
 		printf("Error\nProblem creating malloc.\n");
+	if (errnum == 4)
+		printf("Error\nThe number of times each philosopher must eat can't be 0"
+			". If you don't want any, just don't type the fifth argument.\n");
 	return (1);
 }
 

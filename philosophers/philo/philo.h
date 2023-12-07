@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/23 18:25:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:54:54 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_philo
 	int			num_eat;
 	int			goal;
 	long		last_time_eat;
-	t_fork		*leftfork;
-	t_fork		*rightfork;
+	t_fork		*firstfork;
+	t_fork		*secondfork;
 	t_args		*args;
 }	t_philo;
 
@@ -59,7 +59,7 @@ struct s_args
 	int		finish;
 	t_fork	*forks;
 	t_philo	*philoarr;
-} ;
+} ; 
 
 /*CHECKER + DATA INIT*/
 int		checker_philo(int argc, char **argv, t_args *args);
