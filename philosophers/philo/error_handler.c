@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 18:26:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/29 20:45:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:47:48 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	ft_error(int errnum)
 	if (errnum == 4)
 		printf("Error\nThe number of times each philosopher must eat can't be 0"
 			". If you don't want any, just don't type the fifth argument.\n");
+	if (errnum == 5)
+		printf("Error\nProblem using the function gettimeofday.\n");
+	if (errnum == 6)
+		printf("Error\nProblem using the function gettime.\nRemember to just "
+			"use SECONDS, MILLISECONDS OR MICROSECONDS\n");
+
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/11/29 20:22:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:03:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ int	init_data(t_args *args)
 
 	i = 0;
 	args->finish = -1;
+	args->ready = -1;
 	args->philoarr = malloc(sizeof(t_philo) * args->philo_num);
 	if (!args->philoarr)
 		return (ft_error(3));
 	args->forks = malloc(sizeof(t_fork) * args->philo_num);
 	if (!args->forks)
 		return (ft_error(3));
+	mutex_handler(&args->args_mutex, INIT);
+	mutex_handler(&args->write_mutex, INIT);
 	while (i < args->philo_num)
 	{
 		mutex_handler(&args->forks[i].fork, INIT);
