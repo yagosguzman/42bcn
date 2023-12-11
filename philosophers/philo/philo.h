@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/10 20:20:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:28:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	pthread_t	thread_id;
-	int			id;
-	int			num_eat;
-	int			goal;
-	int			last_time_eat;
-	t_fork		*firstfork;
-	t_fork		*secondfork;
-	t_args		*args;
+	pthread_t		thread_id;
+	int				id;
+	int				num_eat;
+	int				goal;
+	int				last_time_eat;
+	t_fork			*firstfork;
+	t_fork			*secondfork;
+	t_args			*args;
+	pthread_mutex_t	philo_mutex;
 }	t_philo;
 
 struct s_args
@@ -94,20 +95,19 @@ int		init_data(t_args *args);
 void	init_philo(t_args *args);
 void	init_forks(t_philo *philo, int pos, t_fork *forks);
 int		init_dining(t_args *args);
-void	solo_philo(t_philo *philo);
-
 
 /*UTILS*/
 int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);
 void	set_long(pthread_mutex_t *mutex, long *dst, long value);
-long	get_int(pthread_mutex_t *mutex, long *src);
+long	get_long(pthread_mutex_t *mutex, long *src);
 int		simulation_finished(t_args *args);
 
 
 /*SYNC UTILS*/
 void	sync_threads(t_args *args);
+void	precise_usleep(long usec, t_args *args);
 long	gettime(t_time time_unit);
 
 
@@ -115,5 +115,15 @@ long	gettime(t_time time_unit);
 int		ft_error(int errnum);
 int		ft_mutex_error(int errnum);
 int		ft_thread_error(int errnum);
+
+/*DINING INSTRUCTIONS*/
+void	write_status(t_status status, t_philo *philo);
+void	ft_eating(t_philo *philo);
+void	ft_sleeping(t_philo *philo);
+void	ft_thinking(t_philo *philo);
+
+/*DINING*/
+void	solo_philo(t_philo *philo);
+void	*dining_sim(void *data);
 
 #endif

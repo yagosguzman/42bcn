@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/10 18:45:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:38:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	*dining_sim(void *data)
 	{
 		if (get_int(&philo->args->args_mutex, &philo->goal) == 1)
 			return ;
-		//eat
-		//sleep
-		//think
+		ft_eating(philo);
+		ft_sleeping(philo);
+		ft_thinking(philo);
 	}
 	
 }

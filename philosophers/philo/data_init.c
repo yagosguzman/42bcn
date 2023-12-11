@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/10 19:03:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:29:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_philo(t_args *args)
 		philo->num_eat = 0;
 		philo->goal = 0;
 		philo->args = args;
+		mutex_handler(&philo->philo_mutex, INIT);
 		init_forks(philo, i, args->forks);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:32:20 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/10 20:20:36 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:51:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ long	get_long(pthread_mutex_t *mutex, long *src)
 
 int	simulation_finished(t_args *args)
 {
-	return (get_int(&args->args_mutex, args->finish));
+	return (get_long(&args->args_mutex, args->finish));
 }
