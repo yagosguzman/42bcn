@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 19:26:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:58:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*dining_sim(void *data)
 	set_long(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
 	set_long(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
-	while (get_long(&philo->args->args_mutex, &philo->args->finish) != 0)
+	// fairness_solution(philo); // Hace que todos los threads hagan algo al inicio
+	while (simulation_finished(philo->args) != 0)
 	{
 		if (get_long(&philo->args->args_mutex, &philo->goal) == 1)
 			exit (33); // este exit?

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 17:36:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:52:01 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	write_status(t_status status, t_philo *philo)
 	if (simulation_finished(philo->args) != 0)
 	{
 		if (status == TOOK_1ST_FORK || status == TOOK_2ND_FORK)
-			printf("%ld %i has taken a fork.\n", time_passed, philo->id);
+			printf("%ld %i has taken a fork\n", time_passed, philo->id);
 		if (status == EATING)
-			printf("%ld %i is eating.\n", time_passed, philo->id);
+			printf("%ld %i is eating\n", time_passed, philo->id);
 		if (status == SLEEPING)
-			printf("%ld %i is sleeping.\n", time_passed, philo->id);
+			printf("%ld %i is sleeping\n", time_passed, philo->id);
 		if (status == THINKING)
-			printf("%ld %i is thinking.\n", time_passed, philo->id);
+			printf("%ld %i is thinking\n", time_passed, philo->id);
 		if (status == DIED)
-			printf("%ld %i died.\n", time_passed, philo->id);
+			printf("%ld %i died\n", time_passed, philo->id);
 	}
 	mutex_handler(&philo->args->write_mutex, UNLOCK);
 }
@@ -67,15 +67,20 @@ void	ft_sleeping(t_philo *philo)
 
 void	ft_thinking(t_philo *philo)
 {
-	// long	time_to_think;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	time_to_think;
+
 	write_status(THINKING, philo);
 	if (philo->args->philo_num % 2 == 0)
-	{
-		// time_to_think = 
-		precise_usleep(10, philo->args);
-	}
+		return ;
 	else
 	{
-		precise_usleep(5, philo->args);
+		time_to_eat = philo->args->time_to_eat;
+		time_to_sleep = philo->args->time_to_sleep;
+		time_to_think = (time_to_eat * 2) - time_to_sleep;
+		if (time_to_think < 0)
+			time_to_think = 0;
+		precise_usleep((time_to_think / 2), philo->args);
 	}
 }

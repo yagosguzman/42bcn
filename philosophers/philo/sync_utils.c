@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 19:09:07 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:57:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,18 @@ int	check_all_running(pthread_mutex_t *mutex, long *running, long philo_num)
 		flag = 1;
 	mutex_handler(mutex, UNLOCK);
 	return (flag);
+}
+
+void	fairness_solution(t_philo *philo)
+{
+	if (philo->args->philo_num % 2 != 0)
+	{
+		if (philo->id % 2 != 0)
+			ft_thinking(philo);
+	}
+	else
+	{
+		if (philo->id % 2 == 0)
+			precise_usleep(30 * 1e3, philo->args);
+	}
 }

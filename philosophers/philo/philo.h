@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 19:21:07 by ysanchez         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:45:58 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	precise_usleep(long usec, t_args *args);
 long	gettime(t_time time_unit);
 int		check_all_running(pthread_mutex_t *mutex, long *running,
 			long philo_num);
+void	fairness_solution(t_philo *philo);
 
 /*ERROR HANDLER*/
 int		ft_error(int errnum);
