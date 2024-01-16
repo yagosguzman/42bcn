@@ -11,7 +11,7 @@ char *ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-int ft_strlen(const char *s)
+int ft_strlen(char *s)
 {
 	int i;
 
@@ -21,7 +21,7 @@ int ft_strlen(const char *s)
 	return (i);
 }
 
-int ft_strlcpy(char *dst, const char *src, int dstsize)
+int ft_strlcpy(char *dst, char *src, int dstsize)
 {
 	int i;
 	int srcsize;
@@ -40,20 +40,20 @@ int ft_strlcpy(char *dst, const char *src, int dstsize)
 	return (srcsize);
 }
 
-char *ft_strdup(const char* src)
+char *ft_strdup(char *src)
 {
 	int len;
 	char *dst;
 
 	len = ft_strlen(src) + 1;
-	dst = (char *)malloc(len * sizeof(char));
+	dst = malloc(len * sizeof(char));
 	if (!dst)
 		return (NULL);
 	ft_strlcpy(dst, src, len);
 	return (dst);
 }
 
-char *ft_strjoin(char *s1, const char *s2, int s2len)
+char *ft_strjoin(char *s1, char *s2, int s2len)
 {
 	int s1len;
 	char *join;
@@ -61,7 +61,7 @@ char *ft_strjoin(char *s1, const char *s2, int s2len)
 	if (!s1 || !s2)
 		return (NULL);
 	s1len = ft_strlen(s1);
-	join = (char *)malloc((s1len + s2len + 1) * sizeof(char));
+	join = malloc((s1len + s2len + 1) * sizeof(char));
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, s1, s1len + 1);
