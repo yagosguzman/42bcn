@@ -74,16 +74,10 @@ char *get_next_line(int fd)
 {
 	int count;
 	int last;
-	static char *buffer;
+	static char buffer[BUFFER_SIZE + 1];
 	char *line;
 	char *newline;
 
-	if (!buffer)
-	{
-		buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buffer)
-			return (NULL);
-	}
 	line = ft_strdup(buffer);
 	while (!(ft_strchr(line, '\n')) && (count = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
