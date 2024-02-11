@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/20 17:47:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:37:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_space(char c)
 		return (1);
 }
 
-static int	check_valid_arg(char **argv)
+int	check_valid_arg(char **argv)
 {
 	int	i;
 	int	j;
@@ -35,7 +35,7 @@ static int	check_valid_arg(char **argv)
 			return (1);
 		if (argv[i][j] == '+')
 			j++;
-		while (argv[i][j] != '\0')
+		while (argv[i][j])
 		{
 			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (1);
@@ -48,7 +48,7 @@ static int	check_valid_arg(char **argv)
 	return (0);
 }
 // DUDA SI GUARDAR EL TIMETOX EN MILI O MICRO
-static void	save_info(int i, long result, t_args *args)
+void	save_info(int i, long result, t_args *args)
 {
 	if (i == 1)
 		args->philo_num = result;
@@ -62,39 +62,47 @@ static void	save_info(int i, long result, t_args *args)
 		args->max_eat = result;
 }
 
-static long	arg_to_long(int argnum, char *str, t_args *args)
+long	arg_to_long(int argnum, char *str, t_args *database)
 {
 	int		i;
+	int		j;
 	long	result;
 
 	i = 0;
 	result = 0;
 	while (is_space(str[i]) == 0 && str[i] != '\0')
 		i++;
+	if (str[i] == '+')
+		i++;
+	j = i;
+	while (str[j])
+		j++;
+	if ((j - i) > 19)
+		return (1);	
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
-	if (result > LONG_MAX)
-		return (-1);
+	if (result > LONG_MAX || result < 0)
+		return (1);
 	else
-		save_info(argnum, result, args);
+		save_info(argnum, result, database);
 	return (0);
 }
 
-int	checker_philo(int argc, char **argv, t_args *args)
+int	checker_philo(int argc, char **argv, t_args *database)
 {
 	int	i;
 
 	i = 1;
 	if (argc == 5)
-		args->max_eat = -1;
+		database->max_eat = -1;
 	if (check_valid_arg(argv) == 1)
 		return (ft_error(1));
 	while (i < argc)
 	{
-		if (arg_to_long(i, argv[i], args) == -1)
+		if (arg_to_long(i, argv[i], database) == 1)
 			return (ft_error(2));
 		i++;
 	}

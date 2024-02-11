@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/20 18:12:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:37:10 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ struct s_args
 	pthread_t		checker;
 } ;
 
-/*CHECKER + DATA INIT*/
+/*########## check_arg.c ##########*/
+int		check_valid_arg(char **argv);
+void	save_info(int i, long result, t_args *args);
+long	arg_to_long(int argnum, char *str, t_args *database);
 int		checker_philo(int argc, char **argv, t_args *args);
 int		init_data(t_args *args);
 void	init_philo(t_args *args);
@@ -99,7 +102,7 @@ void	init_forks(t_philo *philo, int pos, t_fork *forks);
 int		init_dining(t_args *args);
 void	*dead_check(void *data);
 
-/*UTILS*/
+/*########## UTILS ##########*/
 int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);
