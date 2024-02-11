@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:56:20 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 19:27:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:55:25 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	philo_dead(t_philo *philo)
 	long	time_passed;
 	long	time_to_die;
 
-	if (get_long(&philo->philo_mutex, &philo->goal) == 1)
+	if (get_value(&philo->philo_mutex, &philo->goal) == 1)
 		return (1);
-	last_time_eat = get_long(&philo->philo_mutex, &philo->last_time_eat);
+	last_time_eat = get_value(&philo->philo_mutex, &philo->last_time_eat);
 	time_passed = gettime(MILLISECONDS) - last_time_eat;
 	time_to_die = philo->args->time_to_die / 1e3;
 	if (time_passed > time_to_die)
@@ -45,7 +45,7 @@ void	*dead_check(void *data)
 		{
 			if (philo_dead(args->philoarr + i) == 0)
 			{
-				set_long(&args->args_mutex, &args->finish, 0);
+				set_value(&args->args_mutex, &args->finish, 0);
 				write_status(DIED, args->philoarr + i);
 			}
 		}

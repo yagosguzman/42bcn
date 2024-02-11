@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 18:39:38 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:28:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int	init_data(t_args *args)
 	args->finish = -1;
 	args->ready = -1;
 	args->running = 0;
-	args->philoarr = malloc(sizeof(t_philo) * args->philo_num);
-	if (!args->philoarr)
-		return (ft_error(3));
+	args->start = 0;
 	args->forks = malloc(sizeof(t_fork) * args->philo_num);
 	if (!args->forks)
 		return (ft_error(3));
@@ -70,6 +68,9 @@ int	init_data(t_args *args)
 		args->forks[i].id = i;
 		i++;
 	}
+	args->philoarr = malloc(sizeof(t_philo) * args->philo_num);
+	if (!args->philoarr)
+		return (ft_error(3));
 	init_philo(args);
 	return (0);
 }

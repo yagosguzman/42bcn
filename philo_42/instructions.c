@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/14 18:52:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:51:30 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	write_status(t_status status, t_philo *philo)
 	long	time_passed;
 
 	time_passed = gettime(MILLISECONDS) - philo->args->start;
-	if (get_long(&philo->args->args_mutex, &philo->goal))
+	if (get_value(&philo->args->args_mutex, &philo->goal))
 		return ;
 	mutex_handler(&philo->args->write_mutex, LOCK);
 	if (simulation_finished(philo->args) != 0)
@@ -46,14 +46,14 @@ void	ft_eating(t_philo *philo)
 		write_status(TOOK_1ST_FORK, philo);
 		mutex_handler(&philo->secondfork->fork, LOCK);
 		write_status(TOOK_2ND_FORK, philo);
-		set_long(&philo->philo_mutex, &philo->last_time_eat,
+		set_value(&philo->philo_mutex, &philo->last_time_eat,
 			gettime(MILLISECONDS));
-		set_long(&philo->philo_mutex, &philo->num_eat,
+		set_value(&philo->philo_mutex, &philo->num_eat,
 			philo->num_eat + 1);
 		write_status(EATING, philo);
 		precise_usleep(philo->args->time_to_sleep, philo->args);
 		if (philo->num_eat == philo->args->max_eat)
-			set_long(&philo->philo_mutex, &philo->goal, 1);
+			set_value(&philo->philo_mutex, &philo->goal, 1);
 		mutex_handler(&philo->firstfork->fork, UNLOCK);
 		mutex_handler(&philo->secondfork->fork, UNLOCK);
 	}

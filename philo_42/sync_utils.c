@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/14 18:57:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:54:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sync_threads(t_args *args)
 {
-	while (get_long(&args->args_mutex, &args->ready) != 0)
+	while (get_value(&args->args_mutex, &args->ready) != 0)
 		;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 18:40:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:53:58 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	*dining_sim(void *data)
 
 	philo = (t_philo *)data;
 	sync_threads(philo->args);
-	set_long(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
-	set_long(&philo->args->write_mutex, &philo->args->running,
+	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
+	set_value(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
 	// fairness_solution(philo); // Hace que todos los th hagan algo al inicio
 	while (simulation_finished(philo->args) != 0)
 	{
-		if (get_long(&philo->args->args_mutex, &philo->goal) == 1)
+		if (get_value(&philo->args->args_mutex, &philo->goal) == 1)
 			exit (33); // este exit es legal?
 		else
 		{
@@ -42,8 +42,8 @@ void	*solo_philo(void *args)
 
 	philo = (t_philo *)args;
 	sync_threads(philo->args);
-	set_long(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
-	set_long(&philo->args->write_mutex, &philo->args->running,
+	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
+	set_value(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
 	write_status(TOOK_1ST_FORK, philo);
 	while (simulation_finished(philo->args) != 0)
@@ -71,7 +71,7 @@ int	init_dining(t_args *args)
 		}
 		thread_handler(&args->checker, dead_check, args, CREATE);
 		args->start = gettime(MILLISECONDS);
-		set_long(&args->args_mutex, &args->ready, 0);
+		set_value(&args->args_mutex, &args->ready, 0);
 	}
 	i = 0;
 	while (i < args->philo_num)
@@ -79,7 +79,7 @@ int	init_dining(t_args *args)
 		thread_handler(&args->philoarr[i].thread_id, NULL, NULL, JOIN);
 		i++;
 	}
-	set_long(&args->args_mutex, &args->finish, 0);
+	set_value(&args->args_mutex, &args->finish, 0);
 	thread_handler(&args->checker, NULL, NULL, JOIN);
 	return (0);
 }

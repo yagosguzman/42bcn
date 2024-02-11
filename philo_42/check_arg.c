@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 19:37:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:08:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ long	arg_to_long(int argnum, char *str, t_args *database)
 	while (str[j])
 		j++;
 	if ((j - i) > 19)
-		return (1);	
+		return (1);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = (result * 10) + (str[i] - 48);
