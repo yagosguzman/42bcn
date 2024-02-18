@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 20:08:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:59:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_valid_arg(char **argv)
 	{
 		while (is_space(argv[i][j]) == 0)
 			j++;
-		if (argv[i][j] == '\0')
+		if (argv[i][j] == '\0' || (argv[i][j] == '+' && argv[i][j + 1] == '\0'))
 			return (1);
 		if (argv[i][j] == '+')
 			j++;

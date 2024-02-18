@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 20:28:44 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:45:41 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_philo(t_args *args)
 	i = 0;
 	while (i < args->philo_num)
 	{
-		philo = args->philoarr + i;
+		philo = &(args->philoarr[i]);
 		philo->id = i + 1;
 		philo->num_eat = 0;
 		philo->goal = 0;

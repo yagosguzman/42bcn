@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/13 18:27:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/18 19:26:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	mutex_handler(pthread_mutex_t *mutex, t_mutex operation)
 			return (ft_mutex_error(DESTROY));
 	}
 	else
-		printf("Check the operation code used mutex_handler.\n");
+		printf("Check operation code used in mutex_handler.\n");
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int	thread_handler(pthread_t *thread, void *(*foo)(void *),
 			return (ft_mutex_error(DETACH));
 	}
 	else
-		printf("Check the operation code used in thread_handler.\n");
+		printf("Check operation code used in thread_handler.\n");
 	return (0);
 }
 
@@ -78,5 +78,4 @@ void	clean_sim(t_args *args)
 	mutex_handler(&args->write_mutex, DESTROY);
 	free(args->forks);
 	free(args->philoarr);
-	printf("Dining finshed.\n");
 }

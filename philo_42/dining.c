@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 20:53:58 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:18:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*dining_sim(void *data)
 	while (simulation_finished(philo->args) != 0)
 	{
 		if (get_value(&philo->args->args_mutex, &philo->goal) == 1)
-			exit (33); // este exit es legal?
+			break;
 		else
 		{
 			ft_eating(philo);
@@ -43,11 +43,12 @@ void	*solo_philo(void *args)
 	philo = (t_philo *)args;
 	sync_threads(philo->args);
 	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
+	printf("%ld\n", philo->last_time_eat);
 	set_value(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
 	write_status(TOOK_1ST_FORK, philo);
 	while (simulation_finished(philo->args) != 0)
-		usleep(250);
+		usleep(50);
 	return (NULL);
 }
 
@@ -58,7 +59,7 @@ int	init_dining(t_args *args)
 	i = 0;
 	if (args->max_eat == 0)
 		return (ft_error(4));
-	else if (args->philo_num == 1)
+	else if (args->philo_num == 1) //Revisar este caso (no funciona)
 		thread_handler(&args->philoarr[0].thread_id, solo_philo,
 			&args->philoarr[0], CREATE);
 	else
