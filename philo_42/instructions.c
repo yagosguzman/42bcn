@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 20:51:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:17:45 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_eating(t_philo *philo)
 		set_value(&philo->philo_mutex, &philo->num_eat,
 			philo->num_eat + 1);
 		write_status(EATING, philo);
-		precise_usleep(philo->args->time_to_sleep, philo->args);
+		precise_usleep(philo->args->time_to_eat, philo->args);
 		if (philo->num_eat == philo->args->max_eat)
 			set_value(&philo->philo_mutex, &philo->goal, 1);
 		mutex_handler(&philo->firstfork->fork, UNLOCK);

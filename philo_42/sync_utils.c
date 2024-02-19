@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/11 20:54:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:39:53 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	precise_usleep(long usec, t_args *args)
 	while (gettime(MICROSECONDS) - start < usec)
 	{
 		if (simulation_finished(args) == 0)
-			return ;
+			break ;
 		progress = gettime(MICROSECONDS) - start;
 		remain = usec - progress;
 		if (remain > 1e3)
