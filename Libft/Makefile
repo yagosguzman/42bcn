@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 17:32:25 by ysanchez          #+#    #+#              #
-#    Updated: 2023/07/05 17:46:26 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/02/21 18:09:32 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,3 +52,5 @@ bonus: .bonus
 .bonus: $(OBJ) $(OBJ_BONUS) $(HEADER)
 		ar rc $(NAME) $(OBJ) $(OBJ_BONUS)
 		touch .bonus
+
+.PHONY: make all clean fclean re
