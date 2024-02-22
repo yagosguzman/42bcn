@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/19 19:39:53 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:31:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ long	gettime(t_time time_unit)
 	if (gettimeofday(&time_value, NULL) != 0)
 		return (ft_error(5));
 	if (time_unit == SECONDS)
-		return (time_value.tv_sec + (time_value.tv_usec / 1e6));
+		return (time_value.tv_sec + (time_value.tv_usec / 1000000));
 	else if (time_unit == MILLISECONDS)
-		return ((time_value.tv_sec * 1e3) + (time_value.tv_usec / 1e3));
+		return ((time_value.tv_sec * 1000) + (time_value.tv_usec / 1000));
 	else if (time_unit == MICROSECONDS)
-		return ((time_value.tv_sec * 1e6) + time_value.tv_usec);
+		return ((time_value.tv_sec * 1000000) + time_value.tv_usec);
 	else
 		return (ft_error(6));
 }
@@ -57,7 +57,7 @@ void	precise_usleep(long usec, t_args *args)
 	}
 }
 
-int	check_all_running(pthread_mutex_t *mutex, long *running, long philo_num)
+int	all_running(pthread_mutex_t *mutex, long *running, long philo_num)
 {
 	int	flag;
 

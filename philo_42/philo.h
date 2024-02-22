@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/19 20:24:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:15:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int		simulation_finished(t_args *args);
 void	sync_threads(t_args *args);
 long	gettime(t_time time_unit);
 void	precise_usleep(long usec, t_args *args);
-int		check_all_running(pthread_mutex_t *mutex, long *running,
+int		all_running(pthread_mutex_t *mutex, long *running,
 			long philo_num);
 void	fairness_solution(t_philo *philo);
 
