@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/18 20:18:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:31:45 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	*solo_philo(void *args)
 	philo = (t_philo *)args;
 	sync_threads(philo->args);
 	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
-	printf("%ld\n", philo->last_time_eat);
 	set_value(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
 	write_status(TOOK_1ST_FORK, philo);
