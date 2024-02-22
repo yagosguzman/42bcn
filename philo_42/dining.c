@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/22 23:45:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 00:25:49 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	*solo_philo(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	sync_threads(philo->args);
 	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISECONDS));
-	set_value(&philo->args->write_mutex, &philo->args->running,
-		philo->args->running + 1);
+	set_value(&philo->args->args_mutex, &philo->args->ready, 0);
+	set_value(&philo->args->write_mutex, &philo->args->start, gettime(MILLISECONDS));
 	write_status(TOOK_1ST_FORK, philo);
 	while (simulation_finished(philo->args) != 0)
 		usleep(50);
