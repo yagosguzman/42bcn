@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/19 19:41:42 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:07:02 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_philo(t_args *args)
 	i = 0;
 	while (i < args->philo_num)
 	{
-		philo = &(args->philoarr[i]);
+		philo = &args->philoarr[i];
 		philo->id = i + 1;
 		philo->num_eat = 0;
 		philo->goal = 0;
@@ -57,11 +57,11 @@ int	init_data(t_args *args)
 	args->ready = -1;
 	args->running = 0;
 	args->start = 0;
+	mutex_handler(&args->args_mutex, INIT);
+	mutex_handler(&args->write_mutex, INIT);
 	args->forks = malloc(sizeof(t_fork) * args->philo_num);
 	if (!args->forks)
 		return (ft_error(3));
-	mutex_handler(&args->args_mutex, INIT);
-	mutex_handler(&args->write_mutex, INIT);
 	while (i < args->philo_num)
 	{
 		mutex_handler(&args->forks[i].fork, INIT);

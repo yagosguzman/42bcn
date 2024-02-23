@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/20 13:15:37 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:59:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ typedef enum e_mutex
 
 typedef enum e_time
 {
-	SECONDS,
-	MILLISECONDS,
-	MICROSECONDS
+	MILLISEC,
+	MICROSEC
 }	t_time;
 
 typedef enum e_status
@@ -67,10 +66,10 @@ typedef struct s_philo
 	long			num_eat;
 	long			goal;
 	long			last_time_eat;
-	t_fork			*firstfork;
-	t_fork			*secondfork;
 	t_args			*args;
 	pthread_mutex_t	philo_mutex;
+	t_fork			*firstfork;
+	t_fork			*secondfork;
 }	t_philo;
 
 struct s_args
@@ -94,7 +93,7 @@ struct s_args
 /*########## check_arg.c ##########*/
 int		check_valid_arg(char **argv);
 void	save_info(int i, long result, t_args *args);
-long	arg_to_long(int argnum, char *str, t_args *database);
+int		arg_to_long(int argnum, char *str, t_args *database);
 int		checker_philo(int argc, char **argv, t_args *args);
 
 /*########## data_init.c ##########*/

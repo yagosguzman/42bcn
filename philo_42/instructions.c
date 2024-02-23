@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/19 20:17:45 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:03:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	write_status(t_status status, t_philo *philo)
 {
 	long	time_passed;
 
-	time_passed = gettime(MILLISECONDS) - philo->args->start;
+	time_passed = gettime(MILLISEC) - philo->args->start;
 	if (get_value(&philo->args->args_mutex, &philo->goal))
 		return ;
 	mutex_handler(&philo->args->write_mutex, LOCK);
@@ -47,7 +47,7 @@ void	ft_eating(t_philo *philo)
 		mutex_handler(&philo->secondfork->fork, LOCK);
 		write_status(TOOK_2ND_FORK, philo);
 		set_value(&philo->philo_mutex, &philo->last_time_eat,
-			gettime(MILLISECONDS));
+			gettime(MILLISEC));
 		set_value(&philo->philo_mutex, &philo->num_eat,
 			philo->num_eat + 1);
 		write_status(EATING, philo);

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/18 19:26:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:37:12 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	clean_sim(t_args *args)
 	i = 0;
 	while (i < args->philo_num)
 	{
-		philo = args->philoarr + i;
+		philo = &args->philoarr[i];
+		mutex_handler(&args->forks[i].fork, DESTROY);
 		mutex_handler(&philo->philo_mutex, DESTROY);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/18 17:59:09 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:23:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,51 @@ static int	is_space(char c)
 		return (0);
 	else
 		return (1);
+}
+
+void	save_info(int i, long result, t_args *args)
+{
+	if (i == 1)
+		args->philo_num = result;
+	else if (i == 2)
+		args->time_to_die = result * 1000;
+	else if (i == 3)
+		args->time_to_eat = result * 1000;
+	else if (i == 4)
+		args->time_to_sleep = result * 1000;
+	else if (i == 5)
+		args->max_eat = result;
+	else
+		return ;
+}
+
+int	arg_to_long(int argnum, char *str, t_args *database)
+{
+	int		i;
+	int		j;
+	long	result;
+
+	i = 0;
+	result = 0;
+	while (is_space(str[i]) == 0 && str[i] != '\0')
+		i++;
+	if (str[i] == '+')
+		i++;
+	j = i;
+	while (str[j])
+		j++;
+	if ((j - i) > 19)
+		return (1);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i] - 48);
+		i++;
+	}
+	if (result > LONG_MAX || result <= 0)
+		return (1);
+	else
+		save_info(argnum, result, database);
+	return (0);
 }
 
 int	check_valid_arg(char **argv)
@@ -45,49 +90,6 @@ int	check_valid_arg(char **argv)
 		i++;
 		j = 0;
 	}
-	return (0);
-}
-// DUDA SI GUARDAR EL TIMETOX EN MILI O MICRO
-void	save_info(int i, long result, t_args *args)
-{
-	if (i == 1)
-		args->philo_num = result;
-	if (i == 2)
-		args->time_to_die = result * 1000;
-	if (i == 3)
-		args->time_to_eat = result * 1000;
-	if (i == 4)
-		args->time_to_sleep = result * 1000;
-	if (i == 5)
-		args->max_eat = result;
-}
-
-long	arg_to_long(int argnum, char *str, t_args *database)
-{
-	int		i;
-	int		j;
-	long	result;
-
-	i = 0;
-	result = 0;
-	while (is_space(str[i]) == 0 && str[i] != '\0')
-		i++;
-	if (str[i] == '+')
-		i++;
-	j = i;
-	while (str[j])
-		j++;
-	if ((j - i) > 19)
-		return (1);
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
-	}
-	if (result > LONG_MAX || result < 0)
-		return (1);
-	else
-		save_info(argnum, result, database);
 	return (0);
 }
 
