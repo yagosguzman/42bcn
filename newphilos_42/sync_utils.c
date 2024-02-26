@@ -6,17 +6,11 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 19:14:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:28:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	sync_threads(t_args *args)
-{
-	while (get_value(&args->args_mutex, &args->ready) != 0)
-		;
-}
 
 long	gettime(t_time time_unit)
 {
@@ -45,7 +39,7 @@ void	precise_usleep(long usec, t_args *args)
 			break ;
 		progress = gettime(MICROSEC) - start;
 		remain = usec - progress;
-		if (remain > 1e3)
+		if (remain > 1000)
 			usleep(remain / 2);
 		else
 		{
@@ -67,16 +61,3 @@ int	all_running(pthread_mutex_t *mutex, long *running, long philo_num)
 	return (flag);
 }
 
-void	fairness_solution(t_philo *philo)
-{
-	if (philo->args->philo_num % 2 != 0)
-	{
-		if (philo->id % 2 != 0)
-			ft_thinking(philo);
-	}
-	else
-	{
-		if (philo->id % 2 == 0)
-			precise_usleep(30 * 1e3, philo->args);
-	}
-}

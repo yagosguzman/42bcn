@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:38:53 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/23 19:59:45 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:13:15 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*dining_sim(void *data)
 	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISEC));
 	set_value(&philo->args->write_mutex, &philo->args->running,
 		philo->args->running + 1);
-	// fairness_solution(philo); // Hace que todos los th hagan algo al inicio
+	fairness_solution(philo); // Hace que todos los th hagan algo al inicio
 	while (simulation_finished(philo->args) != 0)
 	{
 		if (get_value(&philo->args->args_mutex, &philo->goal) == 1)
@@ -44,12 +44,11 @@ void	*solo_philo(void *data)
 	philo = (t_philo *)data;
 	set_value(&philo->philo_mutex, &philo->last_time_eat, gettime(MILLISEC));
 	set_value(&philo->args->args_mutex, &philo->args->running,
-		&philo->args->running + 1);
+		philo->args->running + 1);
 	set_value(&philo->args->write_mutex, &philo->args->start,
 		gettime(MILLISEC));
 	write_status(TOOK_1ST_FORK, philo);
-	while (simulation_finished(philo->args) != 0)
-		usleep(50);
+	usleep(philo->args->time_to_die);
 	return (NULL);
 }
 

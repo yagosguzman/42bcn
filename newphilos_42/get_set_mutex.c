@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_set_mutex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 13:03:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 20:16:19 by ysanchez         ###   ########.fr       */
+/*   Created: 2023/12/10 16:32:20 by ysanchez          #+#    #+#             */
+/*   Updated: 2024/02/11 20:50:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	set_value(pthread_mutex_t *mutex, long *dst, long value)
 {
-	t_args	data;
+	mutex_handler(mutex, LOCK);
+	*dst = value;
+	mutex_handler(mutex, UNLOCK);
+}
 
-	if (argc < 5 || argc > 6)
-		return (ft_error(0));
-	if (checker_philo(argc, argv, &data) != 0)
-		return (1);
-	if (init_data(&data) != 0)
-	{
-		clean_sim(&data);
-		return (1);
-	}
-	if (init_dining(&data) != 0)
-	{
-		clean_sim(&data);
-		return (1);
-	}
-	clean_sim(&data);
-	printf("Dining finished.\n");
-	return (0);
+long	get_value(pthread_mutex_t *mutex, long *src)
+{
+	long	result;
+
+	mutex_handler(mutex, LOCK);
+	result = *src;
+	mutex_handler(mutex, UNLOCK);
+	return (result);
+}
+
+int	simulation_finished(t_args *args)
+{
+	return (get_value(&args->args_mutex, &args->finish));
 }

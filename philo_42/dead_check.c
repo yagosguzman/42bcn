@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:56:20 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/23 20:01:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:11:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*dead_check(void *data)
 				set_value(&args->args_mutex, &args->finish, 0);
 			}
 			if (get_value(&args->args_mutex, &args->max_eat) == get_value(&args->philoarr[i].philo_mutex, &args->philoarr[i].num_eat))
-				set_value(&args->args_mutex, &args->finish, &args->finish + 1);
+				set_value(&args->args_mutex, &args->finish, args->finish + 1);
 		}
 	}
 	return (NULL);
