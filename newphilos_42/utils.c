@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 20:14:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:40:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	clean_sim(t_args *args)
 	}
 	mutex_handler(&args->args_mutex, DESTROY);
 	mutex_handler(&args->write_mutex, DESTROY);
-	free(args->forks);
-	free(args->philoarr);
+	if (args->forks)
+		free(args->forks);
+	if (args->philoarr)
+		free(args->philoarr);
 }

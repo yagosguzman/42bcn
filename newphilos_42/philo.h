@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/23 19:59:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:03:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_philo
 	long			num_eat;
 	long			goal;
 	long			last_time_eat;
-	t_args			*args;
+	t_args			*table;
 	pthread_mutex_t	philo_mutex;
 	t_fork			*firstfork;
 	t_fork			*secondfork;
@@ -83,7 +83,7 @@ struct s_args
 	long			ready;
 	long			running;
 	long			start;
-	pthread_mutex_t	args_mutex;
+	pthread_mutex_t	table_mutex;
 	pthread_mutex_t	write_mutex;
 	t_fork			*forks;
 	t_philo			*philoarr;
@@ -94,10 +94,10 @@ struct s_args
 int		check_valid_arg(char **argv);
 void	save_info(int i, long result, t_args *args);
 int		arg_to_long(int argnum, char *str, t_args *database);
-int		checker_philo(int argc, char **argv, t_args *args);
+int		checker_arg(int argc, char **argv, t_args *args);
 
 /*########## data_init.c ##########*/
-void	init_forks(t_philo *philo, int pos, t_fork *forks);
+void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num);
 void	init_philo(t_args *args);
 int		init_data(t_args *args);
 
@@ -106,10 +106,6 @@ int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);
 void	clean_sim(t_args *args);
-
-/*########## dead_check.c ##########*/
-int		philo_dead(t_philo *philo);
-void	*dead_check(void *data);
 
 /*########## get_set_mutex.c ##########*/
 void	set_value(pthread_mutex_t *mutex, long *dst, long value);
@@ -134,10 +130,5 @@ void	write_status(t_status status, t_philo *philo);
 void	ft_eating(t_philo *philo);
 void	ft_sleeping(t_philo *philo);
 void	ft_thinking(t_philo *philo);
-
-/*########## dining.c ##########*/
-void	*dining_sim(void *data);
-void	*solo_philo(void *args);
-int		init_dining(t_args *args);
 
 #endif

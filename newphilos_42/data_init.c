@@ -6,17 +6,14 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/23 18:07:02 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:02:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_forks(t_philo *philo, int pos, t_fork *forks)
+void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num)
 {
-	int	philo_num;
-
-	philo_num = philo->args->philo_num;
 	if (philo->id % 2 == 0)
 	{
 		philo->firstfork = &forks[(pos + 1) % philo_num];
@@ -29,48 +26,48 @@ void	init_forks(t_philo *philo, int pos, t_fork *forks)
 	}
 }
 
-void	init_philo(t_args *args)
+void	init_philo(t_args *table)
 {
 	int		i;
 	t_philo	*philo;
 
 	i = 0;
-	while (i < args->philo_num)
+	while (i < table->philo_num)
 	{
-		philo = &args->philoarr[i];
+		philo = &table->philoarr[i];
 		philo->id = i + 1;
 		philo->num_eat = 0;
 		philo->goal = 0;
-		philo->args = args;
+		philo->table = table;
 		mutex_handler(&philo->philo_mutex, INIT);
-		init_forks(philo, i, args->forks);
+		init_forks(philo, i, table->forks, philo->id);
 		i++;
 	}
 }
 
-int	init_data(t_args *args)
+int	init_data(t_args *table)
 {
 	int	i;
 
 	i = 0;
-	args->finish = -1;
-	args->ready = -1;
-	args->running = 0;
-	args->start = 0;
-	mutex_handler(&args->args_mutex, INIT);
-	mutex_handler(&args->write_mutex, INIT);
-	args->forks = malloc(sizeof(t_fork) * args->philo_num);
-	if (!args->forks)
+	table->finish = -1;
+	table->ready = -1;
+	table->running = 0;
+	table->start = 0;
+	mutex_handler(&table->table_mutex, INIT);
+	mutex_handler(&table->write_mutex, INIT);
+	table->forks = malloc(sizeof(t_fork) * table->philo_num);
+	if (!table->forks)
 		return (ft_error(3));
-	while (i < args->philo_num)
+	while (i < table->philo_num)
 	{
-		mutex_handler(&args->forks[i].fork, INIT);
-		args->forks[i].id = i;
+		mutex_handler(&table->forks[i].fork, INIT);
+		table->forks[i].id = i;
 		i++;
 	}
-	args->philoarr = malloc(sizeof(t_philo) * args->philo_num);
-	if (!args->philoarr)
+	table->philoarr = malloc(sizeof(t_philo) * table->philo_num);
+	if (!table->philoarr)
 		return (ft_error(3));
-	init_philo(args);
+	init_philo(table);
 	return (0);
 }

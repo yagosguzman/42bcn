@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/23 17:23:07 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:47:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static int	is_space(char c)
 		return (1);
 }
 
-void	save_info(int i, long result, t_args *args)
+void	save_info(int i, long result, t_args *table)
 {
 	if (i == 1)
-		args->philo_num = result;
+		table->philo_num = result;
 	else if (i == 2)
-		args->time_to_die = result * 1000;
+		table->time_to_die = result;
 	else if (i == 3)
-		args->time_to_eat = result * 1000;
+		table->time_to_eat = result;
 	else if (i == 4)
-		args->time_to_sleep = result * 1000;
+		table->time_to_sleep = result;
 	else if (i == 5)
-		args->max_eat = result;
+		table->max_eat = result;
 	else
 		return ;
 }
@@ -93,7 +93,7 @@ int	check_valid_arg(char **argv)
 	return (0);
 }
 
-int	checker_philo(int argc, char **argv, t_args *database)
+int	checker_arg(int argc, char **argv, t_args *database)
 {
 	int	i;
 
