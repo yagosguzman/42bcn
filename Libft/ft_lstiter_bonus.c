@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:09:17 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/05 17:16:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:24:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst && lst != NULL)
+	while (lst)
 	{
 		f(lst->content);
 		lst = lst->next;

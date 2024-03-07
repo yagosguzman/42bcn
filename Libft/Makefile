@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 17:32:25 by ysanchez          #+#    #+#              #
-#    Updated: 2024/02/22 20:18:52 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/03/07 11:15:01 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-	ar rc $(NAME) $(OBJ)
+	@ ar rc $(NAME) $(OBJ)
 
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $<
@@ -50,7 +50,7 @@ re: fclean all
 bonus: .bonus
 
 .bonus: $(OBJ) $(OBJ_BONUS) $(HEADER)
-		ar rc $(NAME) $(OBJ) $(OBJ_BONUS)
-		touch .bonus
+		@ ar rc $(NAME) $(OBJ) $(OBJ_BONUS)
+		@ touch .bonus
 
-.PHONY: make all clean fclean re
+.PHONY: all clean fclean re bonus

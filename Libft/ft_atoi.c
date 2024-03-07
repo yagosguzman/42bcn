@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:56:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/06 16:39:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:19:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_atoi(const char *str)
 	int	flag;
 	int	result;
 
+	i = ft_isspace(str);
 	flag = 0;
 	result = 0;
-	i = ft_isspace(str);
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')

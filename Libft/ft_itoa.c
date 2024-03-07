@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:58:51 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/07 20:31:01 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:23:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,3 @@ char	*ft_itoa(int n)
 		result[0] = 45;
 	return (result);
 }
-/* int main(void)
-{
-	ft_itoa(-125);
-	return(0);
-}
- */
