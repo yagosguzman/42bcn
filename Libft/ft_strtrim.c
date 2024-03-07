@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:12:58 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/12 18:11:54 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:17:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		j;
 	int		k;
 
+	if (!s1 || !set)
+		return (NULL);
 	i = aux_begin(s1, set);
 	if (i == (int)ft_strlen(s1))
 		return (ft_strdup(""));

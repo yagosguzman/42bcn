@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:51:34 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/07/05 18:25:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:19:01 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	size_t	i;
 
 	i = 0;
-	if (dst == NULL && src == NULL)
+	if (!dst && !src)
 		return (NULL);
 	while (i < n)
 	{

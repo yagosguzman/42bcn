@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 20:17:22 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/08 17:11:11 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:11:17 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,3 @@ void	ft_putnbr_fd(int n, int fd)
 		i--;
 	}
 }
-/* 
-int	main(void)
-{
-	ft_putnbr_fd(150, 1);
-	return (0);
-} */

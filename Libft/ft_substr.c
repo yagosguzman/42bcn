@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:13:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/09/07 15:46:44 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:24:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*substr;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	if (start >= (unsigned int)ft_strlen(s))
 		len = 0;
@@ -33,9 +35,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-/*
-int	main (void)
-{
-	ft_substr("Hola que tal", 6, 4);
-	return (0);
-}*/

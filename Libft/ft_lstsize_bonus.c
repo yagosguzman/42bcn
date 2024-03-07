@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:10:21 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/23 16:10:23 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:11:58 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	int	i;
 
 	i = 0;
-	while (lst != NULL)
+	while (lst)
 	{
 		i++;
 		lst = lst->next;

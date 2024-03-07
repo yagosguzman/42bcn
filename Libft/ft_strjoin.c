@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:22:10 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/06/06 15:47:07 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/03/07 21:15:13 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	char	*newstr;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	j = 0;
 	newstr = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
