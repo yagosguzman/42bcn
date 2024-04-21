@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 21:03:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:18:39 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,34 +101,34 @@ void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num);
 void	init_philo(t_args *args);
 int		init_data(t_args *args);
 
-/*########## utils.c ##########*/
-int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
-int		thread_handler(pthread_t *thread, void *(*foo)(void *),
-			void *data, t_thread operation);
-void	clean_sim(t_args *args);
-
-/*########## get_set_mutex.c ##########*/
-void	set_value(pthread_mutex_t *mutex, long *dst, long value);
-long	get_value(pthread_mutex_t *mutex, long *src);
-int		simulation_finished(t_args *args);
-
-/*########## sync_utils.c ##########*/
-void	sync_threads(t_args *args);
-long	gettime(t_time time_unit);
-void	precise_usleep(long usec, t_args *args);
-int		all_running(pthread_mutex_t *mutex, long *running,
-			long philo_num);
-void	fairness_solution(t_philo *philo);
-
 /*########## error_handler.c ##########*/
 int		ft_error(int errnum);
 int		ft_mutex_error(int errnum);
 int		ft_thread_error(int errnum);
+
+/*########## get_set_mutex.c ##########*/
+void	set_value(pthread_mutex_t *mutex, long *dst, long value);
+long	get_value(pthread_mutex_t *mutex, long *src);
+int		simulation_finished(t_args *args); // TO DO
 
 /*########## instructions.c ##########*/
 void	write_status(t_status status, t_philo *philo);
 void	ft_eating(t_philo *philo);
 void	ft_sleeping(t_philo *philo);
 void	ft_thinking(t_philo *philo);
+
+/*########## sync_utils.c ##########*/
+void	sync_threads(t_args *args); // TO DO
+long	gettime(t_time time_unit);
+void	precise_usleep(long usec, t_args *args);
+int		all_running(pthread_mutex_t *mutex, long *running,
+			long philo_num);
+void	fairness_solution(t_philo *philo); // TO DO
+
+/*########## utils.c ##########*/
+int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
+int		thread_handler(pthread_t *thread, void *(*foo)(void *),
+			void *data, t_thread operation);
+void	clean_sim(t_args *args);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 19:05:57 by ysanchez          #+#    #+#              #
-#    Updated: 2024/02/23 18:37:51 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/04/21 18:22:30 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ FLAGS = -Wall -Werror -Wextra -fsanitize=thread #-fsanitize=thread
 RM = rm -f
 HEADER = philo.h
 HEADER_BONUS = philo_bonus.h
-SRC = main.c error_handler.c check_arg.c utils.c data_init.c dining.c \
-		get_set_mutex.c instructions.c dead_check.c sync_utils.c
+SRC = main.c error_handler.c check_arg.c utils.c data_init.c instructions.c \
+		get_set_mutex.c sync_utils.c
 SRC_BONUS = philo_bonus/
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
