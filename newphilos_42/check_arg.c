@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 20:47:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:06:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	arg_to_long(int argnum, char *str, t_args *database)
 
 	i = 0;
 	result = 0;
-	while (is_space(str[i]) == 0 && str[i] != '\0')
+	while (str[i] != '\0' && is_space(str[i]) == 0)
 		i++;
 	if (str[i] == '+')
 		i++;
