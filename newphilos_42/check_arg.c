@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/22 19:06:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:11:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ static int	is_space(char c)
 		return (1);
 }
 
-void	save_info(int i, long result, t_args *table)
+void	save_info(int i, long result, t_data *data)
 {
 	if (i == 1)
-		table->philo_num = result;
+		data->philo_num = result;
 	else if (i == 2)
-		table->time_to_die = result;
+		data->time_to_die = result;
 	else if (i == 3)
-		table->time_to_eat = result;
+		data->time_to_eat = result;
 	else if (i == 4)
-		table->time_to_sleep = result;
+		data->time_to_sleep = result;
 	else if (i == 5)
-		table->max_eat = result;
+		data->max_eat = result;
 	else
 		return ;
 }
 
-int	arg_to_long(int argnum, char *str, t_args *database)
+int	arg_to_long(int argnum, char *str, t_data *data)
 {
 	int		i;
 	int		j;
@@ -61,7 +61,7 @@ int	arg_to_long(int argnum, char *str, t_args *database)
 	if (result > LONG_MAX || result <= 0)
 		return (1);
 	else
-		save_info(argnum, result, database);
+		save_info(argnum, result, data);
 	return (0);
 }
 
@@ -93,18 +93,18 @@ int	check_valid_arg(char **argv)
 	return (0);
 }
 
-int	checker_arg(int argc, char **argv, t_args *database)
+int	checker_arg(int argc, char **argv, t_data *data)
 {
 	int	i;
 
 	i = 1;
 	if (argc == 5)
-		database->max_eat = -1;
+		data->max_eat = -1;
 	if (check_valid_arg(argv) == 1)
 		return (ft_error(1));
 	while (i < argc)
 	{
-		if (arg_to_long(i, argv[i], database) == 1)
+		if (arg_to_long(i, argv[i], data) == 1)
 			return (ft_error(2));
 		i++;
 	}

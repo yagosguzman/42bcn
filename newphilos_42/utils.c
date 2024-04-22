@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/21 18:10:58 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:06:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ int	thread_handler(pthread_t *thread, void *(*foo)(void *),
 	return (0);
 }
 
-void	clean_sim(t_args *args)
+void	clean_sim(t_data *data)
 {
 	t_philo	*philo;
 	int		i;
 
 	i = 0;
-	while (i < args->philo_num)
+	while (i < data->philo_num)
 	{
-		philo = &args->philoarr[i];
-		mutex_handler(&args->forks[i].fork, DESTROY);
+		philo = &data->philoarr[i];
+		mutex_handler(&data->forks[i].fork, DESTROY);
 		mutex_handler(&philo->philo_mutex, DESTROY);
 		i++;
 	}
-	mutex_handler(&args->table_mutex, DESTROY);
-	mutex_handler(&args->write_mutex, DESTROY);
-	if (args->forks)
-		free(args->forks);
-	if (args->philoarr)
-		free(args->philoarr);
+	mutex_handler(&data->table_mutex, DESTROY);
+	mutex_handler(&data->write_mutex, DESTROY);
+	if (data->forks)
+		free(data->forks);
+	if (data->philoarr)
+		free(data->philoarr);
 }

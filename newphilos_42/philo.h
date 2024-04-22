@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/21 18:18:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:08:02 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef enum e_status
 	DIED
 }	t_status;
 
-typedef struct s_args	t_args;
+typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
@@ -66,13 +66,13 @@ typedef struct s_philo
 	long			num_eat;
 	long			goal;
 	long			last_time_eat;
-	t_args			*table;
+	t_data			*table;
 	pthread_mutex_t	philo_mutex;
 	t_fork			*firstfork;
 	t_fork			*secondfork;
 }	t_philo;
 
-struct s_args
+struct s_data
 {
 	long			philo_num;
 	long			time_to_die;
@@ -92,14 +92,14 @@ struct s_args
 
 /*########## check_arg.c ##########*/
 int		check_valid_arg(char **argv);
-void	save_info(int i, long result, t_args *args);
-int		arg_to_long(int argnum, char *str, t_args *database);
-int		checker_arg(int argc, char **argv, t_args *args);
+void	save_info(int i, long result, t_data *data);
+int		arg_to_long(int argnum, char *str, t_data *data);
+int		checker_arg(int argc, char **argv, t_data *data);
 
 /*########## data_init.c ##########*/
 void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num);
-void	init_philo(t_args *args);
-int		init_data(t_args *args);
+void	init_philo(t_data *data);
+int		init_data(t_data *data);
 
 /*########## error_handler.c ##########*/
 int		ft_error(int errnum);
@@ -109,7 +109,7 @@ int		ft_thread_error(int errnum);
 /*########## get_set_mutex.c ##########*/
 void	set_value(pthread_mutex_t *mutex, long *dst, long value);
 long	get_value(pthread_mutex_t *mutex, long *src);
-int		simulation_finished(t_args *args); // TO DO
+int		simulation_finished(t_data *data); // TO DO
 
 /*########## instructions.c ##########*/
 void	write_status(t_status status, t_philo *philo);
@@ -118,9 +118,9 @@ void	ft_sleeping(t_philo *philo);
 void	ft_thinking(t_philo *philo);
 
 /*########## sync_utils.c ##########*/
-void	sync_threads(t_args *args); // TO DO
+void	sync_threads(t_data *args); // TO DO
 long	gettime(t_time time_unit);
-void	precise_usleep(long usec, t_args *args);
+void	precise_usleep(long usec, t_data *data);
 int		all_running(pthread_mutex_t *mutex, long *running,
 			long philo_num);
 void	fairness_solution(t_philo *philo); // TO DO
@@ -129,6 +129,6 @@ void	fairness_solution(t_philo *philo); // TO DO
 int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);
-void	clean_sim(t_args *args);
+void	clean_sim(t_data *data);
 
 #endif

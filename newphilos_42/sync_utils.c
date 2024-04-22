@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:26:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 20:28:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/22 21:16:56 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ long	gettime(t_time time_unit)
 		return (ft_error(5));
 }
 
-void	precise_usleep(long usec, t_args *args)
+void	precise_usleep(long usec, t_data *data)
 {
 	long	start;
 	long	progress;
@@ -35,7 +35,7 @@ void	precise_usleep(long usec, t_args *args)
 	start = gettime(MICROSEC);
 	while (gettime(MICROSEC) - start < usec)
 	{
-		if (simulation_finished(args) == 0)
+		if (simulation_finished(data) == 0)
 			break ;
 		progress = gettime(MICROSEC) - start;
 		remain = usec - progress;

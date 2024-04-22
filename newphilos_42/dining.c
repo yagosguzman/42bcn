@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dining.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 13:03:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/22 21:16:26 by ysanchez         ###   ########.fr       */
+/*   Created: 2024/04/22 20:58:46 by ysanchez          #+#    #+#             */
+/*   Updated: 2024/04/22 21:09:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	init_dining(t_data *data)
 {
-	t_data	data;
+	int	i;
 
-	if (argc < 5 || argc > 6)
-		return (ft_error(0));
-	if (checker_arg(argc, argv, &data) != 0)
-		return (1);
-	if (init_data(&data) != 0)
+	i = 0;
+	if (data->philo_num == 1)
+		solo_philo(data);
+	while (i <= data->philo_num)
 	{
-		clean_sim(&data);
-		return (1);
+		thread_handler(&data->philoarr[i], 
 	}
-	init_dining(&data);
-	clean_sim(&data);
-	printf("Dining finished.\n");
-	return (0);
 }
