@@ -6,23 +6,23 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/22 21:11:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:02:13 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num)
+void	init_forks(t_philo *philo, int pos, t_fork *forks)
 {
-	if (philo->id % 2 == 0)
+	if (philo->id == 1)
 	{
-		philo->firstfork = &forks[(pos + 1) % philo_num];
-		philo->secondfork = &forks[pos];
+		philo->leftfork = &forks[pos];
+		philo->rightfork = &forks[philo->table->philo_num - 1];
 	}
 	else
 	{
-		philo->firstfork = &forks[pos];
-		philo->secondfork = &forks[(pos + 1) % philo_num];
+		philo->leftfork = &forks[pos];
+		philo->rightfork = &forks[(pos - 1)];
 	}
 }
 
@@ -40,7 +40,7 @@ void	init_philo(t_data *data)
 		philo->goal = 0;
 		philo->table = data;
 		mutex_handler(&philo->philo_mutex, INIT);
-		init_forks(philo, i, data->forks, philo->id);
+		init_forks(philo, i, data->forks);
 		i++;
 	}
 }
@@ -61,7 +61,7 @@ int	init_data(t_data *data)
 		return (ft_error(3));
 	while (i < data->philo_num)
 	{
-		mutex_handler(&data->forks[i].fork, INIT);
+		mutex_handler(&data->forks[i].fork_mtx, INIT);
 		data->forks[i].id = i;
 		i++;
 	}
@@ -69,5 +69,11 @@ int	init_data(t_data *data)
 	if (!data->philoarr)
 		return (ft_error(3));
 	init_philo(data);
+	i = 0;
+	while ((long)i < data->philo_num)
+	{
+		printf("Philo number: %d\nFirst fork is %i, second is  %i\n", data->philoarr[i].id, data->philoarr[i].leftfork->id, data->philoarr[i].rightfork->id);
+		i++;
+	}
 	return (0);
 }

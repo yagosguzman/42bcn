@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2023/12/14 18:45:58 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:57:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ typedef struct s_philo
 	long			num_eat;
 	long			goal;
 	long			last_time_eat;
-	t_fork			*firstfork;
-	t_fork			*secondfork;
+	t_fork			*leftfork;
+	t_fork			*rightfork;
 	t_args			*args;
 	pthread_mutex_t	philo_mutex;
 }	t_philo;

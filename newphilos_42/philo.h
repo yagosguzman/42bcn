@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/22 21:08:02 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:01:21 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
-	pthread_mutex_t	fork;
+	pthread_mutex_t	fork_mtx;
 	int				id;
 }	t_fork;
 
@@ -68,8 +68,8 @@ typedef struct s_philo
 	long			last_time_eat;
 	t_data			*table;
 	pthread_mutex_t	philo_mutex;
-	t_fork			*firstfork;
-	t_fork			*secondfork;
+	t_fork			*leftfork;
+	t_fork			*rightfork;
 }	t_philo;
 
 struct s_data
@@ -97,7 +97,7 @@ int		arg_to_long(int argnum, char *str, t_data *data);
 int		checker_arg(int argc, char **argv, t_data *data);
 
 /*########## data_init.c ##########*/
-void	init_forks(t_philo *philo, int pos, t_fork *forks, int philo_num);
+void	init_forks(t_philo *philo, int pos, t_fork *forks);
 void	init_philo(t_data *data);
 int		init_data(t_data *data);
 

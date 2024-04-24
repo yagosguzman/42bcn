@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:32:20 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/02/26 20:30:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:57:10 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ long	get_value(pthread_mutex_t *mutex, long *src)
 	result = *src;
 	mutex_handler(mutex, UNLOCK);
 	return (result);
+}
+
+int		simulation_finished(t_data *data) // TO DO
+{
+	if (data->finish == 0)
+		return (0);
+	return (1);
 }

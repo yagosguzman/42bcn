@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/21 18:16:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:57:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_eating(t_philo *philo)
 		return ;
 	else
 	{
-		mutex_handler(&philo->firstfork->fork, LOCK);
+		mutex_handler(&philo->leftfork->fork_mtx, LOCK);
 		write_status(TOOK_1ST_FORK, philo);
-		mutex_handler(&philo->secondfork->fork, LOCK);
+		mutex_handler(&philo->rightfork->fork_mtx, LOCK);
 		write_status(TOOK_2ND_FORK, philo);
 		set_value(&philo->philo_mutex, &philo->last_time_eat,
 			gettime(MILLISEC));
@@ -54,8 +54,8 @@ void	ft_eating(t_philo *philo)
 		precise_usleep(philo->table->time_to_eat, philo->table);
 		if (philo->num_eat == philo->table->max_eat)
 			set_value(&philo->philo_mutex, &philo->goal, 1);
-		mutex_handler(&philo->firstfork->fork, UNLOCK);
-		mutex_handler(&philo->secondfork->fork, UNLOCK);
+		mutex_handler(&philo->leftfork->fork_mtx, UNLOCK);
+		mutex_handler(&philo->rightfork->fork_mtx, UNLOCK);
 	}
 }
 
