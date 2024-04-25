@@ -6,11 +6,26 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/24 20:02:13 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:25:12 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	init_threads(t_data *data)
+{
+	t_philo	*philo;
+	int		i;
+
+	philo = data->philoarr;
+	while (i < data->philo_num)
+	{
+		if (thread_handler(philo[i].thread_id, routine, &philo[i], CREATE) != 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	init_forks(t_philo *philo, int pos, t_fork *forks)
 {
@@ -45,17 +60,23 @@ void	init_philo(t_data *data)
 	}
 }
 
+static void	create_data_mtx(t_data *data)
+{
+	mutex_handler(&data->data_mtx, INIT);
+	mutex_handler(&data->write_mtx, INIT);
+	mutex_handler(&data->finish_mtx, INIT);
+	mutex_handler(&data->full_mtx, INIT);
+	mutex_handler(&data->data_mtx, LOCK);
+}
+
 int	init_data(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	data->finish = -1;
-	data->ready = -1;
-	data->running = 0;
-	data->start = 0;
-	mutex_handler(&data->table_mutex, INIT);
-	mutex_handler(&data->write_mutex, INIT);
+	data->finish = 0;
+	data->full = 0;
+	create_data_mtx(data);
 	data->forks = malloc(sizeof(t_fork) * data->philo_num);
 	if (!data->forks)
 		return (ft_error(3));
@@ -69,11 +90,7 @@ int	init_data(t_data *data)
 	if (!data->philoarr)
 		return (ft_error(3));
 	init_philo(data);
-	i = 0;
-	while ((long)i < data->philo_num)
-	{
-		printf("Philo number: %d\nFirst fork is %i, second is  %i\n", data->philoarr[i].id, data->philoarr[i].leftfork->id, data->philoarr[i].rightfork->id);
-		i++;
-	}
+	if (init_threads(data) != 0)
+		return (1);
 	return (0);
 }

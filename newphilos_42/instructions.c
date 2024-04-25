@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/24 19:57:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:28:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	write_status(t_status status, t_philo *philo)
 	long	time_passed;
 
 	time_passed = gettime(MILLISEC) - philo->table->start;
-	if (get_value(&philo->table->table_mutex, &philo->goal))
+	if (get_value(&philo->table->data_mtx, &philo->goal))
 		return ;
-	mutex_handler(&philo->table->write_mutex, LOCK);
+	mutex_handler(&philo->table->write_mtx, LOCK);
 	if (simulation_finished(philo->table) != 0)
 	{
 		if (status == TOOK_1ST_FORK || status == TOOK_2ND_FORK)
@@ -33,7 +33,7 @@ void	write_status(t_status status, t_philo *philo)
 		if (status == DIED)
 			printf("%ld %i died\n", time_passed, philo->id);
 	}
-	mutex_handler(&philo->table->write_mutex, UNLOCK);
+	mutex_handler(&philo->table->write_mtx, UNLOCK);
 }
 
 void	ft_eating(t_philo *philo)

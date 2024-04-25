@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/24 16:32:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:42:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	mutex_handler(pthread_mutex_t *mutex, t_mutex operation)
 		if (pthread_mutex_destroy(mutex) != 0)
 			return (ft_mutex_error(DESTROY));
 	}
-	else
-		printf("Check operation code used in mutex_handler.\n");
 	return (0);
 }
 
@@ -75,8 +73,8 @@ void	clean_sim(t_data *data)
 		mutex_handler(&philo->philo_mutex, DESTROY);
 		i++;
 	}
-	mutex_handler(&data->table_mutex, DESTROY);
-	mutex_handler(&data->write_mutex, DESTROY);
+	mutex_handler(&data->data_mtx, DESTROY);
+	mutex_handler(&data->write_mtx, DESTROY);
 	if (data->forks)
 		free(data->forks);
 	if (data->philoarr)

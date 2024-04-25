@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:03:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/24 16:31:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:25:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	main(int argc, char **argv)
 		clean_sim(&data);
 		return (1);
 	}
-	// init_dining(&data);
+	data.start = gettime(MILLISEC);
+	mutex_handler(&data.data_mtx, UNLOCK);
+	init_dining(&data);
 	// clean_sim(&data);
 	// printf("Dining finished.\n");
 	return (0);

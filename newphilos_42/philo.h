@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/24 20:01:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 21:10:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ struct s_data
 	long			time_to_sleep;
 	long			max_eat;
 	long			finish;
-	long			ready;
-	long			running;
+	long			full;
 	long			start;
-	pthread_mutex_t	table_mutex;
-	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	data_mtx;
+	pthread_mutex_t	write_mtx;
+	pthread_mutex_t	finish_mtx;
+	pthread_mutex_t	full_mtx;
 	t_fork			*forks;
 	t_philo			*philoarr;
 	pthread_t		checker;
@@ -93,10 +94,11 @@ struct s_data
 /*########## check_arg.c ##########*/
 int		check_valid_arg(char **argv);
 void	save_info(int i, long result, t_data *data);
-int		arg_to_long(int argnum, char *str, t_data *data);
+int		ft_atol(int argnum, char *str, t_data *data);
 int		checker_arg(int argc, char **argv, t_data *data);
 
 /*########## data_init.c ##########*/
+int		init_threads(t_data *data);
 void	init_forks(t_philo *philo, int pos, t_fork *forks);
 void	init_philo(t_data *data);
 int		init_data(t_data *data);
@@ -130,5 +132,9 @@ int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);
 void	clean_sim(t_data *data);
+
+/*########## dining.c ##########*/
+int		routine(void);
+int		init_dining(t_data *data);
 
 #endif

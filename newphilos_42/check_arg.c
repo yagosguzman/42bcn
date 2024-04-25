@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:52:29 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/22 21:11:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:15:19 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	save_info(int i, long result, t_data *data)
 		return ;
 }
 
-int	arg_to_long(int argnum, char *str, t_data *data)
+int	ft_atol(int argnum, char *str, t_data *data)
 {
 	int		i;
 	int		j;
@@ -104,7 +104,7 @@ int	checker_arg(int argc, char **argv, t_data *data)
 		return (ft_error(1));
 	while (i < argc)
 	{
-		if (arg_to_long(i, argv[i], data) == 1)
+		if (ft_atol(i, argv[i], data) == 1)
 			return (ft_error(2));
 		i++;
 	}
