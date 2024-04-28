@@ -6,11 +6,30 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/25 18:42:51 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:57:27 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long	ft_gettime(long t_start)
+{
+	struct timeval	time_val;
+
+	if (gettimeofday(&time_val, NULL) != 0)
+		return (ft_error(4));
+	return ((time_val.tv_sec * 1000) + (time_val.tv_usec / 1000) - t_start);
+}
+
+void	precise_usleep(long time)
+{
+	long	start;
+
+	start = ft_gettime(0);
+	time += start;
+	while (start <= time)
+		usleep(time / 2);
+}
 
 int	mutex_handler(pthread_mutex_t *mutex, t_mutex operation)
 {

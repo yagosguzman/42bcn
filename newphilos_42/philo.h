@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/27 14:24:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:56:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,9 @@ void	ft_eating(t_philo *philo);
 void	ft_sleeping(t_philo *philo);
 void	ft_thinking(t_philo *philo);
 
-/*########## sync_utils.c ##########*/
-void	sync_threads(t_data *args); // TO DO
-long	gettime(t_time time_unit);
-void	precise_usleep(long usec, t_data *data);
-int		all_running(pthread_mutex_t *mutex, long *running,
-			long philo_num);
-void	fairness_solution(t_philo *philo); // TO DO
-
 /*########## utils.c ##########*/
+long	ft_gettime(long t_start);
+void	precise_usleep(long time);
 int		mutex_handler(pthread_mutex_t *mutex, t_mutex operation);
 int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_thread operation);

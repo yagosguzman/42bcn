@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/27 14:20:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:55:09 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	init_threads(t_data *data)
 	philo = data->philoarr;
 	while (i < data->philo_num)
 	{
-		if (thread_handler(&philo[i].thread_id, (void *)routine, &philo[i], CREATE)
-			!= 0)
+		if (thread_handler(&philo[i].thread_id, &routine, data, CREATE) != 0)
 			return (1);
 		i++;
 	}
@@ -53,6 +52,7 @@ void	init_philo(t_data *data)
 	{
 		philo = &data->philoarr[i];
 		philo->id = i + 1;
+		philo->last_time_eat = 0;
 		philo->num_eat = 0;
 		philo->goal = 0;
 		philo->data = data;
@@ -66,8 +66,8 @@ static void	create_data_mtx(t_data *data)
 {
 	mutex_handler(&data->data_mtx, INIT);
 	mutex_handler(&data->write_mtx, INIT);
-	mutex_handler(&data->finish_mtx, INIT);
-	mutex_handler(&data->full_mtx, INIT);
+	// mutex_handler(&data->finish_mtx, INIT);
+	// mutex_handler(&data->full_mtx, INIT);
 	mutex_handler(&data->data_mtx, LOCK);
 }
 
