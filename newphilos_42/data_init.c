@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/25 21:25:12 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:20:20 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	init_threads(t_data *data)
 	t_philo	*philo;
 	int		i;
 
+	i = 0;
 	philo = data->philoarr;
 	while (i < data->philo_num)
 	{
-		if (thread_handler(philo[i].thread_id, routine, &philo[i], CREATE) != 0)
+		if (thread_handler(&philo[i].thread_id, (void *)routine, &philo[i], CREATE)
+			!= 0)
 			return (1);
 		i++;
 	}
@@ -32,7 +34,7 @@ void	init_forks(t_philo *philo, int pos, t_fork *forks)
 	if (philo->id == 1)
 	{
 		philo->leftfork = &forks[pos];
-		philo->rightfork = &forks[philo->table->philo_num - 1];
+		philo->rightfork = &forks[philo->data->philo_num - 1];
 	}
 	else
 	{
@@ -53,7 +55,7 @@ void	init_philo(t_data *data)
 		philo->id = i + 1;
 		philo->num_eat = 0;
 		philo->goal = 0;
-		philo->table = data;
+		philo->data = data;
 		mutex_handler(&philo->philo_mutex, INIT);
 		init_forks(philo, i, data->forks);
 		i++;

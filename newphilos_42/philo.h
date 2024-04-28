@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/25 21:10:38 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:24:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_philo
 	long			num_eat;
 	long			goal;
 	long			last_time_eat;
-	t_data			*table;
+	t_data			*data;
 	pthread_mutex_t	philo_mutex;
 	t_fork			*leftfork;
 	t_fork			*rightfork;
@@ -134,7 +134,8 @@ int		thread_handler(pthread_t *thread, void *(*foo)(void *),
 void	clean_sim(t_data *data);
 
 /*########## dining.c ##########*/
-int		routine(void);
-int		init_dining(t_data *data);
+void	multiple_philos(t_philo *philo);
+void	*routine(void *v_data);
+void	init_dining(t_data *data);
 
 #endif
