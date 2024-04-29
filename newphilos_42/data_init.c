@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/28 17:55:09 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:32:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	init_threads(t_data *data)
 	philo = data->philoarr;
 	while (i < data->philo_num)
 	{
-		if (thread_handler(&philo[i].thread_id, &routine, data, CREATE) != 0)
+		if (thread_handler(&philo[i].thread_id, &routine, &philo[i],
+				CREATE) != 0)
 			return (1);
 		i++;
 	}

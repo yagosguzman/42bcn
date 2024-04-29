@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:16:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/28 17:57:27 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:01:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ long	ft_gettime(long t_start)
 
 void	precise_usleep(long time)
 {
-	long	start;
-
-	start = ft_gettime(0);
-	time += start;
-	while (start <= time)
-		usleep(time / 2);
+	time += ft_gettime(0);
+	while (ft_gettime(0) <= time)
+		usleep(100);
 }
 
 int	mutex_handler(pthread_mutex_t *mutex, t_mutex operation)
@@ -84,6 +81,9 @@ void	clean_sim(t_data *data)
 	t_philo	*philo;
 	int		i;
 
+	i = 0;
+	while (i < data->philo_num)
+		thread_handler(&data->philoarr[i++].thread_id, NULL, NULL, JOIN);
 	i = 0;
 	while (i < data->philo_num)
 	{

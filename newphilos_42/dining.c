@@ -6,11 +6,12 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/28 18:13:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:32:15 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
 void	multiple_philos(t_philo *philo)
 {
 	ft_eating(philo);
@@ -23,26 +24,27 @@ void	solo_philo(t_philo *philo)
 	mutex_handler(&philo->rightfork->fork_mtx, LOCK);
 	write_status(TOOK_1ST_FORK, philo);
 	precise_usleep(philo->data->time_to_die);
-	mutex_handler(&philo->rightfork->fork_mtx, UNLOCK);
 	write_status(DIED, philo);
+	mutex_handler(&philo->rightfork->fork_mtx, UNLOCK);
+	set_value(&philo->data->data_mtx, &philo->data->finish, 1);
 }
 
 void	*routine(void *v_data)
 {
-	t_data	*data;
+	t_philo	*philo;
 
-
-	data = v_data;
-	// if (data->philoarr->id % 2 != 0)
-	// 	precise_usleep(data->time_to_eat / 10);
-	while (data->finish != 1)
+	philo = (t_philo *)v_data;
+	if (philo->data->philo_num > 1 && philo->id % 2 != 0)
+		precise_usleep(philo->data->time_to_eat / 100);
+	while (!simulation_finished(philo->data))
 	{
-		if (data->philo_num == 1)
+		if (philo->data->philo_num == 1)
 		{
-			solo_philo(data->philoarr);
+			solo_philo(philo);
 			break ;
 		}
-		multiple_philos(data->philoarr);
+		else
+			multiple_philos(philo);
 	}
 	return ((void *)0);
 }
