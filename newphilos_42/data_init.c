@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:25:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/29 21:32:37 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:49:37 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	init_threads(t_data *data)
 	philo = data->philoarr;
 	while (i < data->philo_num)
 	{
-		if (thread_handler(&philo[i].thread_id, &routine, &philo[i],
+		if (thread_handler(&philo[i].thread_id, &ft_routine, &philo[i],
 				CREATE) != 0)
 			return (1);
 		i++;
@@ -67,8 +67,6 @@ static void	create_data_mtx(t_data *data)
 {
 	mutex_handler(&data->data_mtx, INIT);
 	mutex_handler(&data->write_mtx, INIT);
-	// mutex_handler(&data->finish_mtx, INIT);
-	// mutex_handler(&data->full_mtx, INIT);
 	mutex_handler(&data->data_mtx, LOCK);
 }
 

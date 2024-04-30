@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:03:44 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/29 21:01:07 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:19:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		clean_sim(&data);
 		return (1);
 	}
-	init_dining(&data);
+	ft_checker(&data);
 	clean_sim(&data);
 	printf("Dining finished.\n");
 	return (0);

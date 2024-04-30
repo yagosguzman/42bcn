@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:29:49 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/28 17:56:40 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:50:33 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ typedef enum e_mutex
 	UNLOCK,
 	DESTROY
 }	t_mutex;
-
-typedef enum e_time
-{
-	MILLISEC,
-	MICROSEC
-}	t_time;
 
 typedef enum e_status
 {
@@ -84,8 +78,6 @@ struct s_data
 	long			start;
 	pthread_mutex_t	data_mtx;
 	pthread_mutex_t	write_mtx;
-	pthread_mutex_t	finish_mtx;
-	pthread_mutex_t	full_mtx;
 	t_fork			*forks;
 	t_philo			*philoarr;
 	pthread_t		checker;
@@ -129,7 +121,8 @@ void	clean_sim(t_data *data);
 
 /*########## dining.c ##########*/
 void	multiple_philos(t_philo *philo);
-void	*routine(void *v_data);
-void	init_dining(t_data *data);
+void	*ft_routine(void *v_data);
+int		philo_dead(t_philo *philo);
+void	ft_checker(t_data *data);
 
 #endif

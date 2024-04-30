@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/29 21:32:15 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:00:16 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	solo_philo(t_philo *philo)
 	set_value(&philo->data->data_mtx, &philo->data->finish, 1);
 }
 
-void	*routine(void *v_data)
+void	*ft_routine(void *v_data)
 {
 	t_philo	*philo;
 
@@ -49,9 +49,38 @@ void	*routine(void *v_data)
 	return ((void *)0);
 }
 
-void	init_dining(t_data *data)
+int	philo_dead(t_philo *philo)
 {
+	long	transcurred;
+	long	time_to_die;
+
+	transcurred = ft_gettime(philo->data->start)
+		- get_value(&philo->philo_mutex, &philo->last_time_eat);
+	time_to_die = philo->data->time_to_die;
+	if (transcurred > time_to_die)
+		return (1);
+	return (0);
+}
+
+void	ft_checker(t_data *data)
+{
+	int	i;
+
+	i = 0;
 	data->start = ft_gettime(0);
 	mutex_handler(&data->data_mtx, UNLOCK);
-	routine((void *)data->philoarr);
+	while (!simulation_finished(data))
+	{
+		while (i < data->philo_num && !simulation_finished(data))
+		{
+			if (philo_dead(&data->philoarr[i]))
+			{
+				write_status(DIED, &data->philoarr[i]);
+				set_value(&data->data_mtx, &data->finish, 1);
+			}
+			i++;
+			if (i == data->philo_num)
+				i = 0;
+		}
+	}
 }

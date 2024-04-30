@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/28 18:01:31 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:57:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	ft_eating(t_philo *philo)
 	mutex_handler(&philo->rightfork->fork_mtx, LOCK);
 	write_status(TOOK_2ND_FORK, philo);
 	set_value(&philo->philo_mutex, &philo->last_time_eat,
-		ft_gettime(0));
+		ft_gettime(philo->data->start));
 	set_value(&philo->philo_mutex, &philo->num_eat,
 		philo->num_eat + 1);
+	if (philo->num_eat == philo->data->max_eat)
+		set_value(&philo->data->data_mtx, &philo->data->full,
+			philo->data->full + 1);
 	write_status(EATING, philo);
 	precise_usleep(philo->data->time_to_eat);
-	if (philo->num_eat == philo->data->max_eat)
-		set_value(&philo->data->data_mtx, &philo->data->finish,
-			philo->data->finish + 1);
 	mutex_handler(&philo->leftfork->fork_mtx, UNLOCK);
 	mutex_handler(&philo->rightfork->fork_mtx, UNLOCK);
 }
