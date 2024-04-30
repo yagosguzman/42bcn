@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:43 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/30 11:57:59 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:35:54 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	write_status(t_status status, t_philo *philo)
 	mutex_handler(&philo->data->write_mtx, LOCK);
 	if (!simulation_finished(philo->data))
 	{
-		if (status == TOOK_1ST_FORK || status == TOOK_2ND_FORK)
-			printf("%ld %i has taken a fork\n", time_passed, philo->id);
+		if (status == TOOK_1ST_FORK)
+			printf("%ld %i has taken left fork\n", time_passed, philo->id);
+		if (status == TOOK_2ND_FORK)
+			printf("%ld %i has taken right fork\n", time_passed, philo->id);
 		if (status == EATING)
 			printf("%ld %i is eating\n", time_passed, philo->id);
 		if (status == SLEEPING)

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:46 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/04/30 18:00:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:29:07 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void	*ft_routine(void *v_data)
 	t_philo	*philo;
 
 	philo = (t_philo *)v_data;
+	mutex_handler(&philo->data->data_mtx, LOCK);
+	mutex_handler(&philo->data->data_mtx, UNLOCK);
 	if (philo->data->philo_num > 1 && philo->id % 2 != 0)
-		precise_usleep(philo->data->time_to_eat / 100);
+		precise_usleep(philo->data->time_to_eat / 10);
 	while (!simulation_finished(philo->data))
 	{
 		if (philo->data->philo_num == 1)
